@@ -13,10 +13,10 @@
     
     <item>
       <title>GitHubのPull requestから、CHANGELOGっぽいものを作成するgemを作った</title>
-      <link>https://zephiransas.github.io/2015/04/02/introduce-octocam/</link>
+      <link>https://zephiransas.github.io/blog/2015/04/02/introduce-octocam/</link>
       <pubDate>Thu, 02 Apr 2015 17:31:42 +0000</pubDate>
       
-      <guid>https://zephiransas.github.io/2015/04/02/introduce-octocam/</guid>
+      <guid>https://zephiransas.github.io/blog/2015/04/02/introduce-octocam/</guid>
       <description>gemを作りました。名前はoctocamです。
  octocam - https://rubygems.org/gems/octocam  主な機能としては「GitHubから指定された日付期間にマージされたPull requestを抽出し、CHANGELOGっぽいMarkdownを生成する」というgemです。
 定期的にリリースを行っている場合に、以前リリースされたときからどのような機能が増えたかをCHANGELOGとかに書き出しますが、そういった時に便利に使えると思います。
@@ -33,10 +33,10 @@ octocam -o zephiransas -r octocam -f 2015-01-01 -t 2015-01-31  -f,-tオプショ
     
     <item>
       <title>werckerでrspecとcucumberのCI環境を作る</title>
-      <link>https://zephiransas.github.io/2014/01/23/webkit-on-wercker/</link>
+      <link>https://zephiransas.github.io/blog/2014/01/23/webkit-on-wercker/</link>
       <pubDate>Thu, 23 Jan 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://zephiransas.github.io/2014/01/23/webkit-on-wercker/</guid>
+      <guid>https://zephiransas.github.io/blog/2014/01/23/webkit-on-wercker/</guid>
       <description>去年作ったPhoto LeafというWebサービスがあるのですが、これのCI環境を作成したいなぁと思っていたところwerckerというCIサービスを使って構築できたので、そのまとめです。
 werckerとは？ werckerはTravisCIなどに代表されるように、外部でビルド（というかテスト）やデプロイを行ってくれるCI（継続的インテグレーション）サービスです。
 使い方としては、リモートリポジトリに変更がpushされた時点でこれをフックして、CIサービス側でテストしたり、場合によってはそのまま本番環境に自動デプロイとかもしてしまえば、変更内容を安全、かつ迅速にリリースできる仕組みが出来上がるわけです。イマドキっぽいですね！
@@ -55,10 +55,10 @@ See more about services on our devcenter: http://devcenter.wercker.com/articles/
     
     <item>
       <title>RubyKaigi2013に参加してきた</title>
-      <link>https://zephiransas.github.io/2013/06/04/attended-rubykaigi2013/</link>
+      <link>https://zephiransas.github.io/blog/2013/06/04/attended-rubykaigi2013/</link>
       <pubDate>Tue, 04 Jun 2013 00:00:00 +0000</pubDate>
       
-      <guid>https://zephiransas.github.io/2013/06/04/attended-rubykaigi2013/</guid>
+      <guid>https://zephiransas.github.io/blog/2013/06/04/attended-rubykaigi2013/</guid>
       <description>5/30〜6/1まで、東京国際交流館で開催されたRubyKaigi2013に参加してきました。
 RubyKaigiはRuby界では最大級のイベントですが、一度2011年をもって終了しています。それが今回はいろいろコンセプトを変えて復活した、ということで自分も参加してきました。
 RubyKaigiについて 自分は今回が初参加なので、以前のRubyKaigiとの比較はできないのですが、他とは違うなと感じたのは以下のところ。

@@ -13,10 +13,10 @@
     
     <item>
       <title>CircleCIでGradleのテストを並列実行する</title>
-      <link>https://zephiransas.github.io/2017/03/10/ciecleci-and-gradle/</link>
+      <link>https://zephiransas.github.io/blog/2017/03/10/ciecleci-and-gradle/</link>
       <pubDate>Fri, 10 Mar 2017 09:32:48 +0000</pubDate>
       
-      <guid>https://zephiransas.github.io/2017/03/10/ciecleci-and-gradle/</guid>
+      <guid>https://zephiransas.github.io/blog/2017/03/10/ciecleci-and-gradle/</guid>
       <description>現在開発を行っているプロジェクトでは、Spring Bootを使って開発を行っているのですが、そこでのテストをCI環境で実行できるよう設定を行ったので、その手順を書いておきます。
 CircleCIで普通にテストできるようにする 最初は並列ではなく、1つのコンテナを使ってCircleCIでテストできるように設定を行います。まずcircle.ymlを以下のように準備。
 ``` yml circle.yml machine: java: version: openjdk8 timezone: Asia/Tokyo environment: _JAVA_OPTIONS: &amp;ldquo;-Xms512m -Xmx1024m&amp;rdquo; GRADLE_OPTS: &amp;lsquo;-Dorg.gradle.jvmargs=&amp;ldquo;-Xmx1024m -XX:+HeapDumpOnOutOfMemoryError&amp;rdquo;&amp;rsquo; post: - sudo service postgresql stop

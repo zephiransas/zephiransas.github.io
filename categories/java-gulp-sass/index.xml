@@ -13,10 +13,10 @@
     
     <item>
       <title>Spring BootのCSSをGulpで管理する</title>
-      <link>https://zephiransas.github.io/2017/04/05/gulp-sass/</link>
+      <link>https://zephiransas.github.io/blog/2017/04/05/gulp-sass/</link>
       <pubDate>Wed, 05 Apr 2017 16:13:17 +0000</pubDate>
       
-      <guid>https://zephiransas.github.io/2017/04/05/gulp-sass/</guid>
+      <guid>https://zephiransas.github.io/blog/2017/04/05/gulp-sass/</guid>
       <description>Spring BootのプロジェクトでもSASSが書きたい！という欲望から、Gulpを使ってSASSをコンパイルするようにしました。
 基本Gulpでやってるので、出力先だけ変えれば、特にSpring Bootには関係ない気もしますが・・・
 npmは既にインストールしてある前提で。

@@ -13,10 +13,10 @@
     
     <item>
       <title>slickを使う（基礎編）</title>
-      <link>https://zephiransas.github.io/2013/04/24/slickwoshi-u/</link>
+      <link>https://zephiransas.github.io/blog/2013/04/24/slickwoshi-u/</link>
       <pubDate>Wed, 24 Apr 2013 00:00:00 +0000</pubDate>
       
-      <guid>https://zephiransas.github.io/2013/04/24/slickwoshi-u/</guid>
+      <guid>https://zephiransas.github.io/blog/2013/04/24/slickwoshi-u/</guid>
       <description>最近playframework2.1をちゃんと使いたいなぁと思ったので、Scala含めて色々調べてます。 で、ドキュメントを眺めてて気になったのがO/Rマッパ。play1.2系のころはEBean等のO/Rマッパを利用できたんですが、play2.1系ではなくなってる！一応Anormという仕組みでSQLを発行出来ますが、SQL直書きするのは小学生までよねー？！的な感じ。
 で、更に調べてみると、typesafeでSlickというO/Rマッパがあるので、これが良さそうじゃね？ってことで、試してみました。 本来はplayから利用するのがベストですが、実験なのでスタンドアロンで。
 build.sbtとplugin.sbtの準備 まずはsbtで環境を作るところから。以下のようにbuild.sbtを作成 ``` scala build.sbt name := &amp;ldquo;slicksample&amp;rdquo;

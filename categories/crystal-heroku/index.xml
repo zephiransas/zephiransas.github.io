@@ -13,10 +13,10 @@
     
     <item>
       <title>CrystalをHerokuで動かしてみた</title>
-      <link>https://zephiransas.github.io/2015/11/10/crystal-on-heroku/</link>
+      <link>https://zephiransas.github.io/blog/2015/11/10/crystal-on-heroku/</link>
       <pubDate>Tue, 10 Nov 2015 12:28:48 +0000</pubDate>
       
-      <guid>https://zephiransas.github.io/2015/11/10/crystal-on-heroku/</guid>
+      <guid>https://zephiransas.github.io/blog/2015/11/10/crystal-on-heroku/</guid>
       <description>最近ちょっと話題のcrystal。これをHerokuで動かしてみました。
 Herokuの準備 まずはHerokuにアプリケーションを作成します。
 Herokuでは当然crystalをサポートしていませんので、crystalのコンパイラを自前でインストールする必要があります。 Herokuにはこういったことを実現するために、buildpackという仕組みが用意されています。

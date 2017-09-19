@@ -13,10 +13,10 @@
     
     <item>
       <title>Pusherを使ったChrome拡張を作る</title>
-      <link>https://zephiransas.github.io/2014/03/20/pusher-with-chrome-extension/</link>
+      <link>https://zephiransas.github.io/blog/2014/03/20/pusher-with-chrome-extension/</link>
       <pubDate>Thu, 20 Mar 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://zephiransas.github.io/2014/03/20/pusher-with-chrome-extension/</guid>
+      <guid>https://zephiransas.github.io/blog/2014/03/20/pusher-with-chrome-extension/</guid>
       <description>メッセージ等の新着通知やアップデート情報の配信など、アプリケーションへの通知の方法として、スマートフォンなどで使われるpush通知など、最近では様々なものがあります。
 しかし自前で通知用のサーバを運用するのは手間がかかるので、これを簡単に使えるようにするサービスも増えてきました。例えばPusher.comなどがあります。これを使うことで、ブラウザへのリアルタイムな通知機能を、WebSocketを使って簡単に作成することができます。
 今回はPusherからの通知をChrome拡張で受信し、これをデスクトップ通知するサンプルを作成しましたので、解説してみます。

@@ -13,10 +13,10 @@
     
     <item>
       <title>合同勉強会2016に参加してきた</title>
-      <link>https://zephiransas.github.io/2016/12/18/gbdaitokai2016/</link>
+      <link>https://zephiransas.github.io/blog/2016/12/18/gbdaitokai2016/</link>
       <pubDate>Sun, 18 Dec 2016 21:21:31 +0000</pubDate>
       
-      <guid>https://zephiransas.github.io/2016/12/18/gbdaitokai2016/</guid>
+      <guid>https://zephiransas.github.io/blog/2016/12/18/gbdaitokai2016/</guid>
       <description>このエントリは大都会岡山アドベントカレンダー2016の18日目のエントリです。
 昨日のエントリは たがみだいきさんの「RailsGirlsOkayama 2ndを2月25日26日に開催する予定です！」でした。 去年の第1回には、自分もコーチとして参加させてもらいましたが、そこから新たに岡山に女性エンジニアのコミュニティができ、それが主体となってRailsGirlsをやる、というのは素晴らしいことだと思います。きっとイベントも大成功することでしょう。
 先日、毎年恒例となった合同勉強会と忘年会議が開催されました。
@@ -36,10 +36,10 @@
     
     <item>
       <title>Java Day Tokyo 2013報告会@岡山を開催してきた</title>
-      <link>https://zephiransas.github.io/2013/06/18/jdt2013-okayama-report/</link>
+      <link>https://zephiransas.github.io/blog/2013/06/18/jdt2013-okayama-report/</link>
       <pubDate>Tue, 18 Jun 2013 00:00:00 +0000</pubDate>
       
-      <guid>https://zephiransas.github.io/2013/06/18/jdt2013-okayama-report/</guid>
+      <guid>https://zephiransas.github.io/blog/2013/06/18/jdt2013-okayama-report/</guid>
       <description>2013年6月15日（土）に、奉還町リブラホールにて「Java Day Tokyo 2013報告会@岡山」を開催してきました。
 自分は「Java Day Tokyo2013基調公演より」と題して、報告をさせていただきました。
  当日のTwitterのまとめは、こちら
@@ -51,10 +51,10 @@
     
     <item>
       <title>RubyKaigi2013に参加してきた</title>
-      <link>https://zephiransas.github.io/2013/06/04/attended-rubykaigi2013/</link>
+      <link>https://zephiransas.github.io/blog/2013/06/04/attended-rubykaigi2013/</link>
       <pubDate>Tue, 04 Jun 2013 00:00:00 +0000</pubDate>
       
-      <guid>https://zephiransas.github.io/2013/06/04/attended-rubykaigi2013/</guid>
+      <guid>https://zephiransas.github.io/blog/2013/06/04/attended-rubykaigi2013/</guid>
       <description>5/30〜6/1まで、東京国際交流館で開催されたRubyKaigi2013に参加してきました。
 RubyKaigiはRuby界では最大級のイベントですが、一度2011年をもって終了しています。それが今回はいろいろコンセプトを変えて復活した、ということで自分も参加してきました。
 RubyKaigiについて 自分は今回が初参加なので、以前のRubyKaigiとの比較はできないのですが、他とは違うなと感じたのは以下のところ。
@@ -74,10 +74,10 @@ RubyKaigiで撮った写真はこちらにまとめてます。 http://www.flick
     
     <item>
       <title>Java Day Tokyo 2013に参加してきた（セッション）</title>
-      <link>https://zephiransas.github.io/2013/05/18/javadaytokyo2/</link>
+      <link>https://zephiransas.github.io/blog/2013/05/18/javadaytokyo2/</link>
       <pubDate>Sat, 18 May 2013 00:00:00 +0000</pubDate>
       
-      <guid>https://zephiransas.github.io/2013/05/18/javadaytokyo2/</guid>
+      <guid>https://zephiransas.github.io/blog/2013/05/18/javadaytokyo2/</guid>
       <description>前回の基調講演につづいて、今回は自分が参加したセッションのレポートです。
 Ask the Experts 基調講演にも登壇したJavaSE,JavaFX,JavaEEの各キーパーソンに、直接質問できるセッションです。ちょうど昼の時間だったので、本来は昼食をとりつつ受けるセッションなんですが、うっかり自分は昼食を仕入れるのを忘れてました・・・
 JavaSEの担当は、Simon Ritter氏
@@ -104,10 +104,10 @@ JavaSE7がリリースされて随分経ちますが、これでようやくス�
     
     <item>
       <title>Java Day Tokyo 2013に参加してきた（基調講演）</title>
-      <link>https://zephiransas.github.io/2013/05/16/javadaytokyo2013/</link>
+      <link>https://zephiransas.github.io/blog/2013/05/16/javadaytokyo2013/</link>
       <pubDate>Thu, 16 May 2013 00:00:00 +0000</pubDate>
       
-      <guid>https://zephiransas.github.io/2013/05/16/javadaytokyo2013/</guid>
+      <guid>https://zephiransas.github.io/blog/2013/05/16/javadaytokyo2013/</guid>
       <description>前日、5月14日に秋葉原UDXにて開催されたJava Day Tokyo2013に参加してきました。 JavaOne Tokyo2012が開催されてからほぼ1年。去年イベントが終わった時には「もう、こういったイベントは当分ないだろうなぁ」とか思っていたので、JavaOneではないにしてもちゃんとイベントを開催してくれた日本オラクル＆寺田さんには感謝ですね。
 Keynoteの報告 基本的には去年のサンフランシスコでのJavaOneとかで発表された内容とかぶる感じ。ただ、普段はこういった最新情報をチェックしていない人たちでも、イベントであれば直に最新情報を聞けるので、そういった人たちにリーチできるだけでも、意味はあるかと。 残念だったのは最初、写真撮影がNGにされていたこと。
 写真撮影禁止とか、俺の仕事＼(^o^)／ｵﾜﾀ　#jdt2013

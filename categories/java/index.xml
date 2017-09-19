@@ -13,10 +13,10 @@
     
     <item>
       <title>スクフェス・ログサーバをつくった</title>
-      <link>https://zephiransas.github.io/2016/12/31/schfeslogsvr/</link>
+      <link>https://zephiransas.github.io/blog/2016/12/31/schfeslogsvr/</link>
       <pubDate>Sat, 31 Dec 2016 12:47:59 +0000</pubDate>
       
-      <guid>https://zephiransas.github.io/2016/12/31/schfeslogsvr/</guid>
+      <guid>https://zephiransas.github.io/blog/2016/12/31/schfeslogsvr/</guid>
       <description>今日は大晦日ですね。年末ですが今年も例によって、コード書いたりプラモ作ったり、普段の連休と同じくダラダラ過ごしております。
 ところで今年のラブライブ！アドベントカレンダーはチェックしましたか？ 自分も20日目に劇場版ラブライブとμ’ｓメンバーのその後というタイトルでエントリしてます。 今年はその他にも、さまざまな視点から見た素晴らしいエントリがたくさん集まってますので、ラブライバーならぜひチェックしてみてください。
 で、22日目のエントリには@hideo54さんのスクフェスのライブスコアを取得する”schfeslog”を作った話というのがあります。 これはnodeで建てたプロキシを使って、スクフェスがサーバに送信してる通信内容をみて、ライブのプレイ結果をツイートすることができるツールです。
@@ -31,10 +31,10 @@
     
     <item>
       <title>Maven Wrapperを使ってプロジェクトで使うMavenのバージョンを指定する</title>
-      <link>https://zephiransas.github.io/2016/05/23/maven-wrapper/</link>
+      <link>https://zephiransas.github.io/blog/2016/05/23/maven-wrapper/</link>
       <pubDate>Mon, 23 May 2016 16:34:12 +0000</pubDate>
       
-      <guid>https://zephiransas.github.io/2016/05/23/maven-wrapper/</guid>
+      <guid>https://zephiransas.github.io/blog/2016/05/23/maven-wrapper/</guid>
       <description>Javaでの開発において、ライブラリのバージョン管理にMavenを用いているところはたくさんあると思います。
 しかし、pom.xmlを使って各ライブラリのバージョンを管理していても、各開発者が使うMavenのバージョンを固定することはできません。
 プロジェクトで使うMavenのバージョンを固定したい！そんな場合に使えるのがMaven Wrapperです。
@@ -55,10 +55,10 @@ YOSHIDAさん慣れないジャバやるから
     
     <item>
       <title>JavaプログラマがKindle50%還元セールで買っておくべきIT技術書</title>
-      <link>https://zephiransas.github.io/2015/05/31/java-programmer-must-buy/</link>
+      <link>https://zephiransas.github.io/blog/2015/05/31/java-programmer-must-buy/</link>
       <pubDate>Sun, 31 May 2015 22:29:48 +0000</pubDate>
       
-      <guid>https://zephiransas.github.io/2015/05/31/java-programmer-must-buy/</guid>
+      <guid>https://zephiransas.github.io/blog/2015/05/31/java-programmer-must-buy/</guid>
       <description>Kindle Storeでセールをやってるようです。今回は50%をポイント還元するってセールらしいです。
 で、こちらを見てたらRubyやPHPはあっても、Javaがなかったので、ついカッとなってJavaプログラマ向けのオススメ技術書をチョイスしました。 セールは6/1の正午までですので、お早めにどーぞ。
  これは店頭で目次を見た程度です。わりと初心者向けな印象なので、これからJavaを勉強したい人にオススメです。
@@ -71,10 +71,10 @@ YOSHIDAさん慣れないジャバやるから
     
     <item>
       <title>Project Kullaを試す</title>
-      <link>https://zephiransas.github.io/2015/04/16/project-kulla/</link>
+      <link>https://zephiransas.github.io/blog/2015/04/16/project-kulla/</link>
       <pubDate>Thu, 16 Apr 2015 12:26:30 +0000</pubDate>
       
-      <guid>https://zephiransas.github.io/2015/04/16/project-kulla/</guid>
+      <guid>https://zephiransas.github.io/blog/2015/04/16/project-kulla/</guid>
       <description>以前から気になっていたJavaのREPL、Project Kullaを動かしてみました。
 REPLとはRead-eval-print loopの略で、CUIからコードを直接入力していって、その場で動作を確認できるツールです。 Rubyであればirbやpryなどが有名ですね。
 Project KullaはOpenJDKにて開発されている、JavaのREPL環境をつくるプロジェクトです。 ちなみにこの機能はJDK9で、正式導入される予定になっています。
@@ -94,10 +94,10 @@ hg clone http://hg.openjdk.java.net/kulla/dev ~/kulla cd ~/kulla  次に、そ�
     
     <item>
       <title>lambda-behaveでテストを書こう</title>
-      <link>https://zephiransas.github.io/2014/12/16/about-lambda-behave/</link>
+      <link>https://zephiransas.github.io/blog/2014/12/16/about-lambda-behave/</link>
       <pubDate>Tue, 16 Dec 2014 18:17:15 +0000</pubDate>
       
-      <guid>https://zephiransas.github.io/2014/12/16/about-lambda-behave/</guid>
+      <guid>https://zephiransas.github.io/blog/2014/12/16/about-lambda-behave/</guid>
       <description>これはJavaアドベントカレンダー2014の12/16分の記事です。
 昨日はgrimroseさんの、[書評] Gradle徹底入門 でした。
 明日は@com4dcさんの、はじめて触るStreamの世界 です。
@@ -115,10 +115,10 @@ import static com.insightfullogic.lambdabehave.Suite.*; @RunWith(JunitSuiteRunne
     
     <item>
       <title>JJUG CCC 2014 Fallで発表してきた</title>
-      <link>https://zephiransas.github.io/2014/11/17/attend-jjug-ccc-2014-fall/</link>
+      <link>https://zephiransas.github.io/blog/2014/11/17/attend-jjug-ccc-2014-fall/</link>
       <pubDate>Mon, 17 Nov 2014 20:40:56 +0000</pubDate>
       
-      <guid>https://zephiransas.github.io/2014/11/17/attend-jjug-ccc-2014-fall/</guid>
+      <guid>https://zephiransas.github.io/blog/2014/11/17/attend-jjug-ccc-2014-fall/</guid>
       <description>11月15日に、東京は新宿の西新宿ベルサールにて開催されたJJUG CCC 2014 Fallに参加してきました。
 JJUC CCC（クロス・コミュニティ・カンファレンス）日本Javaユーザ会が春/秋と、年に2回開催している、JJUG主催としては最大のイベントです。
 今回はこれのセッション公募(CfP)に応募したところ嬉しい事にセッション枠を1つ受け持つことになったので、それも兼ねて東京まで参加してきました。 久々に東京のJavaコミュニティの勉強会で、普段はTL上でしか面識のない人たちに会えるのも、楽しみの一つ。
@@ -153,10 +153,10 @@ Javaコミュニティの復活の兆し  つい先日発売された「Javaエ�
     
     <item>
       <title>Java8で始めるLambda（基礎編）</title>
-      <link>https://zephiransas.github.io/2014/03/12/java8lambda/</link>
+      <link>https://zephiransas.github.io/blog/2014/03/12/java8lambda/</link>
       <pubDate>Wed, 12 Mar 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://zephiransas.github.io/2014/03/12/java8lambda/</guid>
+      <guid>https://zephiransas.github.io/blog/2014/03/12/java8lambda/</guid>
       <description>まもなくリリース予定のJava8。その中でも最も大きなインパクトを持つというProject Lambdaについて、ここ数日調べてみました。 今からLambdaをはじめようとする人向けに、何回かに分けてまとめてみたいと思います。
 インターフェースの宣言 まずは手始めに、引数で指定された文字列の前後に&amp;rdquo;[&amp;ldquo;と&amp;rdquo;]&amp;ldquo;をつける処理を考えてみましょう。
 Lambdaを使用するには、まずインターフェースを宣言する必要があります。上記の仕様から考えると
@@ -169,10 +169,10 @@ public static void main(String&amp;hellip; args) { LambdaInterface lambda = (Str
     
     <item>
       <title>Java Day Tokyo 2013報告会@岡山を開催してきた</title>
-      <link>https://zephiransas.github.io/2013/06/18/jdt2013-okayama-report/</link>
+      <link>https://zephiransas.github.io/blog/2013/06/18/jdt2013-okayama-report/</link>
       <pubDate>Tue, 18 Jun 2013 00:00:00 +0000</pubDate>
       
-      <guid>https://zephiransas.github.io/2013/06/18/jdt2013-okayama-report/</guid>
+      <guid>https://zephiransas.github.io/blog/2013/06/18/jdt2013-okayama-report/</guid>
       <description>2013年6月15日（土）に、奉還町リブラホールにて「Java Day Tokyo 2013報告会@岡山」を開催してきました。
 自分は「Java Day Tokyo2013基調公演より」と題して、報告をさせていただきました。
  当日のTwitterのまとめは、こちら
@@ -184,10 +184,10 @@ public static void main(String&amp;hellip; args) { LambdaInterface lambda = (Str
     
     <item>
       <title>GlassFishのアップグレード方法</title>
-      <link>https://zephiransas.github.io/2013/05/24/how-to-upgrade-gf/</link>
+      <link>https://zephiransas.github.io/blog/2013/05/24/how-to-upgrade-gf/</link>
       <pubDate>Fri, 24 May 2013 00:00:00 +0000</pubDate>
       
-      <guid>https://zephiransas.github.io/2013/05/24/how-to-upgrade-gf/</guid>
+      <guid>https://zephiransas.github.io/blog/2013/05/24/how-to-upgrade-gf/</guid>
       <description>会社で使ってるJenkinsさんはGlassFish上で動いているんですが、これのアップグレードを行ったので、そのメモ。
 具体的にはGlassFish 3.1.1からGlassFish 3.1.2へアップグレードしました。
 updatetoolのインストール まずはアップグレードに使用するupdatetoolをインストールします。
@@ -201,10 +201,10 @@ $ ./asadmin version  などで、アップグレードできていることを�
     
     <item>
       <title>Java Day Tokyo 2013に参加してきた（セッション）</title>
-      <link>https://zephiransas.github.io/2013/05/18/javadaytokyo2/</link>
+      <link>https://zephiransas.github.io/blog/2013/05/18/javadaytokyo2/</link>
       <pubDate>Sat, 18 May 2013 00:00:00 +0000</pubDate>
       
-      <guid>https://zephiransas.github.io/2013/05/18/javadaytokyo2/</guid>
+      <guid>https://zephiransas.github.io/blog/2013/05/18/javadaytokyo2/</guid>
       <description>前回の基調講演につづいて、今回は自分が参加したセッションのレポートです。
 Ask the Experts 基調講演にも登壇したJavaSE,JavaFX,JavaEEの各キーパーソンに、直接質問できるセッションです。ちょうど昼の時間だったので、本来は昼食をとりつつ受けるセッションなんですが、うっかり自分は昼食を仕入れるのを忘れてました・・・
 JavaSEの担当は、Simon Ritter氏
@@ -231,10 +231,10 @@ JavaSE7がリリースされて随分経ちますが、これでようやくス�
     
     <item>
       <title>Java Day Tokyo 2013に参加してきた（基調講演）</title>
-      <link>https://zephiransas.github.io/2013/05/16/javadaytokyo2013/</link>
+      <link>https://zephiransas.github.io/blog/2013/05/16/javadaytokyo2013/</link>
       <pubDate>Thu, 16 May 2013 00:00:00 +0000</pubDate>
       
-      <guid>https://zephiransas.github.io/2013/05/16/javadaytokyo2013/</guid>
+      <guid>https://zephiransas.github.io/blog/2013/05/16/javadaytokyo2013/</guid>
       <description>前日、5月14日に秋葉原UDXにて開催されたJava Day Tokyo2013に参加してきました。 JavaOne Tokyo2012が開催されてからほぼ1年。去年イベントが終わった時には「もう、こういったイベントは当分ないだろうなぁ」とか思っていたので、JavaOneではないにしてもちゃんとイベントを開催してくれた日本オラクル＆寺田さんには感謝ですね。
 Keynoteの報告 基本的には去年のサンフランシスコでのJavaOneとかで発表された内容とかぶる感じ。ただ、普段はこういった最新情報をチェックしていない人たちでも、イベントであれば直に最新情報を聞けるので、そういった人たちにリーチできるだけでも、意味はあるかと。 残念だったのは最初、写真撮影がNGにされていたこと。
 写真撮影禁止とか、俺の仕事＼(^o^)／ｵﾜﾀ　#jdt2013
