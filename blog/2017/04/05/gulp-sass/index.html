@@ -94,7 +94,7 @@
         },
         "datePublished": "2017-04-05",
         "dateModified": "2017-04-05",
-        "wordCount": 209,
+        "wordCount": 190,
         
     }
     </script>
@@ -151,7 +151,7 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
 
   			<header class="post-header">
   				<span class="post-meta">
-						<span class="post-date">5 Apr 2017</span> <span class="reading-time">| <span class="estimated-reading-time">1 min.</span> (<span class="word-count">209</span> words)</span></span>
+						<span class="post-date">5 Apr 2017</span> <span class="reading-time">| <span class="estimated-reading-time">1 min.</span> (<span class="word-count">190</span> words)</span></span>
   				</span>
   				<div class="clear"></div>
   				<h1 class="post-title">Spring BootのCSSをGulpで管理する</h1>
@@ -204,38 +204,36 @@ $ npm install --save-dev gulp gulp-sass gulp-sourcemaps gulp-minify-css gulp-plu
 
 <p>SASSをコンパイルできるようGulpのタスクを定義します。</p>
 
-<p>``` javascript gulpfile.js
-var gulp = require(&lsquo;gulp&rsquo;),
-    sass = require(&lsquo;gulp-sass&rsquo;),
-    sourcemaps = require(&lsquo;gulp-sourcemaps&rsquo;),
-    minifyCss = require(&lsquo;gulp-minify-css&rsquo;),
-    plumber = require(&lsquo;gulp-plumber&rsquo;);</p>
+<pre><code class="language-javascript">var gulp = require('gulp'),
+    sass = require('gulp-sass'),
+    sourcemaps = require('gulp-sourcemaps'),
+    minifyCss = require('gulp-minify-css'),
+    plumber = require('gulp-plumber');
 
-<p>gulp.task(&lsquo;sass&rsquo;, function(){
-  gulp.src(&lsquo;assets/stylesheets/*.scss&rsquo;)
+gulp.task('sass', function(){
+  gulp.src('assets/stylesheets/*.scss')
     .pipe(plumber())
     .pipe(sourcemaps.init())
     .pipe(sass())
     .pipe(minifyCss())
-    .pipe(sourcemaps.write(&lsquo;./maps&rsquo;))
-    .pipe(gulp.dest(&lsquo;src/main/resources/static/css&rsquo;))
-});</p>
+    .pipe(sourcemaps.write('./maps'))
+    .pipe(gulp.dest('src/main/resources/static/css'))
+});
+</code></pre>
 
-<pre><code>
-まずscssファイルの置き場所を ``` gulp.src('assets/stylesheets/*.scss') ``` としてassets/stylesheetsディレクトリに設定します。
+<p>まずscssファイルの置き場所を <code>gulp.src('assets/stylesheets/*.scss')</code> としてassets/stylesheetsディレクトリに設定します。</p>
 
-``.pipe(sass())``でSASSのコンパイル、``.pipe(minifyCss())``でCSSの圧縮をしています。
+<p><code>.pipe(sass())</code>でSASSのコンパイル、<code>.pipe(minifyCss())</code>でCSSの圧縮をしています。</p>
 
-圧縮したCSSだと、元のSASSでの場所がわからなくなるので ``.pipe(sourcemaps.write('./maps'))``でmapファイルを作成します。
+<p>圧縮したCSSだと、元のSASSでの場所がわからなくなるので <code>.pipe(sourcemaps.write('./maps'))</code>でmapファイルを作成します。</p>
 
-``sourcemaps.write()``はデフォルトだとコンパイルされたcss内部にインラインでmapを書き込むので、別途mapsディレクトリにmapファイルを書き込むよう設定しておきます。こうしておくことでChromeなどのDeveloper toolで見たときにSASSの場所が分かるようになります。
+<p><code>sourcemaps.write()</code>はデフォルトだとコンパイルされたcss内部にインラインでmapを書き込むので、別途mapsディレクトリにmapファイルを書き込むよう設定しておきます。こうしておくことでChromeなどのDeveloper toolで見たときにSASSの場所が分かるようになります。</p>
 
-最後に ``.pipe(gulp.dest('src/main/resources/static/css'))``でCSS出力しています。
+<p>最後に <code>.pipe(gulp.dest('src/main/resources/static/css'))</code>でCSS出力しています。</p>
 
-設定したタスクを実行します。
+<p>設定したタスクを実行します。</p>
 
-``` bash
-$ gulp sass
+<pre><code class="language-bash">$ gulp sass
 </code></pre>
 
 <p>これでCSSが出力されますので、あとはThymeleaf側から</p>
@@ -265,27 +263,25 @@ $ gulp sass
 
 <p>としてgulp-sass-bulk-importをインストールした後、gulpfile.jsを修正します。</p>
 
-<p>``` javascript gulpfile.js
-var sassBulk = require(&lsquo;gulp-sass-bulk-import&rsquo;);</p>
+<pre><code class="language-javascript">var sassBulk = require('gulp-sass-bulk-import');
 
-<p>&hellip;</p>
+...
 
-<p>gulp.task(&lsquo;sass&rsquo;, function(){
-  gulp.src(&lsquo;assets/stylesheets/*.scss&rsquo;)
+gulp.task('sass', function(){
+  gulp.src('assets/stylesheets/*.scss')
     .pipe(plumber())
     .pipe(sourcemaps.init())
     .pipe(sassBulk()) # 追加
     .pipe(sass())
     .pipe(minifyCss())
-    .pipe(sourcemaps.write(&lsquo;./maps&rsquo;))
-    .pipe(gulp.dest(&lsquo;src/main/resources/static/css&rsquo;))
-});</p>
+    .pipe(sourcemaps.write('./maps'))
+    .pipe(gulp.dest('src/main/resources/static/css'))
+});
+</code></pre>
 
-<pre><code>
-あとはapplication.scssで
+<p>あとはapplication.scssで</p>
 
-``` css application.scss
-@import &quot;modules/*&quot;;
+<pre><code class="language-css">@import &quot;modules/*&quot;;
 </code></pre>
 
 <p>とすることで、modules内のSASSを含めて、CSSがコンパイルされます。</p>
@@ -301,25 +297,23 @@ var sassBulk = require(&lsquo;gulp-sass-bulk-import&rsquo;);</p>
 
 <p>これでnode_modulesにBootstrapがインストールされたので、これをGulpから参照できるようgulpfile.jsを修正します。</p>
 
-<p>``` javascript gulpfile.js
-gulp.task(&lsquo;sass&rsquo;, function(){
-  gulp.src(&lsquo;assets/stylesheets/*.scss&rsquo;)
+<pre><code class="language-javascript">gulp.task('sass', function(){
+  gulp.src('assets/stylesheets/*.scss')
     .pipe(plumber())
     .pipe(sourcemaps.init())
     .pipe(sassBulk()) # 追加
     .pipe(sass({
-      includePaths: [&lsquo;./node_modules/bootstrap/scss&rsquo;]   # 追加
+      includePaths: ['./node_modules/bootstrap/scss']   # 追加
     }))
     .pipe(minifyCss())
-    .pipe(sourcemaps.write(&lsquo;./maps&rsquo;))
-    .pipe(gulp.dest(&lsquo;src/main/resources/static/css&rsquo;))
-});</p>
+    .pipe(sourcemaps.write('./maps'))
+    .pipe(gulp.dest('src/main/resources/static/css'))
+});
+</code></pre>
 
-<pre><code>
-あとはapplication.scssで
+<p>あとはapplication.scssで</p>
 
-``` css application.scss
-@import &quot;bootstrap&quot;;
+<pre><code class="language-css">@import &quot;bootstrap&quot;;
 </code></pre>
 
 <p>とするだけです。SASSのコンパイルを実行すると、application.cssにBootstrapのcssが含まれていることがわかります。</p>

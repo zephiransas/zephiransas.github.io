@@ -26,7 +26,7 @@ npmは既にインストールしてある前提で。
 必要なパッケージをインストールする まずは必要なパッケージをnpmでインストールしていきます。
 $ npm init (以降、全てデフォルトで) $ npm install --save-dev gulp gulp-sass gulp-sourcemaps gulp-minify-css gulp-plumber  これでpackage.jsonが作成され、node_modulesに依存ライブラリがインストールされます。node_modulesはgitignoreしておくといいでしょう。
 gulpfile.jsを作成する SASSをコンパイルできるようGulpのタスクを定義します。
-``` javascript gulpfile.js var gulp = require(&amp;lsquo;gulp&amp;rsquo;), sass = require(&amp;lsquo;gulp-sass&amp;rsquo;), sourcemaps = require(&amp;lsquo;gulp-sourcemaps&amp;rsquo;), minifyCss = require(&amp;lsquo;gulp-minify-css&amp;rsquo;), plumber = require(&amp;lsquo;gulp-plumber&amp;rsquo;);</description>
+var gulp = require(&#39;gulp&#39;), sass = require(&#39;gulp-sass&#39;), sourcemaps = require(&#39;gulp-sourcemaps&#39;), minifyCss = require(&#39;gulp-minify-css&#39;), plumber = require(&#39;gulp-plumber&#39;); gulp.</description>
     </item>
     
     <item>
@@ -37,11 +37,9 @@ gulpfile.jsを作成する SASSをコンパイルできるようGulpのタスク
       <guid>https://zephiransas.github.io/blog/2017/03/10/ciecleci-and-gradle/</guid>
       <description>現在開発を行っているプロジェクトでは、Spring Bootを使って開発を行っているのですが、そこでのテストをCI環境で実行できるよう設定を行ったので、その手順を書いておきます。
 CircleCIで普通にテストできるようにする 最初は並列ではなく、1つのコンテナを使ってCircleCIでテストできるように設定を行います。まずcircle.ymlを以下のように準備。
-``` yml circle.yml machine: java: version: openjdk8 timezone: Asia/Tokyo environment: _JAVA_OPTIONS: &amp;ldquo;-Xms512m -Xmx1024m&amp;rdquo; GRADLE_OPTS: &amp;lsquo;-Dorg.gradle.jvmargs=&amp;ldquo;-Xmx1024m -XX:+HeapDumpOnOutOfMemoryError&amp;rdquo;&amp;rsquo; post: - sudo service postgresql stop
-dependencies: override: - ./gradlew testClasses
-database: post: - mysql -e &amp;lsquo;create database [データベース名];&amp;rsquo; # flywayなどでのマイグレーション
-test: override: - ./gradlew test post: - mkdir -p $CIRCLE_TEST_REPORTS/junit/ &amp;amp;&amp;amp; find . -type f -regex &amp;ldquo;.*/build/test-results/.*xml&amp;rdquo; -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;:
- ### メモリ割り当てについて machine.environmentでJAVA_OPTIONSに&amp;quot;-Xms512m -Xmx1024m&amp;quot;を指定しています。これはCircleCIでは1つのコンテナには4Gのメモリが割当られており、その上限をこえると、コンテナがフリーズして、10分経過するとテスト失敗になるという現象に対応するためです。合わせてGRADLE_OPTSにも同様の設定をおこなっています。 このあたりの設定も状況によっては増やせる場合もありますので、テストを実行しながら、調整してみてください。 - [Your build hit the 4G memory limit](https://circleci.</description>
+machine: java: version: openjdk8 timezone: Asia/Tokyo environment: _JAVA_OPTIONS: &amp;quot;-Xms512m -Xmx1024m&amp;quot; GRADLE_OPTS: &#39;-Dorg.gradle.jvmargs=&amp;quot;-Xmx1024m -XX:+HeapDumpOnOutOfMemoryError&amp;quot;&#39; post: - sudo service postgresql stop dependencies: override: - ./gradlew testClasses database: post: - mysql -e &#39;create database [データベース名];&#39; # flywayなどでのマイグレーション test: override: - ./gradlew test post: - mkdir -p $CIRCLE_TEST_REPORTS/junit/ &amp;amp;&amp;amp; find . -type f -regex &amp;quot;.*/build/test-results/.*xml&amp;quot; -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;:  メモリ割り当てについて machine.environmentでJAVA_OPTIONSに&amp;rdquo;-Xms512m -Xmx1024m&amp;rdquo;を指定しています。これはCircleCIでは1つのコンテナには4Gのメモリが割当られており、その上限をこえると、コンテナがフリーズして、10分経過するとテスト失敗になるという現象に対応するためです。合わせてGRADLE_OPTSにも同様の設定をおこなっています。
+このあたりの設定も状況によっては増やせる場合もありますので、テストを実行しながら、調整してみてください。
+ Your build hit the 4G memory limit  使わないデータベースを止める CircleCIではデフォルトでPostgreSQLとMySQLがインストールされたコンテナが準備されます。machine.</description>
     </item>
     
     <item>
@@ -192,10 +190,7 @@ crystal用のbuildpackは既にあるので、今回はこれを利用します�
 heroku create --buildpack https://github.com/zamith/heroku-buildpack-crystal  ちなみに、これはあとから指定することも可能です。
 heroku  アプリケーションの準備 次にcrystalで簡単なWebサーバを実装します。といってもcrystalの公式ページにあるサンプルに手を加えた簡単なものです。
 app.crというファイル名で以下のファイルを準備します。
-``` ruby app.cr require &amp;ldquo;http/server&amp;rdquo; require &amp;ldquo;option_parser&amp;rdquo;
-server_port = 8080 OptionParser.parse! do |opts| opts.on(&amp;ldquo;-p PORT&amp;rdquo;, &amp;ldquo;&amp;ndash;port PORT&amp;rdquo;, &amp;ldquo;define port to run server&amp;rdquo;) do |port| server_port = port.to_i end end
-server = HTTP::Server.new(&amp;ldquo;0.0.0.0&amp;rdquo;, server_port) do |request| HTTP::Response.ok &amp;ldquo;text/plain&amp;rdquo;, &amp;ldquo;Hello world, got #{request.path}!&amp;rdquo; end
-puts &amp;ldquo;Listening on http://0.</description>
+require &amp;quot;http/server&amp;quot; require &amp;quot;option_parser&amp;quot; server_port = 8080 OptionParser.parse! do |opts| opts.on(&amp;quot;-p PORT&amp;quot;, &amp;quot;--port PORT&amp;quot;, &amp;quot;define port to run server&amp;quot;) do |port| server_port = port.to_i end end server = HTTP::Server.new(&amp;quot;0.0.0.0&amp;quot;, server_port) do |request| HTTP::Response.ok &amp;quot;text/plain&amp;quot;, &amp;quot;Hello world, got #{request.path}!&amp;quot; end puts &amp;quot;Listening on http://0.0.0.0:#{server_port}&amp;quot; server.listen  注意するところは2点。</description>
     </item>
     
     <item>
@@ -210,11 +205,20 @@ unicornのワーカプロセスは、通常では起動したままユーザか�
 unicorn-worker-killerを使うことで、ワーカプロセスが以下の条件の場合に、自動的に再起動してくれます。
  ワーカプロセスが指定回数のリクエストを処理した場合 ワーカプロセスが指定量のメモリを使用している場合  いずれの場合でもワーカプロセスの再起動は、現在のリクエストを処理した後に再起動（いわゆるgraceful restart）されます。
 設定のしかた 設定はconfig.ruにて行います。
-リクエストの回数基準で再起動する ``` ruby config.ru use Unicorn::WorkerKiller::MaxRequests, 3072, 4096
- これはワーカプロセスが、3072回~4096回のいずれかの回数リクエストを処理したら再起動する設定です。 ``` ruby config.ru use Unicorn::WorkerKiller::MaxRequests, 3072, 4096, true  とすることで、unicorn.rbのstderr_pathで指定されたパスに状況を出力することができます。
-メモリの使用量を基準に再起動する ``` ruby config.ru use Unicorn::WorkerKiller::Oom, (192*(10242)), (256*(10242)), 16
- これはワーカプロセスが16回リクエストを処理する度に、自身のメモリ使用量をチェックし、これが192M~256Mのいずれかの使用量をオーバーしていた場合に、再起動する設定です。 ### 設定が2つある理由 リクエスト回数とメモリ使用量の設定両方とも、しきい値を範囲で指定するようになっていますが、これには理由があります。 1つのしきい値だと、各ワーカが再起動するタイミングが、ほぼ同じになるからです。同じタイミングで全てのワーカプロセスが再起動してしまうと、その間リクエストを処理することができなくなってしまうので、これは好ましくありません。 ですので、しきい値を範囲で指定し、その範囲内のいずれかの値を実際のしきい値として採用するという仕組みになっています。 なので、しきい値の範囲は狭いより、広いほうが、ベターです。 ## unicorn-worker-killerを試してみる では、unicorn-worker-killerがちゃんとワーカプロセスをKillできているかを確認してみます。 シナリオとしては - config/unicorn.rbのworker_processesは1として、ワーカプロセスは1つだけにする - unicorn-worker-killerの設定は100回〜120回のリクエストを受けたタイミングで、ワーカプロセスを再起動するようにする まずはGemfileに ``` ruby Gemfile gem &#39;unicorn-worker-killer&#39;  と設定します。config.ruの設定は、以下のようになります。
-``` ruby config.</description>
+リクエストの回数基準で再起動する use Unicorn::WorkerKiller::MaxRequests, 3072, 4096  これはワーカプロセスが、3072回~4096回のいずれかの回数リクエストを処理したら再起動する設定です。
+use Unicorn::WorkerKiller::MaxRequests, 3072, 4096, true  とすることで、unicorn.rbのstderr_pathで指定されたパスに状況を出力することができます。
+メモリの使用量を基準に再起動する use Unicorn::WorkerKiller::Oom, (192*(1024**2)), (256*(1024**2)), 16  これはワーカプロセスが16回リクエストを処理する度に、自身のメモリ使用量をチェックし、これが192M~256Mのいずれかの使用量をオーバーしていた場合に、再起動する設定です。
+設定が2つある理由 リクエスト回数とメモリ使用量の設定両方とも、しきい値を範囲で指定するようになっていますが、これには理由があります。
+1つのしきい値だと、各ワーカが再起動するタイミングが、ほぼ同じになるからです。同じタイミングで全てのワーカプロセスが再起動してしまうと、その間リクエストを処理することができなくなってしまうので、これは好ましくありません。
+ですので、しきい値を範囲で指定し、その範囲内のいずれかの値を実際のしきい値として採用するという仕組みになっています。
+なので、しきい値の範囲は狭いより、広いほうが、ベターです。
+unicorn-worker-killerを試してみる では、unicorn-worker-killerがちゃんとワーカプロセスをKillできているかを確認してみます。
+シナリオとしては
+ config/unicorn.rbのworker_processesは1として、ワーカプロセスは1つだけにする unicorn-worker-killerの設定は100回〜120回のリクエストを受けたタイミングで、ワーカプロセスを再起動するようにする  まずはGemfileに
+gem &#39;unicorn-worker-killer&#39;  と設定します。config.ruの設定は、以下のようになります。
+use Unicorn::WorkerKiller::MaxRequests, 100, 120, true  unicorn-worker-killerの詳細なログを出力するように設定しておきます。
+この設定でunicornを起動します。すると以下ような感じでログが出力されます。
+I, [2015-07-29T16:38:31.589102 #29745] INFO -- : worker=0 spawning.</description>
     </item>
     
     <item>
@@ -359,11 +363,13 @@ Javaコミュニティの復活の兆し  つい先日発売された「Javaエ�
 今回はPusherからの通知をChrome拡張で受信し、これをデスクトップ通知するサンプルを作成しましたので、解説してみます。
 Pusher側の設定 まずはPusher側に設定を行います。Pusherでアカウントを作成後、以下のようにアプリケーションを登録します。
 ここでEncryptionにチェックを入れておきましょう。チェックしなくても特に問題はないのですが、Chrome拡張の場合セキュリティの問題からSSLを使用したほうが、いろいろ都合がいいので、チェックするほうが無難です。
-Chrome拡張の作成 manifest.jsonの設定 ``` json manifest.json { &amp;ldquo;manifest_version&amp;rdquo;: 2, &amp;ldquo;name&amp;rdquo;: &amp;ldquo;Pusher test extension&amp;rdquo;, &amp;ldquo;version&amp;rdquo;: &amp;ldquo;0.0.1&amp;rdquo;, &amp;ldquo;description&amp;rdquo;: &amp;ldquo;Pusher用 Chrome extension&amp;rdquo;, &amp;ldquo;permissions&amp;rdquo; : [ &amp;ldquo;notifications&amp;rdquo; ], &amp;ldquo;content_security_policy&amp;rdquo;: &amp;ldquo;script-src &amp;lsquo;self&amp;rsquo; https://stats.pusher.com; object-src &amp;lsquo;self&amp;rsquo;&amp;ldquo;, &amp;ldquo;background&amp;rdquo; : { &amp;ldquo;scripts&amp;rdquo;: [ &amp;ldquo;src/javascript/pusher.min.js&amp;rdquo;, &amp;ldquo;src/javascript/background.js&amp;rdquo; ] } }
- 今回はPusherからのメッセージをデスクトップ通知するようにしたいのでpermissionに ``` json &amp;quot;permissions&amp;quot; : [ &amp;quot;notifications&amp;quot; ],  を指定しています。
+Chrome拡張の作成 manifest.jsonの設定 { &amp;quot;manifest_version&amp;quot;: 2, &amp;quot;name&amp;quot;: &amp;quot;Pusher test extension&amp;quot;, &amp;quot;version&amp;quot;: &amp;quot;0.0.1&amp;quot;, &amp;quot;description&amp;quot;: &amp;quot;Pusher用 Chrome extension&amp;quot;, &amp;quot;permissions&amp;quot; : [ &amp;quot;notifications&amp;quot; ], &amp;quot;content_security_policy&amp;quot;: &amp;quot;script-src &#39;self&#39; https://stats.pusher.com; object-src &#39;self&#39;&amp;quot;, &amp;quot;background&amp;quot; : { &amp;quot;scripts&amp;quot;: [ &amp;quot;src/javascript/pusher.min.js&amp;quot;, &amp;quot;src/javascript/background.js&amp;quot; ] } }  今回はPusherからのメッセージをデスクトップ通知するようにしたいのでpermissionに
+&amp;quot;permissions&amp;quot; : [ &amp;quot;notifications&amp;quot; ],  を指定しています。
 また、content_security_policyのscript-srcに https://stats.pusher.com を追加しています。httpではなくhttpsを指定していることに注意してください。
 &amp;quot;content_security_policy&amp;quot;: &amp;quot;script-src &#39;self&#39; https://stats.pusher.com; object-src &#39;self&#39;&amp;quot;,  このサイトは、Pusherのクライアントライブラリであるpusher.min.jsからアクセスしているのですが、これを許可していないとChrome拡張からPusherのサーバへ、正しく接続をすることができません。
-次にpusher.min.jsですが、これは本来であればPusherのサイトに公開されているものを読み込んで使いたいところなのですが、Chrome拡張では外部のjavascriptを読み込むことができないようです。なので、ダウンロードしてソースに加えています。 ちなみにpusher.min.jsのホスト先は、こちらで公開されています。</description>
+次にpusher.min.jsですが、これは本来であればPusherのサイトに公開されているものを読み込んで使いたいところなのですが、Chrome拡張では外部のjavascriptを読み込むことができないようです。なので、ダウンロードしてソースに加えています。 ちなみにpusher.min.jsのホスト先は、こちらで公開されています。
+background.js あとはChrome拡張のバックグラウンドで実行されるbackground.jsで、Pusherとの接続を行います。
+var pusher = new Pusher(&amp;quot;======== KEY ========&amp;quot;, { encrypted: true }); var channel = pusher.</description>
     </item>
     
     <item>
@@ -408,10 +414,15 @@ Chrome拡張の作成 manifest.jsonの設定 ``` json manifest.json { &amp;ldquo
 インターフェースの宣言 まずは手始めに、引数で指定された文字列の前後に&amp;rdquo;[&amp;ldquo;と&amp;rdquo;]&amp;ldquo;をつける処理を考えてみましょう。
 Lambdaを使用するには、まずインターフェースを宣言する必要があります。上記の仕様から考えると
  引数はString型の引数が1つ 戻り値もString型  となるので、この場合は以下の様なインターフェースを宣言します。
-``` java LambdaInterface.class public interface LambdaInterface { String method(String value); }
- ここで注意するべきことが1つ。Java8のLambdaとして使えるインターフェースには決まりがあるのですが、もっとも重要なのが**インターフェースのメソッドが1つだけ**ということです。インターフェースのメソッドが2つ以上ある場合には、それをLambdaとして使用することはできません。 これはLambdaの実装部分を書く際に、どのメソッドの内容を実装しているのかを書かないため、Lambdaを書いた場合は**そのインターフェースがもつ唯一のメソッド**に対して実装をおこなったとみなすからです。 一見、これは不便なように思ってしまうかもしれないですが、普段使うパターンのインターフェースのほとんどがjava.util.functionパッケージ内で用意されているので、実際にはそれ程不便ではありません。むしろ自分でインターフェースを用意するほうが稀かもしれません。 ## Lambdaを使った記述 早速、先に宣言したインターフェースを使ってLambdaを書いてみましょう。Lambdaを記述する際の基本となる文法は、以下のようになっています。 ``` java [インターフェース名] [lambda式の名前] = (引数の型 引数,...) -&amp;gt; { （実装） };  よってLambdaInterfaceを使って書くと、以下のようになります。
-``` java Sample.class public class Sample {
-public static void main(String&amp;hellip; args) { LambdaInterface lambda = (String value) -&amp;gt; { return &amp;ldquo;[&amp;rdquo; + value + &amp;ldquo;]&amp;rdquo;; }; System.</description>
+public interface LambdaInterface { String method(String value); }  ここで注意するべきことが1つ。Java8のLambdaとして使えるインターフェースには決まりがあるのですが、もっとも重要なのがインターフェースのメソッドが1つだけということです。インターフェースのメソッドが2つ以上ある場合には、それをLambdaとして使用することはできません。
+これはLambdaの実装部分を書く際に、どのメソッドの内容を実装しているのかを書かないため、Lambdaを書いた場合はそのインターフェースがもつ唯一のメソッドに対して実装をおこなったとみなすからです。
+一見、これは不便なように思ってしまうかもしれないですが、普段使うパターンのインターフェースのほとんどがjava.util.functionパッケージ内で用意されているので、実際にはそれ程不便ではありません。むしろ自分でインターフェースを用意するほうが稀かもしれません。
+Lambdaを使った記述 早速、先に宣言したインターフェースを使ってLambdaを書いてみましょう。Lambdaを記述する際の基本となる文法は、以下のようになっています。
+[インターフェース名] [lambda式の名前] = (引数の型 引数,...) -&amp;gt; { （実装） };  よってLambdaInterfaceを使って書くと、以下のようになります。
+public class Sample { public static void main(String... args) { LambdaInterface lambda = (String value) -&amp;gt; { return &amp;quot;[&amp;quot; + value + &amp;quot;]&amp;quot;; }; System.out.println(lambda.method(&amp;quot;HOGE&amp;quot;)); } }  実行すると&amp;rdquo;[HOGE]&amp;ldquo;と出力されていることがわかると思います。
+このように、匿名クラスを使った場合などと比べて、少ない記述量で実装できると思います。
+Lambdaの省略記法 また、このLambdaの記述では、以下のルールで、省略した記述を使用することもできます。
+ 引数の型は（型推論できるので）省略できる 引数が1つの場合は、引数の()を省略できる 但し、引数なしの場合は省略できない 実装部分が1行の場合は、{}を省略可能。さらにreturn文も不要  上記ルールに沿ったLambdaであれば省略可能です。ですので先ほどのコードも以下の様に省略できます。</description>
     </item>
     
     <item>
@@ -446,9 +457,7 @@ privateリポジトリもビルドできる TracisCIは無課金だとprivateリ
 wercker.ymlの設定 Photo Leafでは、テストをrspecとcucumberで書いています。cucumberではjavascriptのドライバとしてcapybara-webkitを使ってます。そのためwerckerで動かすには設定が若干面倒です。
 werckerにログインして、とりあえず普通にビルドするまでの手順は、以下の記事に詳しいのでこちらを参照してください。
  Githubのプライベートリポジトリでも無料で使えるCI、Werckerを使ってrails newからHerokuのデプロイまでやってみる  上記で設定したwercker.ymlに対して、rspecとcucumberを実行するように設定していきます。自分が設定したwercker.ymlは以下のような感じ
-``` yml wercker.yml box: wercker/rvm
-Build definition See the Rails section on the wercker devcenter: http://devcenter.wercker.com/articles/languages/ruby/settingup-rails4.html You will want to define your database as follows: services: - wercker/postgresql
-See more about services on our devcenter: http://devcenter.wercker.com/articles/services/ build: steps: # Uncomment this to force RVM to use a specific Ruby version # - rvm-use: # version: 2.</description>
+box: wercker/rvm # Build definition # See the Rails section on the wercker devcenter: # http://devcenter.wercker.com/articles/languages/ruby/settingup-rails4.html # You will want to define your database as follows: services: - wercker/postgresql # See more about services on our devcenter: # http://devcenter.wercker.com/articles/services/ build: steps: # Uncomment this to force RVM to use a specific Ruby version # - rvm-use: # version: 2.</description>
     </item>
     
     <item>

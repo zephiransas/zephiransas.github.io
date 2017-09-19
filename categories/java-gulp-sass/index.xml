@@ -26,7 +26,7 @@ npmは既にインストールしてある前提で。
 必要なパッケージをインストールする まずは必要なパッケージをnpmでインストールしていきます。
 $ npm init (以降、全てデフォルトで) $ npm install --save-dev gulp gulp-sass gulp-sourcemaps gulp-minify-css gulp-plumber  これでpackage.jsonが作成され、node_modulesに依存ライブラリがインストールされます。node_modulesはgitignoreしておくといいでしょう。
 gulpfile.jsを作成する SASSをコンパイルできるようGulpのタスクを定義します。
-``` javascript gulpfile.js var gulp = require(&amp;lsquo;gulp&amp;rsquo;), sass = require(&amp;lsquo;gulp-sass&amp;rsquo;), sourcemaps = require(&amp;lsquo;gulp-sourcemaps&amp;rsquo;), minifyCss = require(&amp;lsquo;gulp-minify-css&amp;rsquo;), plumber = require(&amp;lsquo;gulp-plumber&amp;rsquo;);</description>
+var gulp = require(&#39;gulp&#39;), sass = require(&#39;gulp-sass&#39;), sourcemaps = require(&#39;gulp-sourcemaps&#39;), minifyCss = require(&#39;gulp-minify-css&#39;), plumber = require(&#39;gulp-plumber&#39;); gulp.</description>
     </item>
     
   </channel>

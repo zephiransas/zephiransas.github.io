@@ -21,10 +21,15 @@
 インターフェースの宣言 まずは手始めに、引数で指定された文字列の前後に&amp;rdquo;[&amp;ldquo;と&amp;rdquo;]&amp;ldquo;をつける処理を考えてみましょう。
 Lambdaを使用するには、まずインターフェースを宣言する必要があります。上記の仕様から考えると
  引数はString型の引数が1つ 戻り値もString型  となるので、この場合は以下の様なインターフェースを宣言します。
-``` java LambdaInterface.class public interface LambdaInterface { String method(String value); }
- ここで注意するべきことが1つ。Java8のLambdaとして使えるインターフェースには決まりがあるのですが、もっとも重要なのが**インターフェースのメソッドが1つだけ**ということです。インターフェースのメソッドが2つ以上ある場合には、それをLambdaとして使用することはできません。 これはLambdaの実装部分を書く際に、どのメソッドの内容を実装しているのかを書かないため、Lambdaを書いた場合は**そのインターフェースがもつ唯一のメソッド**に対して実装をおこなったとみなすからです。 一見、これは不便なように思ってしまうかもしれないですが、普段使うパターンのインターフェースのほとんどがjava.util.functionパッケージ内で用意されているので、実際にはそれ程不便ではありません。むしろ自分でインターフェースを用意するほうが稀かもしれません。 ## Lambdaを使った記述 早速、先に宣言したインターフェースを使ってLambdaを書いてみましょう。Lambdaを記述する際の基本となる文法は、以下のようになっています。 ``` java [インターフェース名] [lambda式の名前] = (引数の型 引数,...) -&amp;gt; { （実装） };  よってLambdaInterfaceを使って書くと、以下のようになります。
-``` java Sample.class public class Sample {
-public static void main(String&amp;hellip; args) { LambdaInterface lambda = (String value) -&amp;gt; { return &amp;ldquo;[&amp;rdquo; + value + &amp;ldquo;]&amp;rdquo;; }; System.</description>
+public interface LambdaInterface { String method(String value); }  ここで注意するべきことが1つ。Java8のLambdaとして使えるインターフェースには決まりがあるのですが、もっとも重要なのがインターフェースのメソッドが1つだけということです。インターフェースのメソッドが2つ以上ある場合には、それをLambdaとして使用することはできません。
+これはLambdaの実装部分を書く際に、どのメソッドの内容を実装しているのかを書かないため、Lambdaを書いた場合はそのインターフェースがもつ唯一のメソッドに対して実装をおこなったとみなすからです。
+一見、これは不便なように思ってしまうかもしれないですが、普段使うパターンのインターフェースのほとんどがjava.util.functionパッケージ内で用意されているので、実際にはそれ程不便ではありません。むしろ自分でインターフェースを用意するほうが稀かもしれません。
+Lambdaを使った記述 早速、先に宣言したインターフェースを使ってLambdaを書いてみましょう。Lambdaを記述する際の基本となる文法は、以下のようになっています。
+[インターフェース名] [lambda式の名前] = (引数の型 引数,...) -&amp;gt; { （実装） };  よってLambdaInterfaceを使って書くと、以下のようになります。
+public class Sample { public static void main(String... args) { LambdaInterface lambda = (String value) -&amp;gt; { return &amp;quot;[&amp;quot; + value + &amp;quot;]&amp;quot;; }; System.out.println(lambda.method(&amp;quot;HOGE&amp;quot;)); } }  実行すると&amp;rdquo;[HOGE]&amp;ldquo;と出力されていることがわかると思います。
+このように、匿名クラスを使った場合などと比べて、少ない記述量で実装できると思います。
+Lambdaの省略記法 また、このLambdaの記述では、以下のルールで、省略した記述を使用することもできます。
+ 引数の型は（型推論できるので）省略できる 引数が1つの場合は、引数の()を省略できる 但し、引数なしの場合は省略できない 実装部分が1行の場合は、{}を省略可能。さらにreturn文も不要  上記ルールに沿ったLambdaであれば省略可能です。ですので先ほどのコードも以下の様に省略できます。</description>
     </item>
     
   </channel>

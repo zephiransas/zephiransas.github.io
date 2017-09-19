@@ -94,7 +94,7 @@
         },
         "datePublished": "2014-01-23",
         "dateModified": "2014-01-23",
-        "wordCount": 369,
+        "wordCount": 364,
         
     }
     </script>
@@ -151,7 +151,7 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
 
   			<header class="post-header">
   				<span class="post-meta">
-						<span class="post-date">23 Jan 2014</span> <span class="reading-time">| <span class="estimated-reading-time">2 min.</span> (<span class="word-count">369</span> words)</span></span>
+						<span class="post-date">23 Jan 2014</span> <span class="reading-time">| <span class="estimated-reading-time">2 min.</span> (<span class="word-count">364</span> words)</span></span>
   				</span>
   				<div class="clear"></div>
   				<h1 class="post-title">werckerでrspecとcucumberのCI環境を作る</h1>
@@ -199,87 +199,80 @@ Photo LeafのソースはBitbucket上のprivateリポジトリで管理してい
 
 <p>上記で設定したwercker.ymlに対して、rspecとcucumberを実行するように設定していきます。自分が設定したwercker.ymlは以下のような感じ</p>
 
-<p>``` yml wercker.yml
-box: wercker/rvm</p>
+<pre><code class="language-yml">box: wercker/rvm
+# Build definition
+# See the Rails section on the wercker devcenter:
+# http://devcenter.wercker.com/articles/languages/ruby/settingup-rails4.html
+# You will want to define your database as follows:
+services:
+    - wercker/postgresql
+# See more about services on our devcenter:
+# http://devcenter.wercker.com/articles/services/
 
-<h1 id="build-definition">Build definition</h1>
-
-<h1 id="see-the-rails-section-on-the-wercker-devcenter">See the Rails section on the wercker devcenter:</h1>
-
-<h1 id="http-devcenter-wercker-com-articles-languages-ruby-settingup-rails4-html"><a href="http://devcenter.wercker.com/articles/languages/ruby/settingup-rails4.html">http://devcenter.wercker.com/articles/languages/ruby/settingup-rails4.html</a></h1>
-
-<h1 id="you-will-want-to-define-your-database-as-follows">You will want to define your database as follows:</h1>
-
-<p>services:
-    - wercker/postgresql</p>
-
-<h1 id="see-more-about-services-on-our-devcenter">See more about services on our devcenter:</h1>
-
-<h1 id="http-devcenter-wercker-com-articles-services"><a href="http://devcenter.wercker.com/articles/services/">http://devcenter.wercker.com/articles/services/</a></h1>
-
-<p>build:
+build:
     steps:
         # Uncomment this to force RVM to use a specific Ruby version
         # - rvm-use:
         #       version: 2.1.0
         - script:
             name: Make tmp directory
-            code: mkdir tmp</p>
+            code: mkdir tmp
 
-<pre><code>    - script:
-        name: Enable virtual display
-        code: |-
-          # Start xvfb which gives the context an virtual display
-          # which is required for tests that require an GUI
-          export DISPLAY=:99.0
-          start-stop-daemon --start --quiet --pidfile /tmp/xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -screen 0 1024x768x24 -ac +extension GLX +render -noreset
+        - script:
+            name: Enable virtual display
+            code: |-
+              # Start xvfb which gives the context an virtual display
+              # which is required for tests that require an GUI
+              export DISPLAY=:99.0
+              start-stop-daemon --start --quiet --pidfile /tmp/xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -screen 0 1024x768x24 -ac +extension GLX +render -noreset
 
-          # Give xvfb time to start. 3 seconds is the default for all xvfb-run commands.
-          sleep 3
-    # Install (apt-get) packages
-    - install-packages:
-        packages: libqtwebkit-dev
-    # A step that executes `bundle install` command
-    - bundle-install
+              # Give xvfb time to start. 3 seconds is the default for all xvfb-run commands.
+              sleep 3
+        # Install (apt-get) packages
+        - install-packages:
+            packages: libqtwebkit-dev
+        # A step that executes `bundle install` command
+        - bundle-install
 
-    # A step that prepares the database.yml using the database in services
-    - rails-database-yml:
-        service: postgresql
+        # A step that prepares the database.yml using the database in services
+        - rails-database-yml:
+            service: postgresql
 
-    # A custom script step, name value is used in the UI
-    # and the code value contains the command that get executed
-    - script:
-        name: echo ruby information
-        code: |
-            echo &quot;ruby version $(ruby --version) running&quot;
-            echo &quot;from location $(which ruby)&quot;
-            echo -p &quot;gem list: $(gem list)&quot;
+        # A custom script step, name value is used in the UI
+        # and the code value contains the command that get executed
+        - script:
+            name: echo ruby information
+            code: |
+                echo &quot;ruby version $(ruby --version) running&quot;
+                echo &quot;from location $(which ruby)&quot;
+                echo -p &quot;gem list: $(gem list)&quot;
 
-    - script:
-        name: Set up db
-        code: RAILS_ENV=test bundle exec rake db:schema:load
+        - script:
+            name: Set up db
+            code: RAILS_ENV=test bundle exec rake db:schema:load
 
-    - script:
-        name: Run RSpec
-        code: bundle exec rspec spec
+        - script:
+            name: Run RSpec
+            code: bundle exec rspec spec
 
-    - script:
-        name: Run Cucumber
-        code: bundle exec cucumber features
+        - script:
+            name: Run Cucumber
+            code: bundle exec cucumber features
+
 </code></pre>
 
-<pre><code>
-* 16~18行目 - テスト用のtmpディレクトリを作成（rspecのテストでtmpを使ってるので、必要なければ不要です）
-* 6~7,37~38行目 - テスト用のPostgreSQLを実行する
-* 53~55行目 - rspecを実行
-* 57~59行目 - cucumberを実行
+<ul>
+<li>16~18行目 - テスト用のtmpディレクトリを作成（rspecのテストでtmpを使ってるので、必要なければ不要です）</li>
+<li>6~7,37~38行目 - テスト用のPostgreSQLを実行する</li>
+<li>53~55行目 - rspecを実行</li>
+<li>57~59行目 - cucumberを実行</li>
+</ul>
 
-## capybara-webkitを動かすための注意点
+<h2 id="capybara-webkitを動かすための注意点">capybara-webkitを動かすための注意点</h2>
 
-capybara-webkitを動かすにはX11が使用できる必要があります。なのでXvfbを仮想環境で実行する必要があります。その設定が以下の部分。
+<p>capybara-webkitを動かすにはX11が使用できる必要があります。なのでXvfbを仮想環境で実行する必要があります。その設定が以下の部分。</p>
 
-``` yml wercker.yml
-- script:
+<pre><code class="language-yml">- script:
     name: Enable virtual display
     code: |-
       # Start xvfb which gives the context an virtual display
@@ -392,14 +385,7 @@ capybara-webkitを動かすにはX11が使用できる必要があります。�
 </ul></li>
 </ul></li>
 <li><a href="#wercker-ymlの設定">wercker.ymlの設定</a></li>
-</ul></li>
-<li><a href="#build-definition">Build definition</a></li>
-<li><a href="#see-the-rails-section-on-the-wercker-devcenter">See the Rails section on the wercker devcenter:</a></li>
-<li><a href="#http-devcenter-wercker-com-articles-languages-ruby-settingup-rails4-html"><a href="http://devcenter.wercker.com/articles/languages/ruby/settingup-rails4.html">http://devcenter.wercker.com/articles/languages/ruby/settingup-rails4.html</a></a></li>
-<li><a href="#you-will-want-to-define-your-database-as-follows">You will want to define your database as follows:</a></li>
-<li><a href="#see-more-about-services-on-our-devcenter">See more about services on our devcenter:</a></li>
-<li><a href="#http-devcenter-wercker-com-articles-services"><a href="http://devcenter.wercker.com/articles/services/">http://devcenter.wercker.com/articles/services/</a></a>
-<ul>
+<li><a href="#capybara-webkitを動かすための注意点">capybara-webkitを動かすための注意点</a></li>
 <li><a href="#まとめ">まとめ</a></li>
 </ul></li>
 </ul>

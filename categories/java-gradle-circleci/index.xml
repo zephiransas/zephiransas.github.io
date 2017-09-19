@@ -19,11 +19,9 @@
       <guid>https://zephiransas.github.io/blog/2017/03/10/ciecleci-and-gradle/</guid>
       <description>現在開発を行っているプロジェクトでは、Spring Bootを使って開発を行っているのですが、そこでのテストをCI環境で実行できるよう設定を行ったので、その手順を書いておきます。
 CircleCIで普通にテストできるようにする 最初は並列ではなく、1つのコンテナを使ってCircleCIでテストできるように設定を行います。まずcircle.ymlを以下のように準備。
-``` yml circle.yml machine: java: version: openjdk8 timezone: Asia/Tokyo environment: _JAVA_OPTIONS: &amp;ldquo;-Xms512m -Xmx1024m&amp;rdquo; GRADLE_OPTS: &amp;lsquo;-Dorg.gradle.jvmargs=&amp;ldquo;-Xmx1024m -XX:+HeapDumpOnOutOfMemoryError&amp;rdquo;&amp;rsquo; post: - sudo service postgresql stop
-dependencies: override: - ./gradlew testClasses
-database: post: - mysql -e &amp;lsquo;create database [データベース名];&amp;rsquo; # flywayなどでのマイグレーション
-test: override: - ./gradlew test post: - mkdir -p $CIRCLE_TEST_REPORTS/junit/ &amp;amp;&amp;amp; find . -type f -regex &amp;ldquo;.*/build/test-results/.*xml&amp;rdquo; -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;:
- ### メモリ割り当てについて machine.environmentでJAVA_OPTIONSに&amp;quot;-Xms512m -Xmx1024m&amp;quot;を指定しています。これはCircleCIでは1つのコンテナには4Gのメモリが割当られており、その上限をこえると、コンテナがフリーズして、10分経過するとテスト失敗になるという現象に対応するためです。合わせてGRADLE_OPTSにも同様の設定をおこなっています。 このあたりの設定も状況によっては増やせる場合もありますので、テストを実行しながら、調整してみてください。 - [Your build hit the 4G memory limit](https://circleci.</description>
+machine: java: version: openjdk8 timezone: Asia/Tokyo environment: _JAVA_OPTIONS: &amp;quot;-Xms512m -Xmx1024m&amp;quot; GRADLE_OPTS: &#39;-Dorg.gradle.jvmargs=&amp;quot;-Xmx1024m -XX:+HeapDumpOnOutOfMemoryError&amp;quot;&#39; post: - sudo service postgresql stop dependencies: override: - ./gradlew testClasses database: post: - mysql -e &#39;create database [データベース名];&#39; # flywayなどでのマイグレーション test: override: - ./gradlew test post: - mkdir -p $CIRCLE_TEST_REPORTS/junit/ &amp;amp;&amp;amp; find . -type f -regex &amp;quot;.*/build/test-results/.*xml&amp;quot; -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;:  メモリ割り当てについて machine.environmentでJAVA_OPTIONSに&amp;rdquo;-Xms512m -Xmx1024m&amp;rdquo;を指定しています。これはCircleCIでは1つのコンテナには4Gのメモリが割当られており、その上限をこえると、コンテナがフリーズして、10分経過するとテスト失敗になるという現象に対応するためです。合わせてGRADLE_OPTSにも同様の設定をおこなっています。
+このあたりの設定も状況によっては増やせる場合もありますので、テストを実行しながら、調整してみてください。
+ Your build hit the 4G memory limit  使わないデータベースを止める CircleCIではデフォルトでPostgreSQLとMySQLがインストールされたコンテナが準備されます。machine.</description>
     </item>
     
   </channel>

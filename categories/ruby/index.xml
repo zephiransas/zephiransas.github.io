@@ -48,9 +48,7 @@ privateリポジトリもビルドできる TracisCIは無課金だとprivateリ
 wercker.ymlの設定 Photo Leafでは、テストをrspecとcucumberで書いています。cucumberではjavascriptのドライバとしてcapybara-webkitを使ってます。そのためwerckerで動かすには設定が若干面倒です。
 werckerにログインして、とりあえず普通にビルドするまでの手順は、以下の記事に詳しいのでこちらを参照してください。
  Githubのプライベートリポジトリでも無料で使えるCI、Werckerを使ってrails newからHerokuのデプロイまでやってみる  上記で設定したwercker.ymlに対して、rspecとcucumberを実行するように設定していきます。自分が設定したwercker.ymlは以下のような感じ
-``` yml wercker.yml box: wercker/rvm
-Build definition See the Rails section on the wercker devcenter: http://devcenter.wercker.com/articles/languages/ruby/settingup-rails4.html You will want to define your database as follows: services: - wercker/postgresql
-See more about services on our devcenter: http://devcenter.wercker.com/articles/services/ build: steps: # Uncomment this to force RVM to use a specific Ruby version # - rvm-use: # version: 2.</description>
+box: wercker/rvm # Build definition # See the Rails section on the wercker devcenter: # http://devcenter.wercker.com/articles/languages/ruby/settingup-rails4.html # You will want to define your database as follows: services: - wercker/postgresql # See more about services on our devcenter: # http://devcenter.wercker.com/articles/services/ build: steps: # Uncomment this to force RVM to use a specific Ruby version # - rvm-use: # version: 2.</description>
     </item>
     
     <item>

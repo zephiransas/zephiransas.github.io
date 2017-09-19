@@ -94,7 +94,7 @@
         },
         "datePublished": "2017-03-10",
         "dateModified": "2017-03-10",
-        "wordCount": 234,
+        "wordCount": 215,
         
     }
     </script>
@@ -151,7 +151,7 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
 
   			<header class="post-header">
   				<span class="post-meta">
-						<span class="post-date">10 Mar 2017</span> <span class="reading-time">| <span class="estimated-reading-time">2 min.</span> (<span class="word-count">234</span> words)</span></span>
+						<span class="post-date">10 Mar 2017</span> <span class="reading-time">| <span class="estimated-reading-time">2 min.</span> (<span class="word-count">215</span> words)</span></span>
   				</span>
   				<div class="clear"></div>
   				<h1 class="post-title">CircleCIでGradleのテストを並列実行する</h1>
@@ -166,62 +166,62 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
 
 <p>最初は並列ではなく、1つのコンテナを使ってCircleCIでテストできるように設定を行います。まずcircle.ymlを以下のように準備。</p>
 
-<p>``` yml circle.yml
-machine:
+<pre><code class="language-yml">machine:
   java:
     version: openjdk8
   timezone:
     Asia/Tokyo
   environment:
-    _JAVA_OPTIONS: &ldquo;-Xms512m -Xmx1024m&rdquo;
-    GRADLE_OPTS: &lsquo;-Dorg.gradle.jvmargs=&ldquo;-Xmx1024m -XX:+HeapDumpOnOutOfMemoryError&rdquo;&rsquo;
+    _JAVA_OPTIONS: &quot;-Xms512m -Xmx1024m&quot;
+    GRADLE_OPTS: '-Dorg.gradle.jvmargs=&quot;-Xmx1024m -XX:+HeapDumpOnOutOfMemoryError&quot;'
   post:
-    - sudo service postgresql stop</p>
+    - sudo service postgresql stop
 
-<p>dependencies:
+dependencies:
   override:
-    - ./gradlew testClasses</p>
+    - ./gradlew testClasses
 
-<p>database:
+database:
   post:
-    - mysql -e &lsquo;create database [データベース名];&rsquo;
-    # flywayなどでのマイグレーション</p>
+    - mysql -e 'create database [データベース名];'
+    # flywayなどでのマイグレーション
 
-<p>test:
+test:
   override:
     - ./gradlew test
   post:
-    - mkdir -p $CIRCLE_TEST_REPORTS/junit/ &amp;&amp; find . -type f -regex &ldquo;.*/build/test-results/.*xml&rdquo; -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;:</p>
+    - mkdir -p $CIRCLE_TEST_REPORTS/junit/ &amp;&amp; find . -type f -regex &quot;.*/build/test-results/.*xml&quot; -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;:
+</code></pre>
 
-<pre><code>
-### メモリ割り当てについて
+<h3 id="メモリ割り当てについて">メモリ割り当てについて</h3>
 
-machine.environmentでJAVA_OPTIONSに&quot;-Xms512m -Xmx1024m&quot;を指定しています。これはCircleCIでは1つのコンテナには4Gのメモリが割当られており、その上限をこえると、コンテナがフリーズして、10分経過するとテスト失敗になるという現象に対応するためです。合わせてGRADLE_OPTSにも同様の設定をおこなっています。
+<p>machine.environmentでJAVA_OPTIONSに&rdquo;-Xms512m -Xmx1024m&rdquo;を指定しています。これはCircleCIでは1つのコンテナには4Gのメモリが割当られており、その上限をこえると、コンテナがフリーズして、10分経過するとテスト失敗になるという現象に対応するためです。合わせてGRADLE_OPTSにも同様の設定をおこなっています。</p>
 
-このあたりの設定も状況によっては増やせる場合もありますので、テストを実行しながら、調整してみてください。
+<p>このあたりの設定も状況によっては増やせる場合もありますので、テストを実行しながら、調整してみてください。</p>
 
-- [Your build hit the 4G memory limit](https://circleci.com/docs/1.0/oom/)
+<ul>
+<li><a href="https://circleci.com/docs/1.0/oom/">Your build hit the 4G memory limit</a></li>
+</ul>
 
-### 使わないデータベースを止める
+<h3 id="使わないデータベースを止める">使わないデータベースを止める</h3>
 
-CircleCIではデフォルトでPostgreSQLとMySQLがインストールされたコンテナが準備されます。machine.postで使わないデータベースを止めることで、貴重なメモリの使用量を抑えることができます。
+<p>CircleCIではデフォルトでPostgreSQLとMySQLがインストールされたコンテナが準備されます。machine.postで使わないデータベースを止めることで、貴重なメモリの使用量を抑えることができます。</p>
 
-今回テスト対象のデータベースはMySQLですので、PostgreSQLを止めてメモリを節約します。
+<p>今回テスト対象のデータベースはMySQLですので、PostgreSQLを止めてメモリを節約します。</p>
 
-### dependenciesでライブラリをダウンロードしておく
+<h3 id="dependenciesでライブラリをダウンロードしておく">dependenciesでライブラリをダウンロードしておく</h3>
 
-CircleCIではdatabaseサイクルが終わったタイミングで、次回のビルドを高速に実行できるよう、依存ライブラリなどをキャッシュする仕組みがあります。
+<p>CircleCIではdatabaseサイクルが終わったタイミングで、次回のビルドを高速に実行できるよう、依存ライブラリなどをキャッシュする仕組みがあります。</p>
 
-しかしGradleではテストを実行する直前まで依存ライブラリはダウンロードされず、通常のままだと依存ライブラリをキャッシュに含めることができません。
+<p>しかしGradleではテストを実行する直前まで依存ライブラリはダウンロードされず、通常のままだと依存ライブラリをキャッシュに含めることができません。</p>
 
-そこでdependencies.overrideにてtestClassesタスクを実行しておきます。こうすることで、依存ライブラリがダウンロードされ、databaseサイクル終了後にキャッシュが作成されるようになります。
+<p>そこでdependencies.overrideにてtestClassesタスクを実行しておきます。こうすることで、依存ライブラリがダウンロードされ、databaseサイクル終了後にキャッシュが作成されるようになります。</p>
 
-### Spring Bootのprofileはciにする
+<h3 id="spring-bootのprofileはciにする">Spring Bootのprofileはciにする</h3>
 
-CircleCIで動かす場合はデータベースの接続先が開発環境などとは変わるはずですので、CircleCI専用のapplication.ymlをapplication-ci.ymlとして作成します。
+<p>CircleCIで動かす場合はデータベースの接続先が開発環境などとは変わるはずですので、CircleCI専用のapplication.ymlをapplication-ci.ymlとして作成します。</p>
 
-``` yml application-ci.yml
-spring:
+<pre><code class="language-yml">spring:
   profiles:
     active: ci
   datasource:
@@ -268,18 +268,16 @@ spring:
 
 <p>まずは、このオプションを組み立てつつ、gradleｗ実行する専用のシェルスクリプト（circleci.sh)を準備します。</p>
 
-<p>``` bash circleci.sh
-testFiles=$(find ./src/test -name *Test.java | sort | awk &ldquo;NR % ${CIRCLE_NODE_TOTAL} == ${CIRCLE_NODE_INDEX}&ldquo;)
+<pre><code class="language-bash">testFiles=$(find ./src/test -name *Test.java | sort | awk &quot;NR % ${CIRCLE_NODE_TOTAL} == ${CIRCLE_NODE_INDEX}&quot;)
 echo $testFiles
-SPRING_PROFILES_ACTIVE=ci ./gradlew :webapp:test -PtestFiles=&ldquo;$testFiles&rdquo;</p>
+SPRING_PROFILES_ACTIVE=ci ./gradlew :webapp:test -PtestFiles=&quot;$testFiles&quot;
+</code></pre>
 
-<pre><code>
-CircleCI上でビルドに使用しているノード数は環境変数CIRCLE_NODE_TOTALから、自身のノード番号は環境変数CIRCLE_NODE_INDEXから取得できますので、これをawkから利用しつつ、テスト対象クラスを分散させます。
+<p>CircleCI上でビルドに使用しているノード数は環境変数CIRCLE_NODE_TOTALから、自身のノード番号は環境変数CIRCLE_NODE_INDEXから取得できますので、これをawkから利用しつつ、テスト対象クラスを分散させます。</p>
 
-次にbuild.gradle内では-Pオプションで渡されたtestFilesのみをテスト対象にするよう、includeTestsMatchingを使って設定を行います。
+<p>次にbuild.gradle内では-Pオプションで渡されたtestFilesのみをテスト対象にするよう、includeTestsMatchingを使って設定を行います。</p>
 
-``` bash build.gradle
-test {
+<pre><code class="language-bash">test {
   if (project.hasProperty(&quot;testFiles&quot;)) {
       ArrayList files = project.getProperties().get(&quot;testFiles&quot;)
               .replaceAll(&quot;./src/test/java/&quot;, &quot;&quot;)
@@ -300,15 +298,14 @@ test {
 
 <p>最後に、並列実行できるようcircle.ymlを修正します。</p>
 
-<p><code>yml circle.yml
-test:
+<pre><code class="language-yml">test:
   override:
     - ./circleci.sh:
         parallel: true
   post:
     - mkdir -p $CIRCLE_TEST_REPORTS/junit/ &amp;&amp; find . -type f -regex &quot;.*/build/test-results/.*xml&quot; -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;:
         parallel: true
-</code></p>
+</code></pre>
 
 <p>テストは先ほど作成したcircle.shを実行するようにしparallel: trueを付与して並列実行するようにします。<strong>parallel: trueはインデント4つであることに注意！</strong></p>
 
@@ -391,6 +388,10 @@ test:
 <ul>
 <li><a href="#circleciで普通にテストできるようにする">CircleCIで普通にテストできるようにする</a>
 <ul>
+<li><a href="#メモリ割り当てについて">メモリ割り当てについて</a></li>
+<li><a href="#使わないデータベースを止める">使わないデータベースを止める</a></li>
+<li><a href="#dependenciesでライブラリをダウンロードしておく">dependenciesでライブラリをダウンロードしておく</a></li>
+<li><a href="#spring-bootのprofileはciにする">Spring Bootのprofileはciにする</a></li>
 <li><a href="#テスト実行結果を集約する">テスト実行結果を集約する</a></li>
 </ul></li>
 <li><a href="#並列テストが実行できるようにする">並列テストが実行できるようにする</a></li>

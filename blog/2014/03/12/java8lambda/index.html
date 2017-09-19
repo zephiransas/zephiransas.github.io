@@ -94,7 +94,7 @@
         },
         "datePublished": "2014-03-12",
         "dateModified": "2014-03-12",
-        "wordCount": 270,
+        "wordCount": 240,
         
     }
     </script>
@@ -151,7 +151,7 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
 
   			<header class="post-header">
   				<span class="post-meta">
-						<span class="post-date">12 Mar 2014</span> <span class="reading-time">| <span class="estimated-reading-time">2 min.</span> (<span class="word-count">270</span> words)</span></span>
+						<span class="post-date">12 Mar 2014</span> <span class="reading-time">| <span class="estimated-reading-time">2 min.</span> (<span class="word-count">240</span> words)</span></span>
   				</span>
   				<div class="clear"></div>
   				<h1 class="post-title">Java8で始めるLambda（基礎編）</h1>
@@ -176,59 +176,58 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
 
 <p>となるので、この場合は以下の様なインターフェースを宣言します。</p>
 
-<p>``` java LambdaInterface.class
-public interface LambdaInterface {
+<pre><code class="language-java">public interface LambdaInterface {
   String method(String value);
-}</p>
+}
+</code></pre>
 
-<pre><code>
-ここで注意するべきことが1つ。Java8のLambdaとして使えるインターフェースには決まりがあるのですが、もっとも重要なのが**インターフェースのメソッドが1つだけ**ということです。インターフェースのメソッドが2つ以上ある場合には、それをLambdaとして使用することはできません。
+<p>ここで注意するべきことが1つ。Java8のLambdaとして使えるインターフェースには決まりがあるのですが、もっとも重要なのが<strong>インターフェースのメソッドが1つだけ</strong>ということです。インターフェースのメソッドが2つ以上ある場合には、それをLambdaとして使用することはできません。</p>
 
-これはLambdaの実装部分を書く際に、どのメソッドの内容を実装しているのかを書かないため、Lambdaを書いた場合は**そのインターフェースがもつ唯一のメソッド**に対して実装をおこなったとみなすからです。
+<p>これはLambdaの実装部分を書く際に、どのメソッドの内容を実装しているのかを書かないため、Lambdaを書いた場合は<strong>そのインターフェースがもつ唯一のメソッド</strong>に対して実装をおこなったとみなすからです。</p>
 
-一見、これは不便なように思ってしまうかもしれないですが、普段使うパターンのインターフェースのほとんどがjava.util.functionパッケージ内で用意されているので、実際にはそれ程不便ではありません。むしろ自分でインターフェースを用意するほうが稀かもしれません。
+<p>一見、これは不便なように思ってしまうかもしれないですが、普段使うパターンのインターフェースのほとんどがjava.util.functionパッケージ内で用意されているので、実際にはそれ程不便ではありません。むしろ自分でインターフェースを用意するほうが稀かもしれません。</p>
 
-## Lambdaを使った記述
+<h2 id="lambdaを使った記述">Lambdaを使った記述</h2>
 
-早速、先に宣言したインターフェースを使ってLambdaを書いてみましょう。Lambdaを記述する際の基本となる文法は、以下のようになっています。
+<p>早速、先に宣言したインターフェースを使ってLambdaを書いてみましょう。Lambdaを記述する際の基本となる文法は、以下のようになっています。</p>
 
-``` java
-[インターフェース名] [lambda式の名前] = (引数の型 引数,...) -&gt; {
+<pre><code class="language-java">[インターフェース名] [lambda式の名前] = (引数の型 引数,...) -&gt; {
   （実装）
 };
 </code></pre>
 
 <p>よってLambdaInterfaceを使って書くと、以下のようになります。</p>
 
-<p>``` java Sample.class
-public class Sample {</p>
+<pre><code class="language-java">public class Sample {
 
-<p>public static void main(String&hellip; args) {
+  public static void main(String... args) {
     LambdaInterface lambda = (String value) -&gt; {
-      return &ldquo;[&rdquo; + value + &ldquo;]&rdquo;;
+      return &quot;[&quot; + value + &quot;]&quot;;
     };
-    System.out.println(lambda.method(&ldquo;HOGE&rdquo;));
-  }</p>
+    System.out.println(lambda.method(&quot;HOGE&quot;));
+  }
 
-<p>}</p>
+}
+</code></pre>
 
-<pre><code>実行すると&quot;[HOGE]&quot;と出力されていることがわかると思います。
+<p>実行すると&rdquo;[HOGE]&ldquo;と出力されていることがわかると思います。</p>
 
-このように、匿名クラスを使った場合などと比べて、少ない記述量で実装できると思います。
+<p>このように、匿名クラスを使った場合などと比べて、少ない記述量で実装できると思います。</p>
 
-## Lambdaの省略記法
+<h2 id="lambdaの省略記法">Lambdaの省略記法</h2>
 
-また、このLambdaの記述では、以下のルールで、省略した記述を使用することもできます。
+<p>また、このLambdaの記述では、以下のルールで、省略した記述を使用することもできます。</p>
 
- - 引数の型は（型推論できるので）省略できる
- - 引数が1つの場合は、引数の()を省略できる
- - 但し、引数なしの場合は省略できない
- - 実装部分が1行の場合は、{}を省略可能。さらにreturn文も不要
+<ul>
+<li>引数の型は（型推論できるので）省略できる</li>
+<li>引数が1つの場合は、引数の()を省略できる</li>
+<li>但し、引数なしの場合は省略できない</li>
+<li>実装部分が1行の場合は、{}を省略可能。さらにreturn文も不要</li>
+</ul>
 
-上記ルールに沿ったLambdaであれば省略可能です。ですので先ほどのコードも以下の様に省略できます。
+<p>上記ルールに沿ったLambdaであれば省略可能です。ですので先ほどのコードも以下の様に省略できます。</p>
 
-``` java Sample.class
-public class Sample {
+<pre><code class="language-java">public class Sample {
 
   public static void main(String... args) {
     LambdaInterface lambda = value -&gt; &quot;[&quot; + value + &quot;]&quot;;
@@ -254,44 +253,47 @@ public class Sample {
 
 <p>先のコードをFunctionインターフェースを使って書き直すと。</p>
 
-<p>``` java Sample.class
-public class Sample {</p>
+<pre><code class="language-java">public class Sample {
 
-<p>public static void main(String&hellip; args) {
-    Function<String, String> lambda = value -&gt; &ldquo;[&rdquo; + value + &ldquo;]&rdquo;;
-    System.out.println(lambda.apply(&ldquo;HOGE&rdquo;));
-  }</p>
+  public static void main(String... args) {
+    Function&lt;String, String&gt; lambda = value -&gt; &quot;[&quot; + value + &quot;]&quot;;
+    System.out.println(lambda.apply(&quot;HOGE&quot;));
+  }
 
-<p>}</p>
-
-<pre><code>
-となります。Functionの他にも
-
- - 引数を1つ持ち、戻り値がないConsumer
- - 引数がなく、戻り値があるSupplier
- - 引数を1つ持ち、戻り値がboolean型のPredicate
- - 引数を1つ持ち、かつこれが戻り値と同じ場合のUnaryOperator
-
-などのインターフェースが提供されています。
-
-どういった場合に、どのインターフェースを使えばよいかについては、Qiitaにまとめておきましたので、参考にしてみてください。
-
- - [Java8関数型インターフェース チートシート](http://qiita.com/zephiransas/items/3b03af4f9044df3182d0)
-
-通常は、ここで提供されているインターフェースを使い、それ以外のパターンが発生した場合のみ、自分でインターフェースを宣言するほうがよいでしょう。
-
-## メソッド参照を使う
-メソッド参照もJava8で新しく追加された機能です。
-
-メソッド参照を使うと、他のクラスのクラスメソッドやインスタンスメソッドを、Lambdaの実装として利用することができるようになります。メソッド参照はドット(.)でメソッドを呼ぶ代わりに、コロン2つで呼び出します。
-
+}
 </code></pre>
 
-<pre><code>
-例えば先の文字列の前後にカッコをつけるメソッドが以下のようにSampleクラスのstaticメソッドとして定義されていた場合
+<p>となります。Functionの他にも</p>
 
-``` java Sample.class
-public class Sample {
+<ul>
+<li>引数を1つ持ち、戻り値がないConsumer</li>
+<li>引数がなく、戻り値があるSupplier</li>
+<li>引数を1つ持ち、戻り値がboolean型のPredicate</li>
+<li>引数を1つ持ち、かつこれが戻り値と同じ場合のUnaryOperator</li>
+</ul>
+
+<p>などのインターフェースが提供されています。</p>
+
+<p>どういった場合に、どのインターフェースを使えばよいかについては、Qiitaにまとめておきましたので、参考にしてみてください。</p>
+
+<ul>
+<li><a href="http://qiita.com/zephiransas/items/3b03af4f9044df3182d0">Java8関数型インターフェース チートシート</a></li>
+</ul>
+
+<p>通常は、ここで提供されているインターフェースを使い、それ以外のパターンが発生した場合のみ、自分でインターフェースを宣言するほうがよいでしょう。</p>
+
+<h2 id="メソッド参照を使う">メソッド参照を使う</h2>
+
+<p>メソッド参照もJava8で新しく追加された機能です。</p>
+
+<p>メソッド参照を使うと、他のクラスのクラスメソッドやインスタンスメソッドを、Lambdaの実装として利用することができるようになります。メソッド参照はドット(.)でメソッドを呼ぶ代わりに、コロン2つで呼び出します。</p>
+
+<pre><code>[クラス名]::[メソッド名]
+</code></pre>
+
+<p>例えば先の文字列の前後にカッコをつけるメソッドが以下のようにSampleクラスのstaticメソッドとして定義されていた場合</p>
+
+<pre><code class="language-java">public class Sample {
 
   public static void main(String... args) {
     ...
@@ -306,25 +308,23 @@ public class Sample {
 
 <p>Sample.addをメソッド参照するには</p>
 
-<p>``` java Sample.class
-public class Sample {</p>
+<pre><code class="language-java">public class Sample {
 
-<p>public static void main(String&hellip; args) {
-    Function<String, String> lambda = Sample::add;
-    System.out.println(lambda.apply(&ldquo;HOGE&rdquo;));
-  }</p>
+  public static void main(String... args) {
+    Function&lt;String, String&gt; lambda = Sample::add;
+    System.out.println(lambda.apply(&quot;HOGE&quot;));
+  }
 
-<p>private static String add(String value) {
-    return &ldquo;[&rdquo; + value + &ldquo;]&rdquo;;
-  }</p>
+  private static String add(String value) {
+    return &quot;[&quot; + value + &quot;]&quot;;
+  }
 
-<p>}</p>
+}
+</code></pre>
 
-<pre><code>
-ここではstaticなクラスメソッドを使いましたが、インスタンスメソッドの場合も同様に、インスタンスを生成し、そこからメソッド参照をすることができます。
+<p>ここではstaticなクラスメソッドを使いましたが、インスタンスメソッドの場合も同様に、インスタンスを生成し、そこからメソッド参照をすることができます。</p>
 
-``` java Sample.class
-public class Sample {
+<pre><code class="language-java">public class Sample {
 
   public static void main(String... args) {
     Sample sample = new Sample();
@@ -417,7 +417,10 @@ public class Sample {
 <li>
 <ul>
 <li><a href="#インターフェースの宣言">インターフェースの宣言</a></li>
+<li><a href="#lambdaを使った記述">Lambdaを使った記述</a></li>
+<li><a href="#lambdaの省略記法">Lambdaの省略記法</a></li>
 <li><a href="#java-util-functionで提供されるインターフェースを使う">java.util.functionで提供されるインターフェースを使う</a></li>
+<li><a href="#メソッド参照を使う">メソッド参照を使う</a></li>
 </ul></li>
 </ul>
 </nav>

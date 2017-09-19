@@ -94,7 +94,7 @@
         },
         "datePublished": "2014-03-20",
         "dateModified": "2014-03-20",
-        "wordCount": 162,
+        "wordCount": 144,
         
     }
     </script>
@@ -151,7 +151,7 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
 
   			<header class="post-header">
   				<span class="post-meta">
-						<span class="post-date">20 Mar 2014</span> <span class="reading-time">| <span class="estimated-reading-time">1 min.</span> (<span class="word-count">162</span> words)</span></span>
+						<span class="post-date">20 Mar 2014</span> <span class="reading-time">| <span class="estimated-reading-time">1 min.</span> (<span class="word-count">144</span> words)</span></span>
   				</span>
   				<div class="clear"></div>
   				<h1 class="post-title">Pusherを使ったChrome拡張を作る</h1>
@@ -180,28 +180,27 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
 
 <h3 id="manifest-jsonの設定">manifest.jsonの設定</h3>
 
-<p>``` json manifest.json
-{
-    &ldquo;manifest_version&rdquo;: 2,
-    &ldquo;name&rdquo;: &ldquo;Pusher test extension&rdquo;,
-    &ldquo;version&rdquo;: &ldquo;0.0.1&rdquo;,
-    &ldquo;description&rdquo;: &ldquo;Pusher用 Chrome extension&rdquo;,
-    &ldquo;permissions&rdquo; : [
-        &ldquo;notifications&rdquo;
+<pre><code class="language-json">{
+    &quot;manifest_version&quot;: 2,
+    &quot;name&quot;: &quot;Pusher test extension&quot;,
+    &quot;version&quot;: &quot;0.0.1&quot;,
+    &quot;description&quot;: &quot;Pusher用 Chrome extension&quot;,
+    &quot;permissions&quot; : [
+        &quot;notifications&quot;
     ],
-    &ldquo;content_security_policy&rdquo;: &ldquo;script-src &lsquo;self&rsquo; <a href="https://stats.pusher.com">https://stats.pusher.com</a>; object-src &lsquo;self&rsquo;&ldquo;,
-    &ldquo;background&rdquo; : {
-        &ldquo;scripts&rdquo;: [
-            &ldquo;src/javascript/pusher.min.js&rdquo;,
-            &ldquo;src/javascript/background.js&rdquo;
+    &quot;content_security_policy&quot;: &quot;script-src 'self' https://stats.pusher.com; object-src 'self'&quot;,
+    &quot;background&quot; : {
+        &quot;scripts&quot;: [
+            &quot;src/javascript/pusher.min.js&quot;,
+            &quot;src/javascript/background.js&quot;
         ]
     }
-}</p>
+}
+</code></pre>
 
-<pre><code>
-今回はPusherからのメッセージをデスクトップ通知するようにしたいのでpermissionに
-``` json
-&quot;permissions&quot; : [
+<p>今回はPusherからのメッセージをデスクトップ通知するようにしたいのでpermissionに</p>
+
+<pre><code class="language-json">&quot;permissions&quot; : [
     &quot;notifications&quot;
 ],
 </code></pre>
@@ -222,65 +221,61 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
 
 <p>あとはChrome拡張のバックグラウンドで実行されるbackground.jsで、Pusherとの接続を行います。</p>
 
-<p>``` javascript background.js
-var pusher = new Pusher(&ldquo;======== KEY ========&rdquo;, { encrypted: true });
-var channel = pusher.subscribe(&lsquo;test_channel&rsquo;);
-channel.bind(&lsquo;my_event&rsquo;, function(data) {
+<pre><code class="language-javascript">var pusher = new Pusher(&quot;======== KEY ========&quot;, { encrypted: true });
+var channel = pusher.subscribe('test_channel');
+channel.bind('my_event', function(data) {
   var opt = {
-    type: &lsquo;basic&rsquo;,
+    type: 'basic',
     title: data.title,
     message: data.message,
-    iconUrl: &ldquo;&rdquo;
+    iconUrl: &quot;&quot;
   }
-  chrome.notifications.create(&ldquo;&rdquo;, opt, function(id){ /** Do Nothing */ });<br />
-});</p>
-
-<pre><code>
-Pusherのコンストラクタに渡すkeyには、Pusherで作成したアプリケーションのKeyを指定します。
-
-![pusher2](/images/20140321/pusher2.png)
-
-また、大事なポイントとしてPusherのオプションに
-
+  chrome.notifications.create(&quot;&quot;, opt, function(id){ /** Do Nothing */ });  
+});
 </code></pre>
 
-<p>{ encrypted: true }</p>
+<p>Pusherのコンストラクタに渡すkeyには、Pusherで作成したアプリケーションのKeyを指定します。</p>
 
-<pre><code>
-を指定する必要があります。これは先のmanifest.jsonの設定でも触れましたが、この指定がない場合Pusherの接続先が **http://stats.pusher.com** となってしまいます。Chrome拡張ではhttpsでない外部サーバに接続することはセキュリティ上できませんので、上記のオプションを指定しています。
+<p><img src="/images/20140321/pusher2.png" alt="pusher2" /></p>
 
-## Chrome拡張の読み込み
+<p>また、大事なポイントとしてPusherのオプションに</p>
 
-では、このようにして作ったChrome拡張を、Chromeに読み込ませて動作確認してみましょう。
+<pre><code>{ encrypted: true }
+</code></pre>
 
-ChromeのURL欄に chrome://extensions/ と入力します。まだデベロッパーモードを有効にしていない場合は「デベロッパーモード」をチェックします。次に「パッケージ化されていない拡張機能を読み込む」をクリックします。
+<p>を指定する必要があります。これは先のmanifest.jsonの設定でも触れましたが、この指定がない場合Pusherの接続先が <strong><a href="http://stats.pusher.com">http://stats.pusher.com</a></strong> となってしまいます。Chrome拡張ではhttpsでない外部サーバに接続することはセキュリティ上できませんので、上記のオプションを指定しています。</p>
 
-![pusher3](/images/20140321/pusher3.png)
+<h2 id="chrome拡張の読み込み">Chrome拡張の読み込み</h2>
 
-そして先ほど作ったChrome拡張を含むディレクトリを指定します。すると、拡張機能の一覧に表示されます。
+<p>では、このようにして作ったChrome拡張を、Chromeに読み込ませて動作確認してみましょう。</p>
 
-![pusher4](/images/20140321/pusher4.png)
+<p>ChromeのURL欄に chrome://extensions/ と入力します。まだデベロッパーモードを有効にしていない場合は「デベロッパーモード」をチェックします。次に「パッケージ化されていない拡張機能を読み込む」をクリックします。</p>
 
-これでChrome拡張を導入することができました。
+<p><img src="/images/20140321/pusher3.png" alt="pusher3" /></p>
 
-## Pusherからテストを行う
+<p>そして先ほど作ったChrome拡張を含むディレクトリを指定します。すると、拡張機能の一覧に表示されます。</p>
 
-それでは実際にPusherから通知を行い、Chrome拡張に通知が表示されるかどうか確認してみましょう。
+<p><img src="/images/20140321/pusher4.png" alt="pusher4" /></p>
 
-Railsなどを使って自分でサーバアプリを作ってもいいのですが、今回はPusherのEvent Creatorの機能を使ってみましょう。
+<p>これでChrome拡張を導入することができました。</p>
 
-Pusherの管理画面から「Event creator」を選択し、以下のように入力します。
+<h2 id="pusherからテストを行う">Pusherからテストを行う</h2>
 
-![pusher5](/images/20140321/pusher5.png)
+<p>それでは実際にPusherから通知を行い、Chrome拡張に通知が表示されるかどうか確認してみましょう。</p>
 
-これで、Send eventボタンをおして、うまくいけば画面に以下の様な通知が表示されます。
+<p>Railsなどを使って自分でサーバアプリを作ってもいいのですが、今回はPusherのEvent Creatorの機能を使ってみましょう。</p>
 
-![pusher6](/images/20140321/pusher6.png)
+<p>Pusherの管理画面から「Event creator」を選択し、以下のように入力します。</p>
 
-今回はアイコン画像のURLを指定しなかったので、なにも表示されていませんが、以下の用に画像へのURLを指定することでアイコンを表示することもできます。
+<p><img src="/images/20140321/pusher5.png" alt="pusher5" /></p>
 
-``` javascript background.js
-var opt = {
+<p>これで、Send eventボタンをおして、うまくいけば画面に以下の様な通知が表示されます。</p>
+
+<p><img src="/images/20140321/pusher6.png" alt="pusher6" /></p>
+
+<p>今回はアイコン画像のURLを指定しなかったので、なにも表示されていませんが、以下の用に画像へのURLを指定することでアイコンを表示することもできます。</p>
+
+<pre><code class="language-javascript">var opt = {
   type: 'basic',
   title: data.title,
   message: data.message,
@@ -379,6 +374,8 @@ var opt = {
 <li><a href="#manifest-jsonの設定">manifest.jsonの設定</a></li>
 <li><a href="#background-js">background.js</a></li>
 </ul></li>
+<li><a href="#chrome拡張の読み込み">Chrome拡張の読み込み</a></li>
+<li><a href="#pusherからテストを行う">Pusherからテストを行う</a></li>
 <li><a href="#ソースなど">ソースなど</a></li>
 </ul></li>
 </ul>

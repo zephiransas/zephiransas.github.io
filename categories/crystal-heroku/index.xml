@@ -25,10 +25,7 @@ crystal用のbuildpackは既にあるので、今回はこれを利用します�
 heroku create --buildpack https://github.com/zamith/heroku-buildpack-crystal  ちなみに、これはあとから指定することも可能です。
 heroku  アプリケーションの準備 次にcrystalで簡単なWebサーバを実装します。といってもcrystalの公式ページにあるサンプルに手を加えた簡単なものです。
 app.crというファイル名で以下のファイルを準備します。
-``` ruby app.cr require &amp;ldquo;http/server&amp;rdquo; require &amp;ldquo;option_parser&amp;rdquo;
-server_port = 8080 OptionParser.parse! do |opts| opts.on(&amp;ldquo;-p PORT&amp;rdquo;, &amp;ldquo;&amp;ndash;port PORT&amp;rdquo;, &amp;ldquo;define port to run server&amp;rdquo;) do |port| server_port = port.to_i end end
-server = HTTP::Server.new(&amp;ldquo;0.0.0.0&amp;rdquo;, server_port) do |request| HTTP::Response.ok &amp;ldquo;text/plain&amp;rdquo;, &amp;ldquo;Hello world, got #{request.path}!&amp;rdquo; end
-puts &amp;ldquo;Listening on http://0.</description>
+require &amp;quot;http/server&amp;quot; require &amp;quot;option_parser&amp;quot; server_port = 8080 OptionParser.parse! do |opts| opts.on(&amp;quot;-p PORT&amp;quot;, &amp;quot;--port PORT&amp;quot;, &amp;quot;define port to run server&amp;quot;) do |port| server_port = port.to_i end end server = HTTP::Server.new(&amp;quot;0.0.0.0&amp;quot;, server_port) do |request| HTTP::Response.ok &amp;quot;text/plain&amp;quot;, &amp;quot;Hello world, got #{request.path}!&amp;quot; end puts &amp;quot;Listening on http://0.0.0.0:#{server_port}&amp;quot; server.listen  注意するところは2点。</description>
     </item>
     
   </channel>

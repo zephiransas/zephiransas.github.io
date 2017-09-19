@@ -22,11 +22,13 @@
 今回はPusherからの通知をChrome拡張で受信し、これをデスクトップ通知するサンプルを作成しましたので、解説してみます。
 Pusher側の設定 まずはPusher側に設定を行います。Pusherでアカウントを作成後、以下のようにアプリケーションを登録します。
 ここでEncryptionにチェックを入れておきましょう。チェックしなくても特に問題はないのですが、Chrome拡張の場合セキュリティの問題からSSLを使用したほうが、いろいろ都合がいいので、チェックするほうが無難です。
-Chrome拡張の作成 manifest.jsonの設定 ``` json manifest.json { &amp;ldquo;manifest_version&amp;rdquo;: 2, &amp;ldquo;name&amp;rdquo;: &amp;ldquo;Pusher test extension&amp;rdquo;, &amp;ldquo;version&amp;rdquo;: &amp;ldquo;0.0.1&amp;rdquo;, &amp;ldquo;description&amp;rdquo;: &amp;ldquo;Pusher用 Chrome extension&amp;rdquo;, &amp;ldquo;permissions&amp;rdquo; : [ &amp;ldquo;notifications&amp;rdquo; ], &amp;ldquo;content_security_policy&amp;rdquo;: &amp;ldquo;script-src &amp;lsquo;self&amp;rsquo; https://stats.pusher.com; object-src &amp;lsquo;self&amp;rsquo;&amp;ldquo;, &amp;ldquo;background&amp;rdquo; : { &amp;ldquo;scripts&amp;rdquo;: [ &amp;ldquo;src/javascript/pusher.min.js&amp;rdquo;, &amp;ldquo;src/javascript/background.js&amp;rdquo; ] } }
- 今回はPusherからのメッセージをデスクトップ通知するようにしたいのでpermissionに ``` json &amp;quot;permissions&amp;quot; : [ &amp;quot;notifications&amp;quot; ],  を指定しています。
+Chrome拡張の作成 manifest.jsonの設定 { &amp;quot;manifest_version&amp;quot;: 2, &amp;quot;name&amp;quot;: &amp;quot;Pusher test extension&amp;quot;, &amp;quot;version&amp;quot;: &amp;quot;0.0.1&amp;quot;, &amp;quot;description&amp;quot;: &amp;quot;Pusher用 Chrome extension&amp;quot;, &amp;quot;permissions&amp;quot; : [ &amp;quot;notifications&amp;quot; ], &amp;quot;content_security_policy&amp;quot;: &amp;quot;script-src &#39;self&#39; https://stats.pusher.com; object-src &#39;self&#39;&amp;quot;, &amp;quot;background&amp;quot; : { &amp;quot;scripts&amp;quot;: [ &amp;quot;src/javascript/pusher.min.js&amp;quot;, &amp;quot;src/javascript/background.js&amp;quot; ] } }  今回はPusherからのメッセージをデスクトップ通知するようにしたいのでpermissionに
+&amp;quot;permissions&amp;quot; : [ &amp;quot;notifications&amp;quot; ],  を指定しています。
 また、content_security_policyのscript-srcに https://stats.pusher.com を追加しています。httpではなくhttpsを指定していることに注意してください。
 &amp;quot;content_security_policy&amp;quot;: &amp;quot;script-src &#39;self&#39; https://stats.pusher.com; object-src &#39;self&#39;&amp;quot;,  このサイトは、Pusherのクライアントライブラリであるpusher.min.jsからアクセスしているのですが、これを許可していないとChrome拡張からPusherのサーバへ、正しく接続をすることができません。
-次にpusher.min.jsですが、これは本来であればPusherのサイトに公開されているものを読み込んで使いたいところなのですが、Chrome拡張では外部のjavascriptを読み込むことができないようです。なので、ダウンロードしてソースに加えています。 ちなみにpusher.min.jsのホスト先は、こちらで公開されています。</description>
+次にpusher.min.jsですが、これは本来であればPusherのサイトに公開されているものを読み込んで使いたいところなのですが、Chrome拡張では外部のjavascriptを読み込むことができないようです。なので、ダウンロードしてソースに加えています。 ちなみにpusher.min.jsのホスト先は、こちらで公開されています。
+background.js あとはChrome拡張のバックグラウンドで実行されるbackground.jsで、Pusherとの接続を行います。
+var pusher = new Pusher(&amp;quot;======== KEY ========&amp;quot;, { encrypted: true }); var channel = pusher.</description>
     </item>
     
   </channel>

@@ -94,7 +94,7 @@
         },
         "datePublished": "2015-11-10",
         "dateModified": "2015-11-10",
-        "wordCount": 143,
+        "wordCount": 133,
         
     }
     </script>
@@ -151,7 +151,7 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
 
   			<header class="post-header">
   				<span class="post-meta">
-						<span class="post-date">10 Nov 2015</span> <span class="reading-time">| <span class="estimated-reading-time">1 min.</span> (<span class="word-count">143</span> words)</span></span>
+						<span class="post-date">10 Nov 2015</span> <span class="reading-time">| <span class="estimated-reading-time">1 min.</span> (<span class="word-count">133</span> words)</span></span>
   				</span>
   				<div class="clear"></div>
   				<h1 class="post-title">CrystalをHerokuで動かしてみた</h1>
@@ -191,35 +191,33 @@ Herokuにはこういったことを実現するために、buildpackという�
 
 <p>app.crというファイル名で以下のファイルを準備します。</p>
 
-<p>``` ruby app.cr
-require &ldquo;http/server&rdquo;
-require &ldquo;option_parser&rdquo;</p>
+<pre><code class="language-ruby">require &quot;http/server&quot;
+require &quot;option_parser&quot;
 
-<p>server_port = 8080
+server_port = 8080
 OptionParser.parse! do |opts|
-  opts.on(&ldquo;-p PORT&rdquo;, &ldquo;&ndash;port PORT&rdquo;, &ldquo;define port to run server&rdquo;) do |port|
+  opts.on(&quot;-p PORT&quot;, &quot;--port PORT&quot;, &quot;define port to run server&quot;) do |port|
     server_port = port.to_i
   end
-end</p>
+end
 
-<p>server = HTTP::Server.new(&ldquo;0.0.0.0&rdquo;, server_port) do |request|
-  HTTP::Response.ok &ldquo;text/plain&rdquo;, &ldquo;Hello world, got #{request.path}!&rdquo;
-end</p>
-
-<p>puts &ldquo;Listening on <a href="http://0.0.0.0:#{server_port}&quot;">http://0.0.0.0:#{server_port}&quot;</a>
-server.listen</p>
-
-<pre><code>
-注意するところは2点。
-
-1点目は、option_parserを使って起動時のオプションでWebサーバのポート番号を指定できるようにしています。デフォルトでは8080ポートで起動します。
-
-Herokuの場合、サーバのポートは$PORTの値を使用しなければいけませんので、起動時にその値を渡せるようにするためです。
-
-2点目は、以下のようにServerのインスタンス生成時に&quot;0.0.0.0&quot;を指定することです。
-
-``` ruby
 server = HTTP::Server.new(&quot;0.0.0.0&quot;, server_port) do |request|
+  HTTP::Response.ok &quot;text/plain&quot;, &quot;Hello world, got #{request.path}!&quot;
+end
+
+puts &quot;Listening on http://0.0.0.0:#{server_port}&quot;
+server.listen
+</code></pre>
+
+<p>注意するところは2点。</p>
+
+<p>1点目は、option_parserを使って起動時のオプションでWebサーバのポート番号を指定できるようにしています。デフォルトでは8080ポートで起動します。</p>
+
+<p>Herokuの場合、サーバのポートは$PORTの値を使用しなければいけませんので、起動時にその値を渡せるようにするためです。</p>
+
+<p>2点目は、以下のようにServerのインスタンス生成時に&rdquo;0.0.0.0&rdquo;を指定することです。</p>
+
+<pre><code class="language-ruby">server = HTTP::Server.new(&quot;0.0.0.0&quot;, server_port) do |request|
 </code></pre>
 
 <p>こうすることで、localhost以外からでもアクセス可能にしてあります。これを指定していない場合は、Herokuでの起動時に</p>
@@ -242,16 +240,14 @@ server = HTTP::Server.new(&quot;0.0.0.0&quot;, server_port) do |request|
 
 <p>次にProcfileを以下のように準備します。</p>
 
-<p>``` bash Procfile
-web: ./app -p $PORT</p>
+<pre><code class="language-bash">web: ./app -p $PORT
+</code></pre>
 
-<pre><code>
-起動時に$PORTをWebサーバのポートとして、指定しています。
+<p>起動時に$PORTをWebサーバのポートとして、指定しています。</p>
 
-次にProjectfileを準備します。中身は空でOKです。
+<p>次にProjectfileを準備します。中身は空でOKです。</p>
 
-``` bash
-touch Projectfile
+<pre><code class="language-bash">touch Projectfile
 </code></pre>
 
 <p>これは本来は不要なファイルなのですが、crystalのbuildpack内でProjectfileがない場合は、crystalのアプリケーションとして認識してくれないため、空のファイルを作成しています。</p>

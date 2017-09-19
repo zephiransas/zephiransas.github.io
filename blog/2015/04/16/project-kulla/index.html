@@ -94,7 +94,7 @@
         },
         "datePublished": "2015-04-16",
         "dateModified": "2015-04-16",
-        "wordCount": 249,
+        "wordCount": 239,
         
     }
     </script>
@@ -151,7 +151,7 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
 
   			<header class="post-header">
   				<span class="post-meta">
-						<span class="post-date">16 Apr 2015</span> <span class="reading-time">| <span class="estimated-reading-time">2 min.</span> (<span class="word-count">249</span> words)</span></span>
+						<span class="post-date">16 Apr 2015</span> <span class="reading-time">| <span class="estimated-reading-time">2 min.</span> (<span class="word-count">239</span> words)</span></span>
   				</span>
   				<div class="clear"></div>
   				<h1 class="post-title">Project Kullaを試す</h1>
@@ -233,24 +233,22 @@ cd ~/kulla
 
 <p>scripts/compileを以下のように修正します。</p>
 
-<p>``` bash scripts/compile
-#!/bin/sh
+<pre><code class="language-bash">#!/bin/sh
 JLINE2LIB=/Users/[ユーザ名]/jline2/target/jline-2.13-SNAPSHOT.jar
-JAVAC_BIN_HOME=/Library/Java/JavaVirtualMachines/jdk1.9.0.jdk/Contents/Home/bin</p>
+JAVAC_BIN_HOME=/Library/Java/JavaVirtualMachines/jdk1.9.0.jdk/Contents/Home/bin
 
-<p>mkdir -p build
-$JAVAC_BIN_HOME/javac -Xlint:unchecked -Xdiags:verbose -cp ${JLINE2LIB} -d build src/<em>/</em>.java</p>
+mkdir -p build
+$JAVAC_BIN_HOME/javac -Xlint:unchecked -Xdiags:verbose -cp ${JLINE2LIB} -d build src/*/*.java
+</code></pre>
 
-<pre><code>
-1行目 - OSXの環境に合わせて&quot;#!/bin/sh&quot;に修正
+<p>1行目 - OSXの環境に合わせて&rdquo;#!/bin/sh&rdquo;に修正
 2行目 - jline2のjarを指定
 3行目 - JDK9のjavacのあるディレクトリを指定
-6行目 - 先頭に&quot;$JAVAC_BIN_HOME&quot;を追加
+6行目 - 先頭に&rdquo;$JAVAC_BIN_HOME&rdquo;を追加</p>
 
-修正できたら
+<p>修正できたら</p>
 
-``` bash
-scripts/compile
+<pre><code class="language-bash">scripts/compile
 </code></pre>
 
 <p>でビルドしましょう。なにもエラーがでなければ、成功しています。</p>
@@ -259,19 +257,17 @@ scripts/compile
 
 <p>実行前にscripts/runを以下のように修正します。</p>
 
-<p>``` bash scripts/run
-#!/bin/sh
+<pre><code class="language-bash">#!/bin/sh
 JLINE2LIB=/Users/[ユーザ名]/jline2/target/jline-2.13-SNAPSHOT.jar
 JAVA_BIN_HOME=/Library/Java/JavaVirtualMachines/jdk1.9.0.jdk/Contents/Home/bin/
-$JAVA_BIN_HOME/java -ea -esa -cp build:${JLINE2LIB} tool.Repl &ldquo;$@&rdquo;</p>
+$JAVA_BIN_HOME/java -ea -esa -cp build:${JLINE2LIB} tool.Repl &quot;$@&quot;
+</code></pre>
 
-<pre><code>
-先になおしたスクリプトとほぼ同じです。
+<p>先になおしたスクリプトとほぼ同じです。</p>
 
-修正できたら、早速実行してみましょう。
+<p>修正できたら、早速実行してみましょう。</p>
 
-``` bash
-scripts/run
+<pre><code class="language-bash">scripts/run
 </code></pre>
 
 <p>すると、以下のようにプロンプトが表示されます。</p>
