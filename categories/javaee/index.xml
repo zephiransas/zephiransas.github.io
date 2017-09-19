@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Javaee on My New Hugo Site</title>
+    <link>http://example.org/categories/javaee/</link>
+    <description>Recent content in Javaee on My New Hugo Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 24 May 2013 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://example.org/categories/javaee/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>GlassFishのアップグレード方法</title>
+      <link>http://example.org/2013/05/24/how-to-upgrade-gf/</link>
+      <pubDate>Fri, 24 May 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/2013/05/24/how-to-upgrade-gf/</guid>
+      <description>会社で使ってるJenkinsさんはGlassFish上で動いているんですが、これのアップグレードを行ったので、そのメモ。
+具体的にはGlassFish 3.1.1からGlassFish 3.1.2へアップグレードしました。
+updatetoolのインストール まずはアップグレードに使用するupdatetoolをインストールします。
+方法はasadminと同じディレクトリにある、updatetoolを実行するだけ。
+初めてupdatetoolコマンドを実行した際に、updatetoolをインストールするか聞いてきますので、yを押してインストールするだけです。
+ちょっと時間がかかるので、アニメでも見ながらゆっくり待ちましょう。
+updatetoolからGlassFishのアップグレード 上記の手順でupdatetoolのインストールが終了したら、もう一度updatetoolコマンドを実行します。するとGUIが立ち上がって来ますので、以下のようにするだけ。
+あとは
+$ ./asadmin version  などで、アップグレードできていることを確認しましょう。</description>
+    </item>
+    
+  </channel>
+</rss>

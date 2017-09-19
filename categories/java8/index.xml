@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Java8 on My New Hugo Site</title>
+    <link>http://example.org/categories/java8/</link>
+    <description>Recent content in Java8 on My New Hugo Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 12 Mar 2014 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://example.org/categories/java8/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Java8で始めるLambda（基礎編）</title>
+      <link>http://example.org/2014/03/12/java8lambda/</link>
+      <pubDate>Wed, 12 Mar 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/2014/03/12/java8lambda/</guid>
+      <description>まもなくリリース予定のJava8。その中でも最も大きなインパクトを持つというProject Lambdaについて、ここ数日調べてみました。 今からLambdaをはじめようとする人向けに、何回かに分けてまとめてみたいと思います。
+インターフェースの宣言 まずは手始めに、引数で指定された文字列の前後に&amp;rdquo;[&amp;ldquo;と&amp;rdquo;]&amp;ldquo;をつける処理を考えてみましょう。
+Lambdaを使用するには、まずインターフェースを宣言する必要があります。上記の仕様から考えると
+ 引数はString型の引数が1つ 戻り値もString型  となるので、この場合は以下の様なインターフェースを宣言します。
+``` java LambdaInterface.class public interface LambdaInterface { String method(String value); }
+ ここで注意するべきことが1つ。Java8のLambdaとして使えるインターフェースには決まりがあるのですが、もっとも重要なのが**インターフェースのメソッドが1つだけ**ということです。インターフェースのメソッドが2つ以上ある場合には、それをLambdaとして使用することはできません。 これはLambdaの実装部分を書く際に、どのメソッドの内容を実装しているのかを書かないため、Lambdaを書いた場合は**そのインターフェースがもつ唯一のメソッド**に対して実装をおこなったとみなすからです。 一見、これは不便なように思ってしまうかもしれないですが、普段使うパターンのインターフェースのほとんどがjava.util.functionパッケージ内で用意されているので、実際にはそれ程不便ではありません。むしろ自分でインターフェースを用意するほうが稀かもしれません。 ## Lambdaを使った記述 早速、先に宣言したインターフェースを使ってLambdaを書いてみましょう。Lambdaを記述する際の基本となる文法は、以下のようになっています。 ``` java [インターフェース名] [lambda式の名前] = (引数の型 引数,...) -&amp;gt; { （実装） };  よってLambdaInterfaceを使って書くと、以下のようになります。
+``` java Sample.class public class Sample {
+public static void main(String&amp;hellip; args) { LambdaInterface lambda = (String value) -&amp;gt; { return &amp;ldquo;[&amp;rdquo; + value + &amp;ldquo;]&amp;rdquo;; }; System.</description>
+    </item>
+    
+  </channel>
+</rss>

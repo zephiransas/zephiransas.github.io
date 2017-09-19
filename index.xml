@@ -1,0 +1,780 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>My New Hugo Site</title>
+    <link>http://example.org/</link>
+    <description>Recent content on My New Hugo Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 05 Apr 2017 16:13:17 +0000</lastBuildDate>
+    
+	<atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Spring BootのCSSをGulpで管理する</title>
+      <link>http://example.org/2017/04/05/gulp-sass/</link>
+      <pubDate>Wed, 05 Apr 2017 16:13:17 +0000</pubDate>
+      
+      <guid>http://example.org/2017/04/05/gulp-sass/</guid>
+      <description>Spring BootのプロジェクトでもSASSが書きたい！という欲望から、Gulpを使ってSASSをコンパイルするようにしました。
+基本Gulpでやってるので、出力先だけ変えれば、特にSpring Bootには関係ない気もしますが・・・
+npmは既にインストールしてある前提で。
+フォルダの構成と基本方針 フォルダ構成は以下のようなイメージ。
+├── assets │ └── stylesheets │ └── application.scss ├── gulpfile.js ├── package.json └── src └── main └── resources └── static └── css ├── maps │ └── application.css.map └── application.css  assets/stylesheets以下にSASSを配置し、これをGulpでコンパイル。
+出力先をSpring BootのCSS配備先 src/main/resources/static/css にして、これをThymeleafから参照する、という方針です。
+必要なパッケージをインストールする まずは必要なパッケージをnpmでインストールしていきます。
+$ npm init (以降、全てデフォルトで) $ npm install --save-dev gulp gulp-sass gulp-sourcemaps gulp-minify-css gulp-plumber  これでpackage.jsonが作成され、node_modulesに依存ライブラリがインストールされます。node_modulesはgitignoreしておくといいでしょう。
+gulpfile.jsを作成する SASSをコンパイルできるようGulpのタスクを定義します。
+``` javascript gulpfile.js var gulp = require(&amp;lsquo;gulp&amp;rsquo;), sass = require(&amp;lsquo;gulp-sass&amp;rsquo;), sourcemaps = require(&amp;lsquo;gulp-sourcemaps&amp;rsquo;), minifyCss = require(&amp;lsquo;gulp-minify-css&amp;rsquo;), plumber = require(&amp;lsquo;gulp-plumber&amp;rsquo;);</description>
+    </item>
+    
+    <item>
+      <title>CircleCIでGradleのテストを並列実行する</title>
+      <link>http://example.org/2017/03/10/ciecleci-and-gradle/</link>
+      <pubDate>Fri, 10 Mar 2017 09:32:48 +0000</pubDate>
+      
+      <guid>http://example.org/2017/03/10/ciecleci-and-gradle/</guid>
+      <description>現在開発を行っているプロジェクトでは、Spring Bootを使って開発を行っているのですが、そこでのテストをCI環境で実行できるよう設定を行ったので、その手順を書いておきます。
+CircleCIで普通にテストできるようにする 最初は並列ではなく、1つのコンテナを使ってCircleCIでテストできるように設定を行います。まずcircle.ymlを以下のように準備。
+``` yml circle.yml machine: java: version: openjdk8 timezone: Asia/Tokyo environment: _JAVA_OPTIONS: &amp;ldquo;-Xms512m -Xmx1024m&amp;rdquo; GRADLE_OPTS: &amp;lsquo;-Dorg.gradle.jvmargs=&amp;ldquo;-Xmx1024m -XX:+HeapDumpOnOutOfMemoryError&amp;rdquo;&amp;rsquo; post: - sudo service postgresql stop
+dependencies: override: - ./gradlew testClasses
+database: post: - mysql -e &amp;lsquo;create database [データベース名];&amp;rsquo; # flywayなどでのマイグレーション
+test: override: - ./gradlew test post: - mkdir -p $CIRCLE_TEST_REPORTS/junit/ &amp;amp;&amp;amp; find . -type f -regex &amp;ldquo;.*/build/test-results/.*xml&amp;rdquo; -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;:
+ ### メモリ割り当てについて machine.environmentでJAVA_OPTIONSに&amp;quot;-Xms512m -Xmx1024m&amp;quot;を指定しています。これはCircleCIでは1つのコンテナには4Gのメモリが割当られており、その上限をこえると、コンテナがフリーズして、10分経過するとテスト失敗になるという現象に対応するためです。合わせてGRADLE_OPTSにも同様の設定をおこなっています。 このあたりの設定も状況によっては増やせる場合もありますので、テストを実行しながら、調整してみてください。 - [Your build hit the 4G memory limit](https://circleci.</description>
+    </item>
+    
+    <item>
+      <title>スクフェス・ログサーバをつくった</title>
+      <link>http://example.org/2016/12/31/schfeslogsvr/</link>
+      <pubDate>Sat, 31 Dec 2016 12:47:59 +0000</pubDate>
+      
+      <guid>http://example.org/2016/12/31/schfeslogsvr/</guid>
+      <description>今日は大晦日ですね。年末ですが今年も例によって、コード書いたりプラモ作ったり、普段の連休と同じくダラダラ過ごしております。
+ところで今年のラブライブ！アドベントカレンダーはチェックしましたか？ 自分も20日目に劇場版ラブライブとμ’ｓメンバーのその後というタイトルでエントリしてます。 今年はその他にも、さまざまな視点から見た素晴らしいエントリがたくさん集まってますので、ラブライバーならぜひチェックしてみてください。
+で、22日目のエントリには@hideo54さんのスクフェスのライブスコアを取得する”schfeslog”を作った話というのがあります。 これはnodeで建てたプロキシを使って、スクフェスがサーバに送信してる通信内容をみて、ライブのプレイ結果をツイートすることができるツールです。
+ hideo54/schfeslog - https://github.com/hideo54/schfeslog  これをみて「お、ツイートできるんなら、外部サーバにも送信できるんじゃね？」ってことで、早速コードを書いてみました。
+まずはschfeslog側に外部サーバへの通信機能を実装しています。該当するPull Requestはこちら。単純にプレイデータをJSON形式にして、設定でされたサーバにPOSTするだけです。
+これを受信するサーバはこちら。
+ zephiransas/schfeslogsvr - https://github.com/zephiransas/schfeslogsvr  送信されたプレイデータを一覧で見ることもできます。ちなみに私のプレイデータがこちら
+ schfeslog - http://schfeslog.herokuapp.com/  見た目とかは、もうちょっと改善したいところです・・・
+最近、ちょっとJavaの案件をやってるせいもあって、真面目にSpring Bootで書いています。こういったRESTなアプリケーションを作るにはSpring Bootはとても簡単でいいですね。
+サーバ側は簡単に自分用に環境を作れるよう、Deploy to Herokuボタンも準備してますので、興味のあるかたはschfeslogと一緒に、ぜひ試してみてください。</description>
+    </item>
+    
+    <item>
+      <title>合同勉強会2016に参加してきた</title>
+      <link>http://example.org/2016/12/18/gbdaitokai2016/</link>
+      <pubDate>Sun, 18 Dec 2016 21:21:31 +0000</pubDate>
+      
+      <guid>http://example.org/2016/12/18/gbdaitokai2016/</guid>
+      <description>このエントリは大都会岡山アドベントカレンダー2016の18日目のエントリです。
+昨日のエントリは たがみだいきさんの「RailsGirlsOkayama 2ndを2月25日26日に開催する予定です！」でした。 去年の第1回には、自分もコーチとして参加させてもらいましたが、そこから新たに岡山に女性エンジニアのコミュニティができ、それが主体となってRailsGirlsをやる、というのは素晴らしいことだと思います。きっとイベントも大成功することでしょう。
+先日、毎年恒例となった合同勉強会と忘年会議が開催されました。
+例年のように県内だけでなく県外からも多くのかたに参加していただき、大変よいイベントになったのではないでしょうか。
+例によって写真を撮ってますのでこちらからどうぞ。
+合同勉強会&amp;amp;忘年会議2016
+個人的に今回のベストトーカー（not ベストストーカー）を上げたいのは、SamunePさんの「ゲーム会社経営ゲーム」。 とにかく高い技術力を武器に、ちょっと尻込みしちゃうような案件をやってるハナシで、とにかく「今の時代にこんな人がいるのか？！」と驚きの連続でした。その凄さをみんなもうまく言語化できずに
+めちゃくちゃ面白い話聞いてるけど、上手に実況できる気がしないwww #gbdaitokai
+&amp;mdash; シン・ダイクシー Plus (@daiksy) 2016年12月17日 
+なんか…うまいこといわれへんけど「この人、天才ちゃうか？」と思わされるｗ #gbdaitokai
+&amp;mdash; 三浦一仁(本読めるようになりたい) (@kazuhito_m) 2016年12月17日 
+つよい(つよい) #gbdaitokai
+&amp;mdash; ⊇ﾅﾆﾚﾆω (@kotanin) 2016年12月17日 
+などなど、人のボキャブラリーを著しく低下させる作用があったようですw
+さて、次は来年のオープンセミナーです。こちらも面白いセッションをたくさん用意できるよう、誠意準備中ですので、ぜひご参加ください！</description>
+    </item>
+    
+    <item>
+      <title>Maven Wrapperを使ってプロジェクトで使うMavenのバージョンを指定する</title>
+      <link>http://example.org/2016/05/23/maven-wrapper/</link>
+      <pubDate>Mon, 23 May 2016 16:34:12 +0000</pubDate>
+      
+      <guid>http://example.org/2016/05/23/maven-wrapper/</guid>
+      <description>Javaでの開発において、ライブラリのバージョン管理にMavenを用いているところはたくさんあると思います。
+しかし、pom.xmlを使って各ライブラリのバージョンを管理していても、各開発者が使うMavenのバージョンを固定することはできません。
+プロジェクトで使うMavenのバージョンを固定したい！そんな場合に使えるのがMaven Wrapperです。
+ takari/maven-wrapper -　https://github.com/takari/maven-wrapper  導入方法 導入方法は至って簡単。
+maven wrapperを適用したいプロジェクトに移動して、以下のコマンドを発行するだけ。
+mvn -N io.takari:maven:wrapper  これだけで、プロジェクトに以下のファイルが追加されます。
+ mvnw - Maven Wrapper経由でmavenを実行するためのファイル mvnw.cmd - mvnwのWindows版。Windowsで使う場合はこっちを使いましょう。 .mvnディレクトリ - maven wraperがダウンロードしてきたMavenのバイナリとかが入ってる  上記のコマンドだと実行時の最新のバージョンが使用されるので、バージョンを指定したい場合はオプションで
+mvn -N io.takari:maven:wrapper -Dmaven=3.3.1  としてやりましょう。以降は今まで
+mvn clean mvn package  としていたのをmvnwコマンドに置き換えるだけで
+./mvnw clean ./mvnw package  固定されたバージョンをMavenを利用することができます。
+.gitignoreの設定 ~~ Gitなどのバージョン管理にはmvnwとmvnw.cmdのみコミット対象とし、.mvnディレクトリはコミット対象外にしましょう。 ~~
+はい、これウソでしたorz
+正しくは「.mvnディレクトリもコミットしましょう」です。
+YOSHIDAさん慣れないジャバやるから
+&amp;mdash; やっぱりおいしい木村屋のパン (@razon) 2016年5月24日 
+はい、その通りですね（真顔</description>
+    </item>
+    
+    <item>
+      <title>Past, Present and Future</title>
+      <link>http://example.org/2015/12/20/past-present-and-future/</link>
+      <pubDate>Sun, 20 Dec 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/2015/12/20/past-present-and-future/</guid>
+      <description>これは大都会アドベントカレンダー24日目の記事です。
+昨日は@yantonaさんの君は「玉野音頭」を知っているかでした。
+不覚にも自分は知りませんでした・・・瀬戸大橋音頭なら・・・！
+実は今年の大都会アドベントカレンダー、12日目のきよくらさんが自分とIT勉強会とのかかわり合いについて書かれていて、これにインスパイアされたので、便乗して自分が岡山のIT勉強会に関わって、岡山Javaユーザ会を開催するようになるまでを、まとめてみようと思います。
+岡山でJavaの勉強会をスタートするまで 2010年 2010年、当時自分は岡山にある小さなSIerで仕事をしていました。当時やっていたのは主にJavaを使ってのWeb開発で、Apache,Seasarなどのオープンソースソフトウェアを好んで使っていました。小さな会社だったこともあり、新しい技術の導入には比較的寛容な環境だったかもしれません。
+そんなとき、ネットで偶然見かけたのがオープンラボ岡山でした。勉強会についてはほとんど知らなかったし、それほど興味も無かったのですが、偶然Seasarの作者であるひがやすおさんが、岡山に来られるということだけで参加しに行きました。
+ 第15回オープンラボ岡山 - http://openlab.okaya.ma/wiki.cgi?page=%CA%D9%B6%AF%B2%F1%2F%C2%E8015%B2%F3  この時にはSeasarの開発も一時期よりは落ち着いてきて、ひがさん自身も「これからはクラウドだ！GAEだ！Slim3だ！」と、Slim3についての話をされていたことを覚えています。
+同時に年末だったこともあり、忘年会議も開催されていますが、これには参加してませんでした・・・
+思えば、ここが最初のスタートです。
+2011年 去年参加したオープンラボをキッカケに、2011年からは勉強会にも積極的に参加するようになりました。
+このころはオープンラボ岡山は月に1度のペースで開催されていましたので、ほぼ毎月参加していたように思います。そしてそのなかで、いろいろな人から、技術に関する話を聞くうちに、勉強会に参加する面白さを感じることができるようになったと思います。
+当時は勉強会に登壇する人全てが、雲の上の人のように感じていましたね。
+それと同時に「人の話を聞いてるだけじゃなく、自分も話せるようになって、みんなに喜んで欲しい」という気持ちも同時に芽生え始めたように思います。
+そして転機は第19回オープンラボ岡山のときです。
+ 第19回オープンラボ岡山 - http://openlab.okaya.ma/wiki.cgi?page=%CA%D9%B6%AF%B2%F1%2F%C2%E8019%B2%F3  この回はJava特集ということで、当時は日本オラクル所属だった寺田佳央さんと、RedHatの木村貴由さんのお二人からJavaについての話を聞きました。そこで寺田さんはGlassFishの話をされたのですが、これが個人的に一番興味をそそられたので、その後も個人的にいろいろ調べ、以下のブログを書きました。
+ Glassfish 3.1の自己増殖クラスタを試す - http://d.hatena.ne.jp/zephiransas/20110707/1310027466  このエントリを書いたことをキッカケに、オープンラボ岡山の常連であり、隣国？である福山で「オープンラボ備後」を主催されていた、Yさんから「GlassFishの話してみない？」という依頼がありました。そして第10回オープンラボ備後で初登壇することになります。
+ 第10回オープンラボ備後 - https://sites.google.com/site/openlabbingo/home/di10huiopunrabo-bei-hou  図らずも「いつか自分も発表できるようになりたい」と思っていたことが、たった1つのブログエントリから1年たたずに実現したわけです。しかしこれは運とかではなく、岡山周辺のIT勉強会コミュニティに、いろいろな人を登壇させていこうという風土のようなものが、ちゃんと根付いていたことの現れではないかと思っています。
+そしてこの登壇あと、主催のYさんが唐突に「吉田さん、岡山でJavaのコミュニティやってくれない？」という話がありました。
+聞けば、以前、岡山にはJavaのコミュニティがあったのですが、主催の方の転勤とともに開店休業状態にあるということ。そこで、自分にコミュニティの主催をやってみないか？ということでした。
+今回が初登壇だった自分にいきなりそんなこと・・・とは、正直思いましたが、オープンラボ備後のYさんの勧めや、オープンラボ岡山の主催Hさんからもサポートしていただける、とのことだったので、岡山でJavaのコミュニティを始めることにしました。
+幸いにも、自分ひとりでのスタートではなく、いつもScalaや関数型の話でみなをﾎﾟｶﾝとさせる@razonさんや、Twitterの裏垢で下ネタをつぶやいてばかりの@ryosmsさん、そして唯一？の常識人の@o310yusukeさん、などのこころ強い（？）メンバーの助けを借りつつ、岡山Javaユーザ会をスタートさせることになります。
+その他にも助けて頂いた方はたくさんいますが、誰一人欠けても今までコミュニティを継続させることはできなかったと思います。
+この場を借りて、関わった全ての皆様に深く感謝したいと思います。
+あなたはエンジニアの仕事、好きですか？ ところで、あなたはエンジニアの仕事、好きですか？
+エンジニアでない人、今の仕事好きですか？
+私はエンジニアの仕事が大好きです。
+自分はプログラマを目指して大学に入ったものの挫折し、その後のフリーター生活を経て、24歳の時に故郷に戻って運良くプログラマとして就職することができました。それから約16年。何事にも中途半端だった自分が、こうやって一つの仕事を続けてこられたのは、ひとえに「この仕事が好き」だからです。
+だからこそ、このエンジニアという仕事を選んだ人たちが、楽しく仕事ができるようになればいいと思い、いままで岡山のIT勉強会コミュニティに関わってきました。
+そしてその想いは、今でもかわることはありません。これからも岡山のIT勉強会コミュニティを影となって支えて参ります。
+the Future そしてもう一つ。来年に新しいことをスタートしようと考えています。
+それが子供向けプログラミング教室です。
+自分がはじめてプログラミングをしたのは、小学校の時に触れたファミリーベーシックでした。そこで説明書のプログラム通りに、右手の人差し指1本で、おぼつかない手でコードを書き、エラーを直し、実行し、そして画面でマリオが動いた時のあの感動。
+この教室を通じて、自分が幼いときに感じた「自分で考え、自分で作って、動かす」そんな感動を子供たちに感じてもらい「プログラミングって楽しい！」と感じてくれる子供が一人でも増えてくれれば、これに勝る喜びはありません。
+あくまでボランティアベースの教室になるので、塾のように授業料をもらうこともないです。なので成果を保証することもしません。子供たちがやりたいことを最優先に。やりたいことが見つからなければ、見つける手伝いから。
+そして子供たちが「楽しかった、また来たい！」と思えるように。そんな空間を作れたらいいなと思っています。
+既存のIT勉強会のコミュニティは、現役のエンジニアたちを支え、子供向けプログラミング教室が、未来のエンジニアを支える。
+そしてこの両輪を回すことを、今後の自分の仕事として続けていけたら、と思っています。</description>
+    </item>
+    
+    <item>
+      <title>合同勉強会でCrystalの話をしてきた</title>
+      <link>http://example.org/2015/12/09/talk-about-crystal-on-gbdaitokai/</link>
+      <pubDate>Wed, 09 Dec 2015 17:24:39 +0000</pubDate>
+      
+      <guid>http://example.org/2015/12/09/talk-about-crystal-on-gbdaitokai/</guid>
+      <description>これはCrystalアドベントカレンダー2015の12/9のエントリです。
+昨日はpine613さんの「Crystal-JP の活動紹介と、今後の活動について」でした。
+12/5に岡山県立大学にて行われた、合同勉強会 in 大都会岡山 -2015 Winter-にて、Crystalの紹介のセッションを行いました。
+スライドはこちら。
+ 主に伝えたかった内容としては
+ CrystalはRubyistには簡単に使えます Crystalは型があります コンパイルして高速に実行できます  といった3点を主題としました。
+時間配分がいい感じだったので、実際にRubyでの実行速度と、Crystalでの実行速度の違いをデモすることができたのは、良かったのではないでしょうか。
+途中うっかり「Rubyには型がないので云々」といったおかげで、現場の型警察のみなさんに
+型警察が登壇者を見守っています #gbdaitokai
+&amp;mdash; 人マン (@razon) 2015, 12月 5 
+「Rubyには型がないんですね」&amp;#10;「「「いやあるあるあるある！」」」&amp;#10;#gbdaitokai #おかやまこわい
+&amp;mdash; mzsm@3日目東シ58a(てくぶ) (@mzsm_j) 2015, 12月 5 
+となったのは迂闊でしたw
+岡山の大きな勉強会で使う懇親会場に「座・スタジアム」というちょっと珍しい会場があります。
+ここでLTしたいがために、東京、大阪からやってくる人もいるくらい、懇親会に最適な会場です。次はオープンセミナー岡山2016という勉強会がありますので、ぜひ県外の皆様にもお越しいただきたいですね。
+ Togetter - 合同勉強会 in 大都会岡山 -2015 Winter- &amp;amp; 忘年会議2015 まとめ #gbdaitokai #忘年会議 flickr - 合同勉強会 in 大都会岡山 -2015 Winter-  </description>
+    </item>
+    
+    <item>
+      <title>CrystalをHerokuで動かしてみた</title>
+      <link>http://example.org/2015/11/10/crystal-on-heroku/</link>
+      <pubDate>Tue, 10 Nov 2015 12:28:48 +0000</pubDate>
+      
+      <guid>http://example.org/2015/11/10/crystal-on-heroku/</guid>
+      <description>最近ちょっと話題のcrystal。これをHerokuで動かしてみました。
+Herokuの準備 まずはHerokuにアプリケーションを作成します。
+Herokuでは当然crystalをサポートしていませんので、crystalのコンパイラを自前でインストールする必要があります。 Herokuにはこういったことを実現するために、buildpackという仕組みが用意されています。
+crystal用のbuildpackは既にあるので、今回はこれを利用します。
+ zamith/heroku-buildpack-crystal - https://github.com/zamith/heroku-buildpack-crystal  heroku createする際に上記のbuildpackを指定しておきます。
+heroku create --buildpack https://github.com/zamith/heroku-buildpack-crystal  ちなみに、これはあとから指定することも可能です。
+heroku  アプリケーションの準備 次にcrystalで簡単なWebサーバを実装します。といってもcrystalの公式ページにあるサンプルに手を加えた簡単なものです。
+app.crというファイル名で以下のファイルを準備します。
+``` ruby app.cr require &amp;ldquo;http/server&amp;rdquo; require &amp;ldquo;option_parser&amp;rdquo;
+server_port = 8080 OptionParser.parse! do |opts| opts.on(&amp;ldquo;-p PORT&amp;rdquo;, &amp;ldquo;&amp;ndash;port PORT&amp;rdquo;, &amp;ldquo;define port to run server&amp;rdquo;) do |port| server_port = port.to_i end end
+server = HTTP::Server.new(&amp;ldquo;0.0.0.0&amp;rdquo;, server_port) do |request| HTTP::Response.ok &amp;ldquo;text/plain&amp;rdquo;, &amp;ldquo;Hello world, got #{request.path}!&amp;rdquo; end
+puts &amp;ldquo;Listening on http://0.</description>
+    </item>
+    
+    <item>
+      <title>unicorn-worker-killerが便利だった件</title>
+      <link>http://example.org/2015/07/29/unicorn-worker-killer/</link>
+      <pubDate>Wed, 29 Jul 2015 15:57:26 +0000</pubDate>
+      
+      <guid>http://example.org/2015/07/29/unicorn-worker-killer/</guid>
+      <description>自分が現在関わっているプロジェクトでは、nginx + unicornの構成で運用しているのですが、この構成でサーバのメモリが足りなくなるという現象に悩まされていました。
+unicornのワーカプロセスは、通常では起動したままユーザからのリクエストを処理し、再起動されることはありません。 その関係で、長時間運用していると、そのワーカプロセスがメモリをあるだけ食いつぶすような挙動になります。
+こんな時に便利なのが「unicorn-worker-killer」です。
+unicorn-worker-killerを使うことで、ワーカプロセスが以下の条件の場合に、自動的に再起動してくれます。
+ ワーカプロセスが指定回数のリクエストを処理した場合 ワーカプロセスが指定量のメモリを使用している場合  いずれの場合でもワーカプロセスの再起動は、現在のリクエストを処理した後に再起動（いわゆるgraceful restart）されます。
+設定のしかた 設定はconfig.ruにて行います。
+リクエストの回数基準で再起動する ``` ruby config.ru use Unicorn::WorkerKiller::MaxRequests, 3072, 4096
+ これはワーカプロセスが、3072回~4096回のいずれかの回数リクエストを処理したら再起動する設定です。 ``` ruby config.ru use Unicorn::WorkerKiller::MaxRequests, 3072, 4096, true  とすることで、unicorn.rbのstderr_pathで指定されたパスに状況を出力することができます。
+メモリの使用量を基準に再起動する ``` ruby config.ru use Unicorn::WorkerKiller::Oom, (192*(10242)), (256*(10242)), 16
+ これはワーカプロセスが16回リクエストを処理する度に、自身のメモリ使用量をチェックし、これが192M~256Mのいずれかの使用量をオーバーしていた場合に、再起動する設定です。 ### 設定が2つある理由 リクエスト回数とメモリ使用量の設定両方とも、しきい値を範囲で指定するようになっていますが、これには理由があります。 1つのしきい値だと、各ワーカが再起動するタイミングが、ほぼ同じになるからです。同じタイミングで全てのワーカプロセスが再起動してしまうと、その間リクエストを処理することができなくなってしまうので、これは好ましくありません。 ですので、しきい値を範囲で指定し、その範囲内のいずれかの値を実際のしきい値として採用するという仕組みになっています。 なので、しきい値の範囲は狭いより、広いほうが、ベターです。 ## unicorn-worker-killerを試してみる では、unicorn-worker-killerがちゃんとワーカプロセスをKillできているかを確認してみます。 シナリオとしては - config/unicorn.rbのworker_processesは1として、ワーカプロセスは1つだけにする - unicorn-worker-killerの設定は100回〜120回のリクエストを受けたタイミングで、ワーカプロセスを再起動するようにする まずはGemfileに ``` ruby Gemfile gem &#39;unicorn-worker-killer&#39;  と設定します。config.ruの設定は、以下のようになります。
+``` ruby config.</description>
+    </item>
+    
+    <item>
+      <title>論理削除とeager_loadでN&#43;1問題が発生する件</title>
+      <link>http://example.org/2015/07/08/eager-load-with-paranoia/</link>
+      <pubDate>Wed, 08 Jul 2015 09:53:55 +0000</pubDate>
+      
+      <guid>http://example.org/2015/07/08/eager-load-with-paranoia/</guid>
+      <description>Railsアプリにて論理削除とeager_loadを合わせて使うとN+1問題が発生することに気づいたのでメモ。
+N+1問題を確認する まずはN+1問題が起きるようなモデルを作成します。よくあるブログアプリのような、ブログのエントリがあり、それにコメントが複数あるパターンです。
+class Post &amp;lt; ActiveRecord::Base attr_accessible :title, :content has_many :comments end class Comment &amp;lt; ActiveRecord::Base attr_accessible :post_id, :name, :content belongs_to :post end  適当なデータを入れた後、これに対してrails cで以下のようにレコードを取得します。
+Post.all.each do |post| puts post.comments.first.name end  すると、以下のようなSQLが発行されます。
+Post Load (0.1ms) SELECT &amp;quot;posts&amp;quot;.* FROM &amp;quot;posts&amp;quot; Comment Load (0.1ms) SELECT &amp;quot;comments&amp;quot;.* FROM &amp;quot;comments&amp;quot; WHERE &amp;quot;comments&amp;quot;.&amp;quot;post_id&amp;quot; = 12 LIMIT 1 ユーザ1 Comment Load (0.1ms) SELECT &amp;quot;comments&amp;quot;.* FROM &amp;quot;comments&amp;quot; WHERE &amp;quot;comments&amp;quot;.&amp;quot;post_id&amp;quot; = 13 LIMIT 1 ユーザ1 Comment Load (0.</description>
+    </item>
+    
+    <item>
+      <title>JavaプログラマがKindle50%還元セールで買っておくべきIT技術書</title>
+      <link>http://example.org/2015/05/31/java-programmer-must-buy/</link>
+      <pubDate>Sun, 31 May 2015 22:29:48 +0000</pubDate>
+      
+      <guid>http://example.org/2015/05/31/java-programmer-must-buy/</guid>
+      <description>Kindle Storeでセールをやってるようです。今回は50%をポイント還元するってセールらしいです。
+で、こちらを見てたらRubyやPHPはあっても、Javaがなかったので、ついカッとなってJavaプログラマ向けのオススメ技術書をチョイスしました。 セールは6/1の正午までですので、お早めにどーぞ。
+ これは店頭で目次を見た程度です。わりと初心者向けな印象なので、これからJavaを勉強したい人にオススメです。
+ いわずと知れた「パーフェクトシリーズ」のJava版。広範囲に網羅されているので、手元に置いておけば長く使えると思います。初心者でも可。
+ これも「逆引きレシピシリーズ」のJava版。リファレンス的に使うのならコイツは鉄板。
+ そもそもJava EEの日本語の本は少ないのですが、最新のJava EE7に対応した本。
+ 1つ前のバージョンであるJava EE6の本。通称「金魚本」。Java EE6と多少古くはあるがJava EE7と全然違うというわけでもないので、未だに現役で使えるはず。内容はある程度Java EE6の仕組みを理解している人がリファレンス的に使う感じだと思います。
+現場からは以上です。</description>
+    </item>
+    
+    <item>
+      <title>Project Kullaを試す</title>
+      <link>http://example.org/2015/04/16/project-kulla/</link>
+      <pubDate>Thu, 16 Apr 2015 12:26:30 +0000</pubDate>
+      
+      <guid>http://example.org/2015/04/16/project-kulla/</guid>
+      <description>以前から気になっていたJavaのREPL、Project Kullaを動かしてみました。
+REPLとはRead-eval-print loopの略で、CUIからコードを直接入力していって、その場で動作を確認できるツールです。 Rubyであればirbやpryなどが有名ですね。
+Project KullaはOpenJDKにて開発されている、JavaのREPL環境をつくるプロジェクトです。 ちなみにこの機能はJDK9で、正式導入される予定になっています。
+JLine2のインストール 早速REPL環境を動かしてみたいところですが、まずは前準備として、Kullaに必要なJLine2というライブラリをビルドします。
+ソースコードはGitHubのリポジトリでホストされていますので
+git clone git@github.com:jline/jline2.git cd jline2 mvn install  ちなみにJLine2はJDK8以前でないとビルドできないので注意です。
+ビルドに成功するとjline2/targetディレクトリにjline-2.13-SNAPSHOT.jarが作成されます。Kullaからは、このjarを利用します。
+JDK9 EAのインストール KullaのビルドにはJDK9が必要です。こちらからJDK9をダウンロードし、インストールします。 自分がインストールしたのは、以下のバージョン。
+java version &amp;quot;1.9.0-ea&amp;quot; Java(TM) SE Runtime Environment (build 1.9.0-ea-b59) Java HotSpot(TM) 64-Bit Server VM (build 1.9.0-ea-b59, mixed mode)  その後、使用するJAVA_HOMEをJDK9に設定します。
+普段、自分はJAVA_HOMEの設定にjava_homeコマンドを使用しているので、.bash_profileに
+export JAVA_HOME=`/usr/libexec/java_home -v 1.8`  としてJDK8を使用しています。今回はJDK9を使いたいので、これを
+export JAVA_HOME=`/usr/libexec/java_home -v 1.9`  とし
+source ~/.bash_profile  として、JDK9を有効にします。
+Kullaのビルド いよいよKullaのソースをダウンロードしてビルドします。
+hg clone http://hg.openjdk.java.net/kulla/dev ~/kulla cd ~/kulla  次に、その他必要なソース類を取得します。</description>
+    </item>
+    
+    <item>
+      <title>GitHubのPull requestから、CHANGELOGっぽいものを作成するgemを作った</title>
+      <link>http://example.org/2015/04/02/introduce-octocam/</link>
+      <pubDate>Thu, 02 Apr 2015 17:31:42 +0000</pubDate>
+      
+      <guid>http://example.org/2015/04/02/introduce-octocam/</guid>
+      <description>gemを作りました。名前はoctocamです。
+ octocam - https://rubygems.org/gems/octocam  主な機能としては「GitHubから指定された日付期間にマージされたPull requestを抽出し、CHANGELOGっぽいMarkdownを生成する」というgemです。
+定期的にリリースを行っている場合に、以前リリースされたときからどのような機能が増えたかをCHANGELOGとかに書き出しますが、そういった時に便利に使えると思います。
+似たような機能を持つものはgemやnpmを探すと、結構あります。この辺りとか。ただ、いずれも
+ 日付の指定ができない。できたとしてもPull requestの作成日とか。 issueやcommitを含めてしまう。 Markdownで出力できない。 認証に対応してない。  などなど、要求を満たすものではなかったので、gemの作り方を勉強がてら作ってみました。
+ワークフローとして、 必ずPull requestでレビューをしてから、マージをおこなうワークフロー を採用しているところであれば、フィットするように思います。
+インストール 以下のようにしてインストールします。
+gem install octocam rbenv rehash # rbenvを使ってる人はrehash  もしプライベートなリポジトリにアクセスしたい場合は、こちらからPersonal access tokensを生成します。 あとは、生成したトークンを.bash_profileあたりから、環境変数「OCTOCAM_GITHUB_TOKEN」に設定しておきます。
+export OCTOCAM_GITHUB_TOKEN=&amp;quot;your-40-digit-github-token&amp;quot;  使い方 インストールされるとoctocamコマンドが使えるようになるので、以下のようにして実行します。
+octocam -o zephiransas -r octocam -f 2015-01-01 -t 2015-01-31  -f,-tオプションにPull requestがマージされた日付を指定でききます。
+** カレントディレクトリがgitのローカルリポジトリで、かつ、originがGitHubに設定されている場合であれば-o,-rオプションは省略できます。 **
+欲しい機能ありましたら、issueを立てて頂くか、Pull requestを投げてください。</description>
+    </item>
+    
+    <item>
+      <title>lambda-behaveでテストを書こう</title>
+      <link>http://example.org/2014/12/16/about-lambda-behave/</link>
+      <pubDate>Tue, 16 Dec 2014 18:17:15 +0000</pubDate>
+      
+      <guid>http://example.org/2014/12/16/about-lambda-behave/</guid>
+      <description>これはJavaアドベントカレンダー2014の12/16分の記事です。
+昨日はgrimroseさんの、[書評] Gradle徹底入門 でした。
+明日は@com4dcさんの、はじめて触るStreamの世界 です。
+自分はJavaのテストフレームワークである、lambda-behaveについて紹介します。
+自分は普段はRailsでの開発を行っているのですが、現場では主にRSpecを使ってテストを記述しています。RSpecでのテストは以下のような感じです。
+describe &#39;Sample&#39; do context &#39;hogeメソッドについて&#39; do it &#39;fugaを返すこと&#39; do Sample.hoge.should == &amp;quot;fuga&amp;quot; end end end  RSpecでは上記のようにDSLを使って、なにをテストしているかを構造的に記述することができます。 lambda-behaveを使うと、このようなDSLっぽい記述のテストを、Java8のLambdaを使って書くことができるようになります。
+最初のテスト まずはテスト対象となるメソッドを準備します。
+public class Sample { public static int includeTax(Integer price) { return 0; } }  上記のようなstaticなメソッドを準備します。includeTaxメソッドは引数を一つ取り、その税込み金額を返すメソッドとします。実にギョーミーですね！
+今回はTDD的なノリで実装していきますので、ここでは中身の実装はおこないません。
+それでは実際のテストを書いて行きましょう。ここでのテストシナリオは
+ includeTaxメソッドに100を渡した場合に、108が返ってくること  をテストするとします。これをlambda-behaveで書くと、以下のようになります。
+{% raw %}
+import static com.insightfullogic.lambdabehave.Suite.*; @RunWith(JunitSuiteRunner.class) public class SampleSpec {{ describe(&amp;quot;includeTax&amp;quot;, it -&amp;gt; { it.should(&amp;quot;税込み価格が取得できること&amp;quot;, expect -&amp;gt; expect.that(Sample.includeTax(100)).is(108) ); }); }}  {% endraw %}</description>
+    </item>
+    
+    <item>
+      <title>JJUG CCC 2014 Fallで発表してきた</title>
+      <link>http://example.org/2014/11/17/attend-jjug-ccc-2014-fall/</link>
+      <pubDate>Mon, 17 Nov 2014 20:40:56 +0000</pubDate>
+      
+      <guid>http://example.org/2014/11/17/attend-jjug-ccc-2014-fall/</guid>
+      <description>11月15日に、東京は新宿の西新宿ベルサールにて開催されたJJUG CCC 2014 Fallに参加してきました。
+JJUC CCC（クロス・コミュニティ・カンファレンス）日本Javaユーザ会が春/秋と、年に2回開催している、JJUG主催としては最大のイベントです。
+今回はこれのセッション公募(CfP)に応募したところ嬉しい事にセッション枠を1つ受け持つことになったので、それも兼ねて東京まで参加してきました。 久々に東京のJavaコミュニティの勉強会で、普段はTL上でしか面識のない人たちに会えるのも、楽しみの一つ。
+いつもの面々（失礼）もそうですが、今回は以前からお会いしたいと思っていた @kikutaro_ さんと、お昼をご一緒させていただくことができました。TL上での発言を見て「真面目な好青年っぽいなー」という印象を持っていましたが、会ってもやはり好青年でした。
+普段から何をツイートするか、考えて発言しないといけませんね！！ （ｹﾞﾌﾝｹﾞﾌﾝ
+それから余談ですが、実は大都会ITクラスタは過去、JJUG CCCのスピーカを3人輩出しています。
+最初は独立国家福山に住む「@soudai1025 氏」
+それから岡山Javaユーザ会/倉敷天領Scala勉強会に所属する「@razon 氏」
+あとは「@mao_instantlife 氏」
+他の地方で、これだけスピーカが出てるところはないように思うので、ちょっと自慢していいような気もしますw
+自分のセッションについて 今回自分はRailsライクなWebフレームワーク「ninjaframework」について、セッションを行いました。以下はその資料。
+ 一番小さい部屋だったので、おそらく40~50人程度の方がいらしていたと思います。
+当日、他のセッションでSpring Bootのセッションとハンズオンがあり「これはネタを選択し間違えた感・・・」と思ったのは内緒。
+久々の発表だったり、資料作りが思うように進まなくて、練習もろくにできなかったりで、たどたどしいことこの上ないセッションになってしまったような気がします・・・
+しかも50分の予定が40分程度で終わってしまい、困ったなーと思っていたところ、Q&amp;amp;Aで意外にも多くの方から質問を頂きました。その結果、きっちり50分！
+あまりうまくいかなかった部分もありましたが、最後まで聞いていただいた皆さん、大変にありがとうございます！
+Java女子部の台頭 以下はセッションの内容とはあまり関係ない、参加して自分が肌で感じたことです。
+今回のCCCで一番思ったことが、女性の参加者が多いこと。
+個人的にですが、エンジニアの世界はまだまだ男性中心な世界だなと感じていて、女性でバリバリコード書いたり、勉強会で発表してる人って少ないのが現状です。（それが良いとも悪いともいいません。それは本質ではないので。）
+なので、今回のCCCに多くの女性エンジニアがいたことには正直驚きました。最近、女性エンジニアの有志を中心に「Java女子部」なるコミュニティが発足したことは知っていましたが、それが広まってきてる感じです。
+エンジニアという職業が成熟していく過程に、女性が活躍できる環境というのは必須だと思います。また、それがエンジニアという仕事を一生の仕事にするためにも、必要なことだと思います。
+Java女子部の女の子たちみんな可愛かったのでみんなJavaやるべき
+&amp;mdash; しょぼちむ@どうもネカマです (@syobochim) 2014, 11月 15 
+Javaコミュニティの復活の兆し  つい先日発売された「Javaエンジニア養成読本」（通称「妖精本」）の巻頭記事に、Javaのコミュニティの歴史について触れている部分があります。
+自分がJavaのコミュニティに最初に触れたのは、Seasarが流行っていた時代です。
+その後Javaのコミュニティは、Sunの不振などもあり少しづつ勢いを失ってきたように思います。
+しかし今回のCCCの参加登録数は約650名で過去最高。また懇親会の参加者も受付開始するとあっという間に満席になり、最終的には100名とこちらも過去最高。自分にとっても最高に楽しい時間でした。
+ JJUG CCC 2014 Fall 懇親会 - https://www.flickr.com/photos/zephiransas/sets/72157648917084929/  この飲み会、Java最盛期っぽい！
+&amp;mdash; きしだﬗ (@kis) 2014, 11月 15 
+これもひとえに2007年4月にJJUGが発足以来、地道に活動してこられた多くの人たちの努力の賜物です。</description>
+    </item>
+    
+    <item>
+      <title>Pusherを使ったChrome拡張を作る</title>
+      <link>http://example.org/2014/03/20/pusher-with-chrome-extension/</link>
+      <pubDate>Thu, 20 Mar 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/2014/03/20/pusher-with-chrome-extension/</guid>
+      <description>メッセージ等の新着通知やアップデート情報の配信など、アプリケーションへの通知の方法として、スマートフォンなどで使われるpush通知など、最近では様々なものがあります。
+しかし自前で通知用のサーバを運用するのは手間がかかるので、これを簡単に使えるようにするサービスも増えてきました。例えばPusher.comなどがあります。これを使うことで、ブラウザへのリアルタイムな通知機能を、WebSocketを使って簡単に作成することができます。
+今回はPusherからの通知をChrome拡張で受信し、これをデスクトップ通知するサンプルを作成しましたので、解説してみます。
+Pusher側の設定 まずはPusher側に設定を行います。Pusherでアカウントを作成後、以下のようにアプリケーションを登録します。
+ここでEncryptionにチェックを入れておきましょう。チェックしなくても特に問題はないのですが、Chrome拡張の場合セキュリティの問題からSSLを使用したほうが、いろいろ都合がいいので、チェックするほうが無難です。
+Chrome拡張の作成 manifest.jsonの設定 ``` json manifest.json { &amp;ldquo;manifest_version&amp;rdquo;: 2, &amp;ldquo;name&amp;rdquo;: &amp;ldquo;Pusher test extension&amp;rdquo;, &amp;ldquo;version&amp;rdquo;: &amp;ldquo;0.0.1&amp;rdquo;, &amp;ldquo;description&amp;rdquo;: &amp;ldquo;Pusher用 Chrome extension&amp;rdquo;, &amp;ldquo;permissions&amp;rdquo; : [ &amp;ldquo;notifications&amp;rdquo; ], &amp;ldquo;content_security_policy&amp;rdquo;: &amp;ldquo;script-src &amp;lsquo;self&amp;rsquo; https://stats.pusher.com; object-src &amp;lsquo;self&amp;rsquo;&amp;ldquo;, &amp;ldquo;background&amp;rdquo; : { &amp;ldquo;scripts&amp;rdquo;: [ &amp;ldquo;src/javascript/pusher.min.js&amp;rdquo;, &amp;ldquo;src/javascript/background.js&amp;rdquo; ] } }
+ 今回はPusherからのメッセージをデスクトップ通知するようにしたいのでpermissionに ``` json &amp;quot;permissions&amp;quot; : [ &amp;quot;notifications&amp;quot; ],  を指定しています。
+また、content_security_policyのscript-srcに https://stats.pusher.com を追加しています。httpではなくhttpsを指定していることに注意してください。
+&amp;quot;content_security_policy&amp;quot;: &amp;quot;script-src &#39;self&#39; https://stats.pusher.com; object-src &#39;self&#39;&amp;quot;,  このサイトは、Pusherのクライアントライブラリであるpusher.min.jsからアクセスしているのですが、これを許可していないとChrome拡張からPusherのサーバへ、正しく接続をすることができません。
+次にpusher.min.jsですが、これは本来であればPusherのサイトに公開されているものを読み込んで使いたいところなのですが、Chrome拡張では外部のjavascriptを読み込むことができないようです。なので、ダウンロードしてソースに加えています。 ちなみにpusher.min.jsのホスト先は、こちらで公開されています。</description>
+    </item>
+    
+    <item>
+      <title>岡山の勉強会に参加する際の心構え</title>
+      <link>http://example.org/2014/03/15/what-you-shoud-eat-in-daitokai/</link>
+      <pubDate>Sat, 15 Mar 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/2014/03/15/what-you-shoud-eat-in-daitokai/</guid>
+      <description> IT勉強会はなにも東京ばかりで開催されているわけではない。
+地方の勉強会に参加するのであれば、ついでに観光地を巡ったり、その土地の美味しいモノを食べたいというのが人情である。
+本エントリでは岡山の勉強会に来た際に食べるべきものを紹介する。
+もも、ぶどう 言わずと知れた岡山の特産品。桃は白桃、ぶどうはマスカット・オブ・アレキサンドリアなどが有名。なにしろ倉敷にはその名もマスカット球場なるスタジアムがあり、楽天の星野仙一監督が倉敷出身という縁もあり、ここ数年は楽天がキャンプをやってたりする。それぐらい有名。ただし、どれもそこそこお値段がするので、お財布に余裕があるときにしましょう。
+また、ちょっと亜流ではあるけれども白桃やマスカットを和菓子で食すという方法もある。岡山には源吉兆庵なる和菓子屋さんがあり、これは世界的にも有名。サンフランシスコにも出店してたりする。ここのお菓子に「桃泉果」なるものがあり、これは白桃をまるまる一つ使った贅沢な逸品。マスカットであれば「陸乃宝珠」というものがあります。これはこれで美味しいので、おすすめです。ただし、どれもそこそこお値ｄ（ｒｙ
+牡蠣＆牡蠣おこ 日生であれば、なにをおいても牡蠣です。日生で牡蠣を食べたいのであれば五味の市がおすすめです。ここでは1kgから殻付きの生牡蠣を買うことができます。これを五味の市近くにある道の駅で、BBQにしていただくのが定番です。シーズン中の牡蠣は身も大きく、とても美味しいですよ。
+詳細はこちら
+ 牡蠣駆動勉強会を行いました  また、B級グルメとしても定番になった感のあるカキオコも日生ではよく見かけます。これも押さえておきたい。
+えびめし 岡山の誇るB級グルメ「えびめし」
+海老の入った、デミソース風味の焼き飯とでも言った感じ。
+岡山には「えびめしや」なるレストランが数店あり、地元民も愛する味。
+他にも、市の中心部からほど近い、天満屋バスターミナルの地下にある「いんでいら」のえびめしもオススメ。
+個人的には、かつて岡山市倉田にあった「いんでいら」がイチオシ。自分が小さい時から慣れ親しんだ味だったが、残念ながらマスターが高齢になったこともあり、今は閉店してしまった。しかしここのえびめしこそが岡山の元祖えびめしとおもっている
+パフェ 意外かもしれないが、岡山といえばパフェ。こんなページもあったりするぐらいに推してる。
+そして、Java会の重鎮、櫻庭さんも岡山のパフェ推しで有名。大都会アドベントカレンダーでも、岡山のパフェを紹介して頂いています。
+ 大都会岡山 Advent Calendar 16 日目 - 岡山といえばパフェだよね 大都会岡山 Advent Calendar 11 日目 - 岡山といえばパフェだよね #2  後楽園 倉敷の環境名所といえば「倉敷美観地区」ですが、岡山の観光名所といったら「後楽園」
+江戸時代、岡山藩藩主池田綱政によって造成された、日本庭園です。いまでも園内には、古い建物が残っており、これを一般市民でも有償で利用することができます。こんな素晴らしい庭園で、のんびり勉強会とかできたらいいですよね？
+・・・
+・・・
+・・・
+というわけで、この後楽園でJava8のハンズオンを企画しました！
+ Java8 Lambdaハンズオン@岡山後楽園  ぜひ、この機会に岡山にお越しいただき、岡山の美味しいものと、美しい風景を堪能してはいかがでしょうか？
+皆様のご参加をお待ちしております。
+あわせて読みたい  富山の勉強会に参加する際の心構え  </description>
+    </item>
+    
+    <item>
+      <title>Java8で始めるLambda（基礎編）</title>
+      <link>http://example.org/2014/03/12/java8lambda/</link>
+      <pubDate>Wed, 12 Mar 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/2014/03/12/java8lambda/</guid>
+      <description>まもなくリリース予定のJava8。その中でも最も大きなインパクトを持つというProject Lambdaについて、ここ数日調べてみました。 今からLambdaをはじめようとする人向けに、何回かに分けてまとめてみたいと思います。
+インターフェースの宣言 まずは手始めに、引数で指定された文字列の前後に&amp;rdquo;[&amp;ldquo;と&amp;rdquo;]&amp;ldquo;をつける処理を考えてみましょう。
+Lambdaを使用するには、まずインターフェースを宣言する必要があります。上記の仕様から考えると
+ 引数はString型の引数が1つ 戻り値もString型  となるので、この場合は以下の様なインターフェースを宣言します。
+``` java LambdaInterface.class public interface LambdaInterface { String method(String value); }
+ ここで注意するべきことが1つ。Java8のLambdaとして使えるインターフェースには決まりがあるのですが、もっとも重要なのが**インターフェースのメソッドが1つだけ**ということです。インターフェースのメソッドが2つ以上ある場合には、それをLambdaとして使用することはできません。 これはLambdaの実装部分を書く際に、どのメソッドの内容を実装しているのかを書かないため、Lambdaを書いた場合は**そのインターフェースがもつ唯一のメソッド**に対して実装をおこなったとみなすからです。 一見、これは不便なように思ってしまうかもしれないですが、普段使うパターンのインターフェースのほとんどがjava.util.functionパッケージ内で用意されているので、実際にはそれ程不便ではありません。むしろ自分でインターフェースを用意するほうが稀かもしれません。 ## Lambdaを使った記述 早速、先に宣言したインターフェースを使ってLambdaを書いてみましょう。Lambdaを記述する際の基本となる文法は、以下のようになっています。 ``` java [インターフェース名] [lambda式の名前] = (引数の型 引数,...) -&amp;gt; { （実装） };  よってLambdaInterfaceを使って書くと、以下のようになります。
+``` java Sample.class public class Sample {
+public static void main(String&amp;hellip; args) { LambdaInterface lambda = (String value) -&amp;gt; { return &amp;ldquo;[&amp;rdquo; + value + &amp;ldquo;]&amp;rdquo;; }; System.</description>
+    </item>
+    
+    <item>
+      <title>Photo Leafをちょっとリニューアルしました</title>
+      <link>http://example.org/2014/02/06/renew-photoleaf/</link>
+      <pubDate>Thu, 06 Feb 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/2014/02/06/renew-photoleaf/</guid>
+      <description>前から気になっていたPhoto Leafのフォトブック作成画面のリニューアルをしました。
+画面の中央部分にフォトブックのページ一覧。画面の一番下に、flickrの写真一覧を表示するようにしました。今までとは、真逆のレイアウトになっています。
+ flickrの写真一覧は左右のスライダーでページを移動できます。 ちなみに、スクロールする度にPhotoStreamの写真を逐次読み込む仕様になっています。 flickrの写真は、クリックすることで大きめの画像を画面中央に表示できます。 Set内の写真のみを一覧に表示した場合は「Setを選ぶ」ボタンを押すことで、Setを選択できます。  写真選択は今まで通り、ドラッグ&amp;amp;ドロップでフォトブックの各ページに写真を置いていきます。
+flickrに写真を保存していて、フォトブックを作ってみたい方は是非ご利用ください。
+技術的なこと ついでといってはなんですが、裏側もちょこちょこ修正しています。
+ unicornを使うようにした。多少はパフォーマンスがあがってる（はず） werckerを使って、masterにpushするだけで、あとは自動でテスト-&amp;gt;デプロイまでできるようにした。 利用規約のページなど、他とは微妙に違うページは別layoutにしてたのを、content_forを使ってapplication.html.erbに一本化した。 rpsecのテストにshoulda matcherを導入した。  といったとこです。特にwerckerは素晴らしい。 werckerのお陰で、本番環境とステージング環境をあまり考えることなく、テストからデプロイまでやってくれるのは、非常に楽でした。
+このあたりのwerckerの使い方も、後ほどまとめてみようかと思っています。</description>
+    </item>
+    
+    <item>
+      <title>werckerでrspecとcucumberのCI環境を作る</title>
+      <link>http://example.org/2014/01/23/webkit-on-wercker/</link>
+      <pubDate>Thu, 23 Jan 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/2014/01/23/webkit-on-wercker/</guid>
+      <description>去年作ったPhoto LeafというWebサービスがあるのですが、これのCI環境を作成したいなぁと思っていたところwerckerというCIサービスを使って構築できたので、そのまとめです。
+werckerとは？ werckerはTravisCIなどに代表されるように、外部でビルド（というかテスト）やデプロイを行ってくれるCI（継続的インテグレーション）サービスです。
+使い方としては、リモートリポジトリに変更がpushされた時点でこれをフックして、CIサービス側でテストしたり、場合によってはそのまま本番環境に自動デプロイとかもしてしまえば、変更内容を安全、かつ迅速にリリースできる仕組みが出来上がるわけです。イマドキっぽいですね！
+werckerの特徴としては
+GithubとBitbucketに対応 TravisCIはGithubにあるリポジトリしかビルド対象にできません。Githubのサービスなんだから、当たり前といえば当たり前ですが・・・
+（今のところ）無料 2014/1/23現在はベータのようです。将来的にはどうなるのかわからないですが、今のところ無料で使えます。制限としては「1つのビルドが25分以内に完了すること」ぐらいです。エンタープライズなシステムだとキツイかもですが、そこそこの規模なら問題ないんじゃないでしょうか。
+テストを実行するための仮想環境が豊富に用意されている werckerでビルドを実行する際にはBoxという仮想環境内で実行されます。これが予め様々な種類が用意されています。通常のRuby(Rails)の環境とかだけではなく、JavaやAndroidといった環境も用意されています。またBoxを自分で作ることもできるようです。
+privateリポジトリもビルドできる TracisCIは無課金だとprivateリポジトリはビルドできません。しかしwerckerはprivateリポジトリをビルドできます。 Photo LeafのソースはBitbucket上のprivateリポジトリで管理しているため、今までCIサービスを利用することができなかったのですが、werckerはprivateリポジトリでもビルドできるので便利です。
+wercker.ymlの設定 Photo Leafでは、テストをrspecとcucumberで書いています。cucumberではjavascriptのドライバとしてcapybara-webkitを使ってます。そのためwerckerで動かすには設定が若干面倒です。
+werckerにログインして、とりあえず普通にビルドするまでの手順は、以下の記事に詳しいのでこちらを参照してください。
+ Githubのプライベートリポジトリでも無料で使えるCI、Werckerを使ってrails newからHerokuのデプロイまでやってみる  上記で設定したwercker.ymlに対して、rspecとcucumberを実行するように設定していきます。自分が設定したwercker.ymlは以下のような感じ
+``` yml wercker.yml box: wercker/rvm
+Build definition See the Rails section on the wercker devcenter: http://devcenter.wercker.com/articles/languages/ruby/settingup-rails4.html You will want to define your database as follows: services: - wercker/postgresql
+See more about services on our devcenter: http://devcenter.wercker.com/articles/services/ build: steps: # Uncomment this to force RVM to use a specific Ruby version # - rvm-use: # version: 2.</description>
+    </item>
+    
+    <item>
+      <title>2013年を振り返って</title>
+      <link>http://example.org/2013/12/30/end-of-2013/</link>
+      <pubDate>Mon, 30 Dec 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/2013/12/30/end-of-2013/</guid>
+      <description>今年も終わりですね。というわけで恒例の、今年の振り返りエントリです。
+今年の出来事 まずは1月。このときには転職して新しい職場での仕事をスタートさせました。もともと外注として仕事をしていたせいもあって、他の社員の方たちも「まだ1年？」と驚かれる程度にはスムーズに会社に溶け込むことができましたし、素晴らしいチームメンバーにも恵まれて、仕事においてはとても充実していたように思います。仕事ではずっとRuby on Railsでも開発でしたが、Ruby（というより動的型付け言語）にも、かなり慣れてきたかな？という感触を持っています。エンジニアとして更に成長するためにも、異なるパラダイムの言語とその文化を学ぶことは重要だと感じていたので、この点についても非常に良かったのではないかと思っています。
+2月には大阪の楽天で「勉強会勉強会」に参加しました。勉強会を主催することの意味を改めて考えさせるキッカケにもなったと思います。それから岡山Javaユーザ会で「JUnit実践入門読書会」を開催しました。これ、結局継続できてないんですよねー・・・・(´・ω・｀)
+3月には声優イベントOSC徳島に参加しました。ここではLTもやらせていただき、そこそこ笑いも取れ、大都会流LTのなんたるか、を知らしめることができたのではないでしょうか？
+5月にはJava Day Tokyoに参加しました。
+ Java Day Tokyo 2013に参加してきた（基調講演） Java Day Tokyo 2013に参加してきた（セッション）  6月には初めてRubyKaigiに参加したり、Java Day Tokyoの報告会などをやったりしました。特にRubyKaigiは初めてRubyのコミュニティに参加して、Javaのコミュニティとはまた違った雰囲気。セッションも全編が英語で、非常にいい刺激となりました。
+ RubyKaigi2013に参加してきた Java Day Tokyo 2013報告会@岡山を開催してきた  8月には、パトしお結婚式がありましたね。
+ パトしお結婚式  9月には、岡山Javaユーザ会でJavaEEハンズオンをやりました。大都会界隈では（というより全国的に？）JavaEEはまだまだ現場で使われていない印象。もうちょっとJavaEEの啓蒙もできたらいいなぁなどと考えていたりしますが・・・
+ JavaEE7 ハンズオン  12月には、毎年恒例の合同勉強会と忘年会議が行われました。あいにく忘年会議には参加できなかったのですが、合同勉強会では急遽司会とスピーカーを両方やることに。しかし、この辺りのフットワークの軽さが、大都会ITクラスタの強みでもあると思います。
+ 合同勉強会 in 大都会岡山 -2013 Winter-  以上、今年自分が参加したり主催したイベントをざっくり振り返ってみました。
+まとめ 最近、イベントを主催する時に思うことなのですが、正直イベントをやることは大変です。面倒だなぁと感じることも少なからずあります。 特に岡山のような地方では、エンジニアの絶対数がそもそも少なく、更にスピーカーになってくれるような人は更に少ないのが現状です。（そのため内輪っぽい雰囲気があるのも、やむを得ない感じもしますが）とにかくコンテンツづくりが一番大変です。
+そうまでして勉強会をやる意味はあるのか？これを常に考えます。
+しかし最終的には、自分が今まで勉強会に参加して、いろいろな人たちに出会い、そこから更に成長することができ、ある意味では幸せなエンジニアライフを送ることができた感謝の想いと、その恩返しをするために、勉強会をやっているような気もします。大袈裟な考えかもしれないですが、これが私の今の心境です。それでも大変であることに変わりはないですが、これからも地道に頑張っていきたいと考えています。
+本年も皆様には大変にお世話になりました。改めて感謝申し上げます。
+どうぞ、良いお年をお迎えください！</description>
+    </item>
+    
+    <item>
+      <title>牡蠣駆動勉強会を行いました</title>
+      <link>http://example.org/2013/12/23/daitokai2013/</link>
+      <pubDate>Mon, 23 Dec 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/2013/12/23/daitokai2013/</guid>
+      <description>これは大都会アドベントカレンダー2013の12/23分のエントリーです。
+前日は @mao_instantlife さんの岡山のお気に入りな飲み屋
+明日は @kotanin さんです。
+大都会岡山には、皆さんご存知のように様々な勉強会が存在します。今回はその一つである牡蠣駆動勉強会を紹介します。
+牡蠣駆動勉強会はその名の通り（？）牡蠣を食べる勉強会です。
+大都会岡山には牡蠣の産地として有名な日生がありますが、そこにある「五味の市」では、毎日採れたての新鮮な牡蠣を購入することができます。値段はだいたい1kg/¥1,000程度で殻付きの牡蠣を購入できます。某氏は¥2,000分ほど買って、売り子のおばちゃんと交渉してオマケをｹﾞｯﾄしたようですがw
+またこの牡蠣は持ち帰って食べるだけでなく、現地にあるBBQスペースを借りることで、その場で食べることもできます。今回の勉強会の目的は、そのBBQスペースを使って美味しい牡蠣を食べることです。ちなみにこの時期の牡蠣は身が大きいので、他の場所で食べるときっといいお値段がするんじゃないですかね？
+BBQスペースは五味の市の近くにある、海の駅「しおじ」というところでBBQスペースを¥1,000で90分借りることができます。ここでは必要なものがひと通りセットで提供されていて、受付で
+ トング 網 牡蠣メス（牡蠣を開けたり、貝柱を切る専用のツール） 軍手 割り箸＆紙皿  などを渡してくれます。席にはすでに火をおこした炭が準備されているので、特になにも持って行かなくても楽しめますが、上級者になると、ポン酢などのおこのみの調味料や、おにぎりを持ってきて焼きおにぎりにしたり、ビールを飲んだり、更にはワインを飲んだり（！）等々、楽しみかたはいろいろあります。 しおじには牡蠣以外にも、ホタテや海老などの海産物も売っていますので、お子様でも安心です。
+というわけで、牡蠣駆動勉強会の紹介でした。ぜひ、シーズン中に行ってみてください！</description>
+    </item>
+    
+    <item>
+      <title>Illumination Photo Advent Calendar 2013</title>
+      <link>http://example.org/2013/12/19/photo-advent2013/</link>
+      <pubDate>Thu, 19 Dec 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/2013/12/19/photo-advent2013/</guid>
+      <description>これはIllumination Photo Advent Calendar 2013の12月21日分のエントリです。
+自分にしては珍しく、非技術系のアドベントカレンダーに参加してみました。
+ところで自分は大都会岡山在住なのですが、岡山の観光名所といえば「後楽園」です。倉敷の美観地区とならび、有名だと思います。
+後楽園は昼間も良いのですが、実は春夏秋冬のそれぞれシーズン始めには園内でイルミネーションをやっていて、夜間も開園していたりします。
+今回はその後楽園のイルミネーションを紹介したいと思います。
+     後楽園では、元旦より後楽園初春祭な行われ、お正月ムードの日本庭園を楽しむことができます。お近くにお越しの際は、ぜひ寄ってみてはいかがでしょうか。</description>
+    </item>
+    
+    <item>
+      <title>色んなバリエーションのirofさんを紹介しよう</title>
+      <link>http://example.org/2013/12/12/irof2013/</link>
+      <pubDate>Thu, 12 Dec 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/2013/12/12/irof2013/</guid>
+      <description>これはirofアドベントカレンダー2013の12月13日分のエントリのようです。
+昨日は@akuraruさんの「いろふさんの描かれていない領域には何があるのか」でした。
+このアドベントカレンダーは先日、急にJJUGの某幹事からQBKで振られたものです。
+@zephiransas ありがとうございます！名前書いておきました！
+&amp;mdash; (´・ω・｀) (@megascus) 2013, 12月 9 
+正直ネタを思いつかないだろうなーとおもいつつ、昨日の@akuraruさんのネタを見て、衝動的に思いついたので、書いてみます。
+皆さんご存知の用にirofさんには様々なインスタンスが存在しますが、それと同時に様々なバリエーションも存在します。BANDAIを始めとするおもちゃメーカーからもこぞってirofさんグッズが発売されていますが、今回はそのバリエーションの一部を皆さんにご紹介したいと思います。
+シャア専用irof シャア専用です。赤いです。3倍早いです。通常の3倍の速度でテストを書いてくれます。便利ですね。ぜひうちの会社に欲しいものです。
+量産型irof 量産型です。空から降ってきて、人の黒歴史に干渉します。ちょっとイヤですね。
+金剛型戦艦99番艦 irof 金剛型戦艦99番艦のirofﾃﾞｰｽ!!
+まとめ GIMP難しい</description>
+    </item>
+    
+    <item>
+      <title>JavaOne2013報告会@岡山を開催しました</title>
+      <link>http://example.org/2013/12/08/javaadvent2013/</link>
+      <pubDate>Sun, 08 Dec 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/2013/12/08/javaadvent2013/</guid>
+      <description>これはJava Advent Calendar2013の12月7日分のエントリです。
+前日は@muraken702さんの「RxJavaを使ってCallback Hellから脱出する（ Vert.x がいいね！第5回 ）」でした。
+次の日は@nabedgeさんの「Mixer2のSpringMVC連携機能がver 1.2.17でさらに進化！」です。
+先日12/5に、岡山国際交流会館にて、JavaOne2013報告会@岡山を開催しました。そのレポートです。
+今回は初めて、平日の夜に勉強会を開催しました。というのも、講師の寺田さんが昼間は岡山市内の某SIerにて社内向けにJavaOne報告会を行い、そのまま夜はコミュニティ向けの報告会をやる、といった事情があったためでした。
+前日までの参加登録では、9人の予定だったのですが、当日はちょっと増えて、最終的には11人の方にご参加いただきました。ありがとうございます。
+２時間という限られた時間のなかで、前半でJavaOne2013の報告と、後半ではWebSocketを活用したより実用的なアプリケーションの開発モデルを紹介していただきました。
+JavaOne2013の報告の中ではRaspberry piなどにも注目が集まっているように、「Internet of Things」をキーワードに、Javaが組み込みにも大きく注力していることが印象的でした。現在は組み込みにはJavaMEというJavaSEのサブセット版が提供されていましたが、これを将来的にはSEとMEの垣根をなくし、統合していく方針であるとのこと。これは次のメジャーバージョンで統一というわけにはいかず、少々時間がかかりそうではありますが、スマートフォンを始め、様々なデバイスがインターネットに繋がる時代においては、組み込み分野でも動かせるJavaの重要性は増していくように思いました。
+最後には、寺田さんのJavaOne土産をプレゼントするじゃんけん大会などもありました。
+懇親会で、参加者の皆さんと話をしたときに感じたのは、JavaEEをもっと知りたいという話でした。今後、岡山Javaユーザ会でも、ハンズオンや勉強会などを通じて、JavaEEの啓蒙もしていきたいと感じました。</description>
+    </item>
+    
+    <item>
+      <title>weinreでiOSのブラウザのデバッグを行う手順</title>
+      <link>http://example.org/2013/08/20/debug-with-weinre/</link>
+      <pubDate>Tue, 20 Aug 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/2013/08/20/debug-with-weinre/</guid>
+      <description>モバイル対応のWeb開発をしている時、iPhoneやiPadのブラウザでのデバッグに苦労したことはないですか？
+PCの場合であれば、Chormeのデベロッパーツールとかでかなり簡単にデバッグを行うことができますが、iOSとかのSafariではデバッグツールをつかうことができません。
+そんな時に便利なのがweinreです。weinreを使うことで、iOS側で表示されたWebページのデバッグツールの情報を、PCから見ることができる大変便利なツールです。
+今回はweinreの使い方を紹介します。
+weinreのインストール まずはweinreをインストールします。weinreはnpmで提供されているので、以下のコマンドでインストールします。 npmをインストールしてない場合は、先にnode.jsをインストールしてください。
+$ sudo npm -g install weinre  自分の環境ではsudoを要求されたのですが、sudoなしでインストールできれば、それでもいいかと思います。
+weinreサーバの起動 次にweinreサーバを、以下のコマンドで起動します。
+$ weinre --boundHost 192.168.0.x  上記のboundHostにはlocalhostのIPアドレスを設定します。 weinreサーバはデフォルトの状態だとlocalhostからしか接続できません。この後iPad側から接続する必要がありますので、上記のようにboundHostを設定して、他のデバイスからも接続可能にしておく必要があります。
+無事、起動できれば
+weinre: starting server at http://192.168.0.x:8080  と表示され、8080ポートでサーバが起動します。早速これをブラウザから見てみましょう。
+上記の画面が表示されれば、サーバが起動しています。
+iOSデバイスでブックマークレットの登録 次に、iOSデバイスでweinreサーバへ接続するためのブックマークレットを登録します。直接ブックマークレットを作れればいいのですが、iOSではそれができないようなので、ここでは新規にブックマークを作成して、これを編集することでブックマークレットを作成しています。
+まずiOSデバイスのブラウザでweinreサーバ(ex: http://192.168.0.3:8080)を開きます。 そして、以下のjavascriptをクリップボードにコピーしておきます。
+次にiOSデバイスのブラウザで適当なWebページを開き、それをブックマークしておきます。
+そしてそのブックマークを編集して、先ほどコピーしたjavascriptをペーストします。
+デバッグの手順 以上で全ての準備が整ったので、実際にデバッグを行ってみます。
+まずはPC側のブラウザでweinreサーバを開き、接続中のクライアント一覧を表示します。
+上記のリンクをクリックすると
+このような画面が表示されます。iOSデバイスから接続されると、上記のTargets一覧に表示されます。
+iOSデバイス側からは、まずデバッグしたいWebページを表示し、その後、先に登録したブックマークレットを実行します。するとTargetが以下のようになります。
+あとはこの画面から、普通にデバッグツールを使用することができます。
+当然、デバッグツール側でHTML要素を変更してやれば、それがそのままiOSデバイス側のブラウザに反映されますので
+と変更してやれば、iOS側も
+といった感じで、即反映されます。
+補足 今回はiOSデバイスしか手元になかったため未検証ですが、当然Androidでも同様にデバッグすることができます。</description>
+    </item>
+    
+    <item>
+      <title>TimeMachineで検証エラーが発生した場合の復旧方法</title>
+      <link>http://example.org/2013/08/16/resque-timemachine/</link>
+      <pubDate>Fri, 16 Aug 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/2013/08/16/resque-timemachine/</guid>
+      <description>我が家の環境では、BuffaloのLS-XLシリーズというNASを使って、MBAのTime Machine環境を作っているのですが、最近よくこんなメッセージが出るようになりました。
+これはApple純正のTime Capsule以外をTime Machine環境に使用すると出てくるらしいです。 しかもこうなってしまうと、「後でバックアップを作成」にしても再度同じメッセージが表示されるし、「新規バックアップを作成」を選ぶと、それまでのバックアップの履歴は全て消えてしまいます。
+なので、この場合の復旧手順をメモっておきます。
+まずは、Time Machineを一旦「切」にしておきます。
+次にNASをマウントして、そのマウントポイントまでのパスを確認しておきます。自分の場合は「/Volumes/share/unicorn.sparsebundle」でしたので、以降はこれで説明します。
+次にターミナルを立ちあげ
+$ sudo chflags -R nouchg /Volumes/share/unicorn.sparsebundle  して、ロックを解除しておきます。次に
+$ hdiutil attach -nomount -noverify -noautofsck /Volumes/share/unicorn.sparsebundle  と入力します。実行すると以下のようなメッセージが表示されます。
+/dev/disk2 Apple_partition_scheme /dev/disk2s1 Apple_partition_map /dev/disk2s2 Apple_HFSX  この時の/dev/disk? の?部分は実行時の環境によって異なる数値が入っていますので注意。また、この次点でTime Machineイメージに対して修復処理がバックグラウンドで実行されています。そのログが/var/log/fsck_hfs.logに出力されています。復旧が終了したかどうかはそのログで確認するのでtailで眺めてやります。
+$ tail -f /var/log/fsck_hfs.log  おそらくこんな感じ。
+** Checking Journaled HFS Plus volume. ** Detected a case-sensitive volume. The volume name is Time Machine バックアップ ** Checking extents overflow file. ** Checking catalog file.</description>
+    </item>
+    
+    <item>
+      <title>Photo Leafをリリースしました</title>
+      <link>http://example.org/2013/06/27/photoleaf-release/</link>
+      <pubDate>Thu, 27 Jun 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/2013/06/27/photoleaf-release/</guid>
+      <description>本日、フォトブック作成サービス「Photo Leaf」をリリースしました。
+Photo Leafは1冊¥500でフォトブックを作成できるサービス「TOLOT」と連携して、flickrにアップした自分の写真からフォトブックを簡単に作成できます。
+Photo Leafの利用は無料ですので、ぜひ使ってみてください！
+仕組みについて 具体的なPhoto Leafの仕組みですが、実際にはPhoto Leafだけでフォトブックを作れるわけではありません。
+Photo LeafはTOLOTの連携ファイルを作り、これをTOLOTアプリに読み込ませることによって、flickrの写真からフォトブックを作成することができるサービスです。
+TOLOTの連携ファイルにはフォトブックのタイトルなどの情報と一緒に、各ページに印刷する写真についての情報をセットしています。これには画像へのURLもセット可能ですので、これにflickrの画像ファイルへのURLをセットするようになっています。
+この連携ファイルをTOLOTアプリで読み込むと、画像データをflickrからダウンロードし、フォトブックを作成する仕組みになっています。
+ちなみに、Photo LeafはTOLOTのマネタイズAPIを使用していますので、皆さんがPhoto Leafからフォトブックを注文すると、その一部が私の収益になります。
+実行環境について サービスの開発には主に
+ Ruby 2.0 Ruby on Rails 4.0 FlickRaw  などを使用しています。Ruby2.0もRails4.0も最近リリースされたばかりですので、かなり新しいものを使用しています。特にRuby2.0は1.9系に比べるとかなりパフォーマンスが改善されていますので、Rails4.0と合わせることで、かなり高速に動作します。もちろん、自分の勉強がてらというのもあるのですが。
+また実行時のプラットフォームとしてはHerokuを使用しています。
+最初はSqaleも検討したのですが、まだ収益があがるようなものではないだろうなぁと思っていますので、できる限りコストをかけずに運用するには、現在のところはHerokuが最適と判断しました。
+まとめ 最初にこのサービスを思いついたのは、InstgramからTOLOTの連携ファイルを作成するサービスを作られた方がいて、そこからTOLOTのマネタイズAPIを知ったことがきっかけです。
+自分自身も写真をかなり撮るので、フォトブックにもかなり興味があったものあります。実際に、カメラのキタムラが運営している「フォト本」などで、フォトブックを作ったこともあります。フォト本は大きめのフォトブックを作るにはかなり良いサービスだと思うのですが、普段のスナップなどを手軽にフォトブックにしたい、といったニーズにはちょっと高い。TOLOTなら文庫本62ページのフォトブックを¥500で作成できるので、かなりコストパフォーマンスはいいと思います。
+ぜひ、Photo Leafで自分の写真をフォトブックにしてみてください！
+新しい写真の楽しみ方が、見つかると思います。</description>
+    </item>
+    
+    <item>
+      <title>Java Day Tokyo 2013報告会@岡山を開催してきた</title>
+      <link>http://example.org/2013/06/18/jdt2013-okayama-report/</link>
+      <pubDate>Tue, 18 Jun 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/2013/06/18/jdt2013-okayama-report/</guid>
+      <description>2013年6月15日（土）に、奉還町リブラホールにて「Java Day Tokyo 2013報告会@岡山」を開催してきました。
+自分は「Java Day Tokyo2013基調公演より」と題して、報告をさせていただきました。
+ 当日のTwitterのまとめは、こちら
+その他、岡山Javaユーザ会の運営メンバーと、@soudai1025氏にはJJUG CCCの感想についてもセッションをしていただきました。また角田さんの会社の同僚お二人にもJava Day Tokyoに参加しての感想を話していただきました。
+また東京からは櫻庭さんにも来て頂き、JJUG CCCでセッションされた「Project Lambda Essential」を再演していただきました。Java8で最も注目されている機能、Project Lambdaの大事なところを丁寧にお話をしていただきましたので、参加者の皆さんのLambdaに対する理解が深まったものと思います。
+この後の懇親会でも次のネタについて、いくつか話あったんですが、個人的には次はハンズオンをやりたいかなーと思っています。
+いまのセッション形式もいいのですが、それだとどうしても参加者同士で交流が深まらないように思っていて、これを改善するためにはハンズオン形式のほうがいいのではないだろうか、と考えています。 で、実際にやるとすればJavaEEとかJavaFXあたりを題材にして、ハンズオンをやろうと考えています。</description>
+    </item>
+    
+    <item>
+      <title>RubyKaigi2013に参加してきた</title>
+      <link>http://example.org/2013/06/04/attended-rubykaigi2013/</link>
+      <pubDate>Tue, 04 Jun 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/2013/06/04/attended-rubykaigi2013/</guid>
+      <description>5/30〜6/1まで、東京国際交流館で開催されたRubyKaigi2013に参加してきました。
+RubyKaigiはRuby界では最大級のイベントですが、一度2011年をもって終了しています。それが今回はいろいろコンセプトを変えて復活した、ということで自分も参加してきました。
+RubyKaigiについて 自分は今回が初参加なので、以前のRubyKaigiとの比較はできないのですが、他とは違うなと感じたのは以下のところ。
+ 参加費が（それなりに）高い  自分はSuper Early Birdでの参加申し込みだったので¥20,000でしたが、普通に登録すると¥35,000です。国内で行われるカンファレンスとしては少々高めです。といっても海外に比べたら、まだまだ安いのですが・・・
+この値段設定についてもいろいろ意見はあるようですが、RubyKaigiクラスになると、ものすごい人数が参加したいと思うわけです。しかし、そのイベントを運営しているのはあくまでボランティアの人たちですので、そういった状況もあって「この値段を払ってでも参加したい」と思わせるコアなRubyistを呼びたかったのではないかな？と想像しています。
+ メイン言語は英語  @kazuhisa1976氏曰く「世界を対象としたRubyのカンファレンスが、たまたま東京で開催された」
+今回のRubyKaigiはインターナショナルカンファレンスとして開催されたので、英語がメイン言語です。公式サイトも英語ですし、セッションのほとんどが英語です。また、参加者も600人ほどいたそうですが、そのうち100人ほどが海外からの参加です。日本人スピーカーの場合に、日本語でセッションを行うこともありましたが、海外の人向けに日本語から英語への同時通訳（！）が準備されていて、このあたりもインターナショナルカンファレンスなんだなーとおもったことろです。
+セッションについて 個人的に記憶に残ったセッションは
+ The Future of JRuby? High Performance Rails  の2つ。
+JRubyのセッションではJRubyのコアメンバーである、Thomas E. Enebo氏と、Charles O. Nutter氏が登壇。JRubyの高速化などについて話をしていました。で、気になったのがスライド中あったDalvik Generationという文字！将来JRubyでDalvikVMをサポートするような日が来るんでしょうかねぇ・・・
+High Performance Railsではクックパッドのエンジニア、成田一成氏によるRailsの高速化の話。超巨大なクックパッドを如何にして、パフォーマンスアップさせているかという内容。
+こちらの資料にはセッションで話した内容に、キャッシュの話がプラスアルファされていますので、参考までに。
+Conclusion 自分にとってはこれが初めてのRubyの大きなカンファレンスへの参加でした。最初はJavaとはまた違う雰囲気なんだろうなぁと思っていましたが、それほど大きな違いというのは正直感じませんでした。当然、自分はRubyのコミュニティには知り合いがいるわけではないので、ボッチ率高かったのですがw
+ちなみにRubyKaigiは2014年も開催されるらしいです。今から楽しみですね。
+RubyKaigiで撮った写真はこちらにまとめてます。 http://www.flickr.com/photos/zephiransas/sets/72157633895505417/</description>
+    </item>
+    
+    <item>
+      <title>GlassFishのアップグレード方法</title>
+      <link>http://example.org/2013/05/24/how-to-upgrade-gf/</link>
+      <pubDate>Fri, 24 May 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/2013/05/24/how-to-upgrade-gf/</guid>
+      <description>会社で使ってるJenkinsさんはGlassFish上で動いているんですが、これのアップグレードを行ったので、そのメモ。
+具体的にはGlassFish 3.1.1からGlassFish 3.1.2へアップグレードしました。
+updatetoolのインストール まずはアップグレードに使用するupdatetoolをインストールします。
+方法はasadminと同じディレクトリにある、updatetoolを実行するだけ。
+初めてupdatetoolコマンドを実行した際に、updatetoolをインストールするか聞いてきますので、yを押してインストールするだけです。
+ちょっと時間がかかるので、アニメでも見ながらゆっくり待ちましょう。
+updatetoolからGlassFishのアップグレード 上記の手順でupdatetoolのインストールが終了したら、もう一度updatetoolコマンドを実行します。するとGUIが立ち上がって来ますので、以下のようにするだけ。
+あとは
+$ ./asadmin version  などで、アップグレードできていることを確認しましょう。</description>
+    </item>
+    
+    <item>
+      <title>写真で振り返るゆとり</title>
+      <link>http://example.org/2013/05/20/yutori-advent-calendar/</link>
+      <pubDate>Mon, 20 May 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/2013/05/20/yutori-advent-calendar/</guid>
+      <description>これは「ゆとりアドベントカレンダー」の5/20分のエントリです
+前日は @btnrouge さんの「WebLogicのDIは果たして出来損ないなのか？」でした。
+そもそも、このゆとりアドベントカレンダーが何なのかよく分からず、しかも誰に言われるまでもなく、（空気を呼んで）勝手にエントリした身ですので、何もネタがありません（ぉぃ
+なので、自分とゆとりさんとの出会いを、写真で振り返ってみたいと思います( ･`ω･´)
+First Contact 多分直接お会いしたのはTDDBC岡山 1.0の時ではないでしょうか。TDDBC前日にデミカツ丼で有名な「やまと」という店で会ったような気がします。当然、それはまではTL上でしか絡みがなかったので、お会いしてそのガタイのデカさに驚いた記憶があります。また、その時にJava7の日本語ドキュメントがさー的な話をしたような気がします。
+TDDBCでは、JavaのTAの一人として活躍して頂きました。
+その後 TDDBCの後は、多分去年のJavaOne Tokyoでお会いしたのかな・・・？
+つい最近は、先日のJava Day Tokyoで。長身にぐるぐるTシャツで、離れたところからでもすぐ確認できました。さすが、環境にやさしいゆとりさんですね！
+なんか最近はJJUGの幹事にもなられたらしいので、これからも日本のJava界の為、頑張ってくれると思われます。ゆとりさん、頑張ってー</description>
+    </item>
+    
+    <item>
+      <title>Java Day Tokyo 2013に参加してきた（セッション）</title>
+      <link>http://example.org/2013/05/18/javadaytokyo2/</link>
+      <pubDate>Sat, 18 May 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/2013/05/18/javadaytokyo2/</guid>
+      <description>前回の基調講演につづいて、今回は自分が参加したセッションのレポートです。
+Ask the Experts 基調講演にも登壇したJavaSE,JavaFX,JavaEEの各キーパーソンに、直接質問できるセッションです。ちょうど昼の時間だったので、本来は昼食をとりつつ受けるセッションなんですが、うっかり自分は昼食を仕入れるのを忘れてました・・・
+JavaSEの担当は、Simon Ritter氏
+JavaFXの担当は、Jim Weaver氏
+JavaFXの担当は、Arun Gupta氏
+通訳の方が居たので、もちろん日本語で質問できたのですが、意外と質問が少ないような感じでした。
+印象に残ったのは、最後のJavaEEの質問で
+ Q「JavaEEはいろんな仕様で構成されているが、最低限どれを使ってればJavaEEを使ってることになるのか？」  という質問がありました。（ちょっと意地悪な質問な気もしますがw）それに対してArunは
+ A「難しい質問だけど、強いて言えばServletかな？あ、でも、Strutsはダメだね！」  と返して、会場は大爆笑でしたw
+Javaプラットフォームにおける Batch アプリケーション (JSR 352) JavaEE7で導入されるJBatchのセッション。担当はArun氏です。
+このJBatchは、エンタープライズアプリケーションでよくある、バッチ処理を効率よく書くためのフレームワークです。セッションを受けつつTLを眺めてて知ったのですが、どうもSpring Batchと非常によく似た仕組みのようです。設定をXMLで記述していくのが少々面倒な気もしますが、この辺りが改善されていけば、バッチ処理のスタンダードになるかなーという感じ。JavaEE準拠のサーバはもちろん、スタンドアロンの環境でも実行可能との事。
+エンタープライズ環境における並列処理の実装方法について 我らの王子こと、寺田さんによるConcurrency Utilityのセッション。
+以前からJavaではThreadを使って、並列処理を書くことが可能でしたが、実際にはなかなか難しいものでした。これを簡単に行えるのがConcurrency Utilityです。実際に以下のデモを会場で見せていました。
+ 詳細は寺田氏のブログに詳しいですが、Concurrncy Utilityを使うことで、CPUリソースを無駄なく使うコードを、簡単に実装することができるようになります。
+Java the Night 最後はお楽しみ（？）のJava the Night。日本のJava界を代表するエンジニアがLT&amp;amp;デモを行うという趣向です。 一人8分の持ち時間でした。どのLTもさすがはJava界のスーパーエンジニア！と唸らせる、最高に面白い内容でした。 前回のJavaOne Tokyoの時もそうでしたが、この最後のLT枠に参加せずして、Javaのイベントに参加したとは言えないくらい、充実した内容です。 なかでも印象に残ったのは、北海道の大学生2人。
+プレゼンソフトなんですが、JavaFXで様々なエフェクトをつけることができるというものでした。彼らの初々しい（！）発表を聞きながら、その将来に期待をするとともに、まだまだ自分も頑張らなければ、と想いを新たにしました。
+JavaSE7 日本語ドキュメント提供開始 そしてJava the Night終了後、寺田さんから重大な発表がありました。それはJavaSE7の日本語ドキュメントの提供を開始した、とのアナウンスでした。実はJavaSE7リリース後、しばらくしても日本語ドキュメントは提供されていませんでした。様々な方面から要望は上がっていましたが、残念ながら日本語ドキュメントは当分は提供されないという決定が、以前なされました。
+影響度が大きい事を十分承知で申し上げます。誠に残念ながら直近で、提供の予定はございません。“@skrb: @yoshioterada それよりもJava SE 7の日本語のJavadocはリリースされないのでしょうか？”
+&amp;mdash; Terada Yoshioさん (@yoshioterada) 2012年3月25日 
+その後、有志を中心にボランティアで日本語化しようかといった動きもありましたが、本格化するには至りませんでした。
+そして、Java Day Tokyoにてサプライズとでもいいましょうか、JavaSE7の日本語ドキュメント提供開始のアナウンスがされました。
+JavaSE7がリリースされて随分経ちますが、これでようやくスタートライン。Java7を普通に使ってもらう環境が、日本でも整ったといった感じです。いろいろ想いはありますが、日本オラクル＆寺田さんの努力に敬意を表したいと思います。</description>
+    </item>
+    
+    <item>
+      <title>Java Day Tokyo 2013に参加してきた（基調講演）</title>
+      <link>http://example.org/2013/05/16/javadaytokyo2013/</link>
+      <pubDate>Thu, 16 May 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/2013/05/16/javadaytokyo2013/</guid>
+      <description>前日、5月14日に秋葉原UDXにて開催されたJava Day Tokyo2013に参加してきました。 JavaOne Tokyo2012が開催されてからほぼ1年。去年イベントが終わった時には「もう、こういったイベントは当分ないだろうなぁ」とか思っていたので、JavaOneではないにしてもちゃんとイベントを開催してくれた日本オラクル＆寺田さんには感謝ですね。
+Keynoteの報告 基本的には去年のサンフランシスコでのJavaOneとかで発表された内容とかぶる感じ。ただ、普段はこういった最新情報をチェックしていない人たちでも、イベントであれば直に最新情報を聞けるので、そういった人たちにリーチできるだけでも、意味はあるかと。 残念だったのは最初、写真撮影がNGにされていたこと。
+写真撮影禁止とか、俺の仕事＼(^o^)／ｵﾜﾀ　#jdt2013
+&amp;mdash; Takafumi Yoshida✅さん (@zephiransas) 2013年5月14日 
+正直コレには参りました。参加者には自分のように地方のコミュニティに属していて、後日報告会をやろうと企画してる人も多いはず。またOracleとしても「Javaを前進させるためにはコミュニティの力が必要です！」と言ってるにもかかわらず、これではなぁ・・・
+一応、Keynoteの半分を過ぎたあたりで、寺田さんが取り計らってくれたのか
+ただ今から写真全面OKにしました。 #jdt2013
+&amp;mdash; Terada Yoshioさん (@yoshioterada) 2013年5月14日 
+とはなりました。なので前半の写真がありません(´・ω・`)
+まずは日本オラクルの伊藤敬氏が壇上に。 前回のJavaOne Tokyoは六本木のアカデミーヒルズで開催されましたが「クール・ジャパンの代表格であるアキハバラでJavaのイベントをやったら、どうなるのか？その化学反応も楽しんで欲しい」とのこと。
+最初に登壇したのはJava Technology AmbassadorのSimon Ritter氏。JavaSEの最新情報について公演しました。 2012年7月にリリースされたJava7は、Oracleの元でリリースされた最初のメジャーアップデート。世界中で利用されていることを紹介していました。 また、Windows,Mac OSX,Linuxをはじめ、ARMアーキテクチャ上でも動作することを紹介し、Javaがいまや様々なデバイスで動作していることも強調。 そして、（遅れはしたものの）2014年2月には正式リリース予定のJava8についても言及し、その中核はLambdaであるとのこと。Lambdaを使用することのメリットの一つとして、並列処理を容易に書けることを紹介していました。 現在、Java8はプレビュー版が提供されているので、これを通じて多くのフィードバックをして欲しい、とも言っていました。 今後Javaは2年サイクルでメジャーアップデートを行う予定で、そうなるとJava9は2016年リリースになるだろうとも。
+次に壇上に上がったのはOracleのNandini Ramani氏。JavaFXや組み込みJavaなどについて公演しました。 Java8からはJavaFXはJavaFX8として、標準でJDKにバンドルされるようになります。そういった意味でもJavaFXはこれから注目の技術になりそうな予感です。
+途中、Nandini氏は壇上にJim Weaver氏を招き、Jimが手元でJavaFXのデモを行なっていました。なぜかデモしてた機材がSurface Proでしたw 球体や円柱を3Dで表示し、それにことなる光源を当てて表示するといったデモや、それにテクスチャを貼り付けてみたり。また港湾での貨物運送にでもつかうんでしょうか、コンテナの位置などをJavaFXでレンダリングするようなものを紹介していました。どれも比較的短いコードで実装可能であるとのこと。 また、Jim氏は「When should you download JDK8?」と書かれたスライドを前に、「イツヤルカ？イマデショ！」と日本語でネタを披露していました。これには会場も爆笑w Keynoteで一番盛り上がったかもしれません。Jim氏もご満悦な様子でした。 （しかし、このネタをJim氏に教えたのは、いったい誰なのか気になります！）
+（追記） @skrb さんに教えて頂きましたが、どうもこのネタはタクシーの運ちゃんから仕入れたようです。外人にネタを授けるとは、タクシーの運ちゃん、侮りがたし！！
+次に壇上に上がったのはOracleのCameron Purdy氏。JavaEEの最新動向について公演を行いました。 JavaEEは次のメジャーバージョンであるJavaEE7のリリースを6月13日に控えています。そのJavaEE7についての話が主でした。
+JavaEE7の主な新機能としては
+ JBatch JSON対応 WebSocket対応  などを紹介。JavaEE準拠のAPサーバも18のメーカーから出荷されているとのこと。 その後OracleのArun Gupta氏を壇上に招き、WebSocketのデモを行なっていました。デモはよくあるWebSocketのチャットに始まり、その後はWhite Boardのアプリケーションをデモ。 やり取りをしている途中で回線が切断された場合でも、回線がもとにもどれば、最新の状態に簡単に復旧できるようなアプリケーションなんですが、これもWebSocketで簡単に実装できるとのこと。</description>
+    </item>
+    
+    <item>
+      <title>slickを使う（基礎編）</title>
+      <link>http://example.org/2013/04/24/slickwoshi-u/</link>
+      <pubDate>Wed, 24 Apr 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/2013/04/24/slickwoshi-u/</guid>
+      <description>最近playframework2.1をちゃんと使いたいなぁと思ったので、Scala含めて色々調べてます。 で、ドキュメントを眺めてて気になったのがO/Rマッパ。play1.2系のころはEBean等のO/Rマッパを利用できたんですが、play2.1系ではなくなってる！一応Anormという仕組みでSQLを発行出来ますが、SQL直書きするのは小学生までよねー？！的な感じ。
+で、更に調べてみると、typesafeでSlickというO/Rマッパがあるので、これが良さそうじゃね？ってことで、試してみました。 本来はplayから利用するのがベストですが、実験なのでスタンドアロンで。
+build.sbtとplugin.sbtの準備 まずはsbtで環境を作るところから。以下のようにbuild.sbtを作成 ``` scala build.sbt name := &amp;ldquo;slicksample&amp;rdquo;
+version := &amp;ldquo;1.0&amp;rdquo;
+scalaVersion := &amp;ldquo;2.10.0&amp;rdquo;
+libraryDependencies ++= List( &amp;ldquo;com.typesafe.slick&amp;rdquo; %% &amp;ldquo;slick&amp;rdquo; % &amp;ldquo;1.0.0&amp;rdquo;, &amp;ldquo;org.slf4j&amp;rdquo; % &amp;ldquo;slf4j-nop&amp;rdquo; % &amp;ldquo;1.6.4&amp;rdquo;, &amp;ldquo;com.h2database&amp;rdquo; % &amp;ldquo;h2&amp;rdquo; % &amp;ldquo;1.3.166&amp;rdquo;, &amp;ldquo;com.github.tototoshi&amp;rdquo; %% &amp;ldquo;slick-joda-mapper&amp;rdquo; % &amp;ldquo;0.1.0&amp;rdquo; )
+11行目では[slick-joda-mapper](http://d.hatena.ne.jp/tototoshi/20130323/1364013170)を指定しています。 Slickでは日付はjava.sql.Dateで扱うらしいのですが、今更java.sql.Dateなんて触りたくないなーと思っていたところ、JodaTimeへマッピングしてくれるプラグインがあったのでこれを使います。 また、今回はIDEにIntelliJを使うので、[sbt-ideaプラグイン](https://github.com/mpeltonen/sbt-idea)を使うように、plugin.sbtを設定します。 ``` scala project/plugin.sbt addSbtPlugin(&amp;quot;com.github.mpeltonen&amp;quot; % &amp;quot;sbt-idea&amp;quot; % &amp;quot;1.4.0&amp;quot;)  あとはsbtからgen-ideaするだけ
+$ sbt gen-idea  ついでにscalaのソースファイル置き場であるsrc/main/scalaディレクトリも作っておきましょう。そして、これをIntelliJに読み込ませます。読み込ませるとこんな感じ。
+モデルの作成 次にモデルを作成します。今回はUSERSテーブルにアクセスするUser objectを作成してみます。カラムは
+ id - Integer（主キー） name - String birthday - Option[LocalDate] ぐらいで。  src/main/scalaにUser.</description>
+    </item>
+    
+    <item>
+      <title>ブログを引越しました</title>
+      <link>http://example.org/2013/04/06/blog-moved/</link>
+      <pubDate>Sat, 06 Apr 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/2013/04/06/blog-moved/</guid>
+      <description>以前使っていた、はてなダイアリーからGithub Pagesへ移行しようとおもって、はや４ヶ月・・・ ようやく引越しました。
+本当は今年始めの転職と同時に移行したかったんですが、あれよあれよという間に時間だけが経過して・・・
+今後はこちらをメインのブログとして使用していきたいと思います。はてダもそのまま残しておきます。
+というわけで、ｺﾝｺﾞﾄﾓﾖﾛｼｸ&amp;hellip;.</description>
+    </item>
+    
+  </channel>
+</rss>

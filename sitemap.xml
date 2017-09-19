@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>http://example.org/2017/04/05/gulp-sass/</loc>
+    <lastmod>2017-04-05T16:13:17+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/2017/03/10/ciecleci-and-gradle/</loc>
+    <lastmod>2017-03-10T09:32:48+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/2016/12/31/schfeslogsvr/</loc>
+    <lastmod>2016-12-31T12:47:59+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/2016/12/18/gbdaitokai2016/</loc>
+    <lastmod>2016-12-18T21:21:31+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/2016/05/23/maven-wrapper/</loc>
+    <lastmod>2016-05-23T16:34:12+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/2015/12/20/past-present-and-future/</loc>
+    <lastmod>2015-12-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/2015/12/09/talk-about-crystal-on-gbdaitokai/</loc>
+    <lastmod>2015-12-09T17:24:39+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/2015/11/10/crystal-on-heroku/</loc>
+    <lastmod>2015-11-10T12:28:48+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/2015/07/29/unicorn-worker-killer/</loc>
+    <lastmod>2015-07-29T15:57:26+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/2015/07/08/eager-load-with-paranoia/</loc>
+    <lastmod>2015-07-08T09:53:55+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/2015/05/31/java-programmer-must-buy/</loc>
+    <lastmod>2015-05-31T22:29:48+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/2015/04/16/project-kulla/</loc>
+    <lastmod>2015-04-16T12:26:30+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/2015/04/02/introduce-octocam/</loc>
+    <lastmod>2015-04-02T17:31:42+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/2014/12/16/about-lambda-behave/</loc>
+    <lastmod>2014-12-16T18:17:15+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/2014/11/17/attend-jjug-ccc-2014-fall/</loc>
+    <lastmod>2014-11-17T20:40:56+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/2014/03/20/pusher-with-chrome-extension/</loc>
+    <lastmod>2014-03-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/2014/03/15/what-you-shoud-eat-in-daitokai/</loc>
+    <lastmod>2014-03-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/2014/03/12/java8lambda/</loc>
+    <lastmod>2014-03-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/2014/02/06/renew-photoleaf/</loc>
+    <lastmod>2014-02-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/2014/01/23/webkit-on-wercker/</loc>
+    <lastmod>2014-01-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/2013/12/30/end-of-2013/</loc>
+    <lastmod>2013-12-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/2013/12/23/daitokai2013/</loc>
+    <lastmod>2013-12-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/2013/12/19/photo-advent2013/</loc>
+    <lastmod>2013-12-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/2013/12/12/irof2013/</loc>
+    <lastmod>2013-12-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/2013/12/08/javaadvent2013/</loc>
+    <lastmod>2013-12-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/2013/08/20/debug-with-weinre/</loc>
+    <lastmod>2013-08-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/2013/08/16/resque-timemachine/</loc>
+    <lastmod>2013-08-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/2013/06/27/photoleaf-release/</loc>
+    <lastmod>2013-06-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/2013/06/18/jdt2013-okayama-report/</loc>
+    <lastmod>2013-06-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/2013/06/04/attended-rubykaigi2013/</loc>
+    <lastmod>2013-06-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/2013/05/24/how-to-upgrade-gf/</loc>
+    <lastmod>2013-05-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/2013/05/20/yutori-advent-calendar/</loc>
+    <lastmod>2013-05-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/2013/05/18/javadaytokyo2/</loc>
+    <lastmod>2013-05-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/2013/05/16/javadaytokyo2013/</loc>
+    <lastmod>2013-05-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/2013/04/24/slickwoshi-u/</loc>
+    <lastmod>2013-04-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/2013/04/06/blog-moved/</loc>
+    <lastmod>2013-04-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.org/categories/chrome/</loc>
+    <lastmod>2014-03-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.org/categories/crystal/</loc>
+    <lastmod>2015-12-09T17:24:39+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.org/categories/crystal-heroku/</loc>
+    <lastmod>2015-11-10T12:28:48+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.org/categories/diary/</loc>
+    <lastmod>2013-04-06T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.org/categories/glassfish/</loc>
+    <lastmod>2013-05-24T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.org/categories/ios/</loc>
+    <lastmod>2013-08-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.org/categories/irof/</loc>
+    <lastmod>2013-12-12T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.org/categories/java/</loc>
+    <lastmod>2016-12-31T12:47:59+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.org/categories/java-gradle-circleci/</loc>
+    <lastmod>2017-03-10T09:32:48+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.org/categories/java-gulp-sass/</loc>
+    <lastmod>2017-04-05T16:13:17+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.org/categories/java8/</loc>
+    <lastmod>2014-03-12T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.org/categories/javaee/</loc>
+    <lastmod>2013-05-24T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.org/categories/javascript/</loc>
+    <lastmod>2014-03-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.org/categories/lambda/</loc>
+    <lastmod>2014-03-12T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.org/categories/mac/</loc>
+    <lastmod>2013-08-16T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.org/</loc>
+    <lastmod>2017-04-05T16:13:17+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.org/categories/playframework/</loc>
+    <lastmod>2013-04-24T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.org/post/</loc>
+    <lastmod>2017-04-05T16:13:17+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.org/categories/pusher/</loc>
+    <lastmod>2014-03-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.org/categories/ruby/</loc>
+    <lastmod>2015-04-02T17:31:42+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.org/categories/ruby-rails/</loc>
+    <lastmod>2015-07-29T15:57:26+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.org/categories/scala/</loc>
+    <lastmod>2013-04-24T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.org/categories/slick/</loc>
+    <lastmod>2013-04-24T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.org/tags/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.org/categories/webscoket/</loc>
+    <lastmod>2014-03-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.org/categories/%E3%82%86%E3%81%A8%E3%82%8A/</loc>
+    <lastmod>2013-05-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.org/categories/%E5%8B%89%E5%BC%B7%E4%BC%9A/</loc>
+    <lastmod>2016-12-18T21:21:31+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+</urlset>

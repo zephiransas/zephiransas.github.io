@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Scala on My New Hugo Site</title>
+    <link>http://example.org/categories/scala/</link>
+    <description>Recent content in Scala on My New Hugo Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 24 Apr 2013 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://example.org/categories/scala/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>slickを使う（基礎編）</title>
+      <link>http://example.org/2013/04/24/slickwoshi-u/</link>
+      <pubDate>Wed, 24 Apr 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/2013/04/24/slickwoshi-u/</guid>
+      <description>最近playframework2.1をちゃんと使いたいなぁと思ったので、Scala含めて色々調べてます。 で、ドキュメントを眺めてて気になったのがO/Rマッパ。play1.2系のころはEBean等のO/Rマッパを利用できたんですが、play2.1系ではなくなってる！一応Anormという仕組みでSQLを発行出来ますが、SQL直書きするのは小学生までよねー？！的な感じ。
+で、更に調べてみると、typesafeでSlickというO/Rマッパがあるので、これが良さそうじゃね？ってことで、試してみました。 本来はplayから利用するのがベストですが、実験なのでスタンドアロンで。
+build.sbtとplugin.sbtの準備 まずはsbtで環境を作るところから。以下のようにbuild.sbtを作成 ``` scala build.sbt name := &amp;ldquo;slicksample&amp;rdquo;
+version := &amp;ldquo;1.0&amp;rdquo;
+scalaVersion := &amp;ldquo;2.10.0&amp;rdquo;
+libraryDependencies ++= List( &amp;ldquo;com.typesafe.slick&amp;rdquo; %% &amp;ldquo;slick&amp;rdquo; % &amp;ldquo;1.0.0&amp;rdquo;, &amp;ldquo;org.slf4j&amp;rdquo; % &amp;ldquo;slf4j-nop&amp;rdquo; % &amp;ldquo;1.6.4&amp;rdquo;, &amp;ldquo;com.h2database&amp;rdquo; % &amp;ldquo;h2&amp;rdquo; % &amp;ldquo;1.3.166&amp;rdquo;, &amp;ldquo;com.github.tototoshi&amp;rdquo; %% &amp;ldquo;slick-joda-mapper&amp;rdquo; % &amp;ldquo;0.1.0&amp;rdquo; )
+11行目では[slick-joda-mapper](http://d.hatena.ne.jp/tototoshi/20130323/1364013170)を指定しています。 Slickでは日付はjava.sql.Dateで扱うらしいのですが、今更java.sql.Dateなんて触りたくないなーと思っていたところ、JodaTimeへマッピングしてくれるプラグインがあったのでこれを使います。 また、今回はIDEにIntelliJを使うので、[sbt-ideaプラグイン](https://github.com/mpeltonen/sbt-idea)を使うように、plugin.sbtを設定します。 ``` scala project/plugin.sbt addSbtPlugin(&amp;quot;com.github.mpeltonen&amp;quot; % &amp;quot;sbt-idea&amp;quot; % &amp;quot;1.4.0&amp;quot;)  あとはsbtからgen-ideaするだけ
+$ sbt gen-idea  ついでにscalaのソースファイル置き場であるsrc/main/scalaディレクトリも作っておきましょう。そして、これをIntelliJに読み込ませます。読み込ませるとこんな感じ。
+モデルの作成 次にモデルを作成します。今回はUSERSテーブルにアクセスするUser objectを作成してみます。カラムは
+ id - Integer（主キー） name - String birthday - Option[LocalDate] ぐらいで。  src/main/scalaにUser.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Diary on My New Hugo Site</title>
+    <link>http://example.org/categories/diary/</link>
+    <description>Recent content in Diary on My New Hugo Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 06 Apr 2013 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://example.org/categories/diary/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>ブログを引越しました</title>
+      <link>http://example.org/2013/04/06/blog-moved/</link>
+      <pubDate>Sat, 06 Apr 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/2013/04/06/blog-moved/</guid>
+      <description>以前使っていた、はてなダイアリーからGithub Pagesへ移行しようとおもって、はや４ヶ月・・・ ようやく引越しました。
+本当は今年始めの転職と同時に移行したかったんですが、あれよあれよという間に時間だけが経過して・・・
+今後はこちらをメインのブログとして使用していきたいと思います。はてダもそのまま残しておきます。
+というわけで、ｺﾝｺﾞﾄﾓﾖﾛｼｸ&amp;hellip;.</description>
+    </item>
+    
+  </channel>
+</rss>

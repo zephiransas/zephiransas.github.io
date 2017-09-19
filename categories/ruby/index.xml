@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ruby on My New Hugo Site</title>
+    <link>http://example.org/categories/ruby/</link>
+    <description>Recent content in Ruby on My New Hugo Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 02 Apr 2015 17:31:42 +0000</lastBuildDate>
+    
+	<atom:link href="http://example.org/categories/ruby/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>GitHubのPull requestから、CHANGELOGっぽいものを作成するgemを作った</title>
+      <link>http://example.org/2015/04/02/introduce-octocam/</link>
+      <pubDate>Thu, 02 Apr 2015 17:31:42 +0000</pubDate>
+      
+      <guid>http://example.org/2015/04/02/introduce-octocam/</guid>
+      <description>gemを作りました。名前はoctocamです。
+ octocam - https://rubygems.org/gems/octocam  主な機能としては「GitHubから指定された日付期間にマージされたPull requestを抽出し、CHANGELOGっぽいMarkdownを生成する」というgemです。
+定期的にリリースを行っている場合に、以前リリースされたときからどのような機能が増えたかをCHANGELOGとかに書き出しますが、そういった時に便利に使えると思います。
+似たような機能を持つものはgemやnpmを探すと、結構あります。この辺りとか。ただ、いずれも
+ 日付の指定ができない。できたとしてもPull requestの作成日とか。 issueやcommitを含めてしまう。 Markdownで出力できない。 認証に対応してない。  などなど、要求を満たすものではなかったので、gemの作り方を勉強がてら作ってみました。
+ワークフローとして、 必ずPull requestでレビューをしてから、マージをおこなうワークフロー を採用しているところであれば、フィットするように思います。
+インストール 以下のようにしてインストールします。
+gem install octocam rbenv rehash # rbenvを使ってる人はrehash  もしプライベートなリポジトリにアクセスしたい場合は、こちらからPersonal access tokensを生成します。 あとは、生成したトークンを.bash_profileあたりから、環境変数「OCTOCAM_GITHUB_TOKEN」に設定しておきます。
+export OCTOCAM_GITHUB_TOKEN=&amp;quot;your-40-digit-github-token&amp;quot;  使い方 インストールされるとoctocamコマンドが使えるようになるので、以下のようにして実行します。
+octocam -o zephiransas -r octocam -f 2015-01-01 -t 2015-01-31  -f,-tオプションにPull requestがマージされた日付を指定でききます。
+** カレントディレクトリがgitのローカルリポジトリで、かつ、originがGitHubに設定されている場合であれば-o,-rオプションは省略できます。 **
+欲しい機能ありましたら、issueを立てて頂くか、Pull requestを投げてください。</description>
+    </item>
+    
+    <item>
+      <title>werckerでrspecとcucumberのCI環境を作る</title>
+      <link>http://example.org/2014/01/23/webkit-on-wercker/</link>
+      <pubDate>Thu, 23 Jan 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/2014/01/23/webkit-on-wercker/</guid>
+      <description>去年作ったPhoto LeafというWebサービスがあるのですが、これのCI環境を作成したいなぁと思っていたところwerckerというCIサービスを使って構築できたので、そのまとめです。
+werckerとは？ werckerはTravisCIなどに代表されるように、外部でビルド（というかテスト）やデプロイを行ってくれるCI（継続的インテグレーション）サービスです。
+使い方としては、リモートリポジトリに変更がpushされた時点でこれをフックして、CIサービス側でテストしたり、場合によってはそのまま本番環境に自動デプロイとかもしてしまえば、変更内容を安全、かつ迅速にリリースできる仕組みが出来上がるわけです。イマドキっぽいですね！
+werckerの特徴としては
+GithubとBitbucketに対応 TravisCIはGithubにあるリポジトリしかビルド対象にできません。Githubのサービスなんだから、当たり前といえば当たり前ですが・・・
+（今のところ）無料 2014/1/23現在はベータのようです。将来的にはどうなるのかわからないですが、今のところ無料で使えます。制限としては「1つのビルドが25分以内に完了すること」ぐらいです。エンタープライズなシステムだとキツイかもですが、そこそこの規模なら問題ないんじゃないでしょうか。
+テストを実行するための仮想環境が豊富に用意されている werckerでビルドを実行する際にはBoxという仮想環境内で実行されます。これが予め様々な種類が用意されています。通常のRuby(Rails)の環境とかだけではなく、JavaやAndroidといった環境も用意されています。またBoxを自分で作ることもできるようです。
+privateリポジトリもビルドできる TracisCIは無課金だとprivateリポジトリはビルドできません。しかしwerckerはprivateリポジトリをビルドできます。 Photo LeafのソースはBitbucket上のprivateリポジトリで管理しているため、今までCIサービスを利用することができなかったのですが、werckerはprivateリポジトリでもビルドできるので便利です。
+wercker.ymlの設定 Photo Leafでは、テストをrspecとcucumberで書いています。cucumberではjavascriptのドライバとしてcapybara-webkitを使ってます。そのためwerckerで動かすには設定が若干面倒です。
+werckerにログインして、とりあえず普通にビルドするまでの手順は、以下の記事に詳しいのでこちらを参照してください。
+ Githubのプライベートリポジトリでも無料で使えるCI、Werckerを使ってrails newからHerokuのデプロイまでやってみる  上記で設定したwercker.ymlに対して、rspecとcucumberを実行するように設定していきます。自分が設定したwercker.ymlは以下のような感じ
+``` yml wercker.yml box: wercker/rvm
+Build definition See the Rails section on the wercker devcenter: http://devcenter.wercker.com/articles/languages/ruby/settingup-rails4.html You will want to define your database as follows: services: - wercker/postgresql
+See more about services on our devcenter: http://devcenter.wercker.com/articles/services/ build: steps: # Uncomment this to force RVM to use a specific Ruby version # - rvm-use: # version: 2.</description>
+    </item>
+    
+    <item>
+      <title>RubyKaigi2013に参加してきた</title>
+      <link>http://example.org/2013/06/04/attended-rubykaigi2013/</link>
+      <pubDate>Tue, 04 Jun 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/2013/06/04/attended-rubykaigi2013/</guid>
+      <description>5/30〜6/1まで、東京国際交流館で開催されたRubyKaigi2013に参加してきました。
+RubyKaigiはRuby界では最大級のイベントですが、一度2011年をもって終了しています。それが今回はいろいろコンセプトを変えて復活した、ということで自分も参加してきました。
+RubyKaigiについて 自分は今回が初参加なので、以前のRubyKaigiとの比較はできないのですが、他とは違うなと感じたのは以下のところ。
+ 参加費が（それなりに）高い  自分はSuper Early Birdでの参加申し込みだったので¥20,000でしたが、普通に登録すると¥35,000です。国内で行われるカンファレンスとしては少々高めです。といっても海外に比べたら、まだまだ安いのですが・・・
+この値段設定についてもいろいろ意見はあるようですが、RubyKaigiクラスになると、ものすごい人数が参加したいと思うわけです。しかし、そのイベントを運営しているのはあくまでボランティアの人たちですので、そういった状況もあって「この値段を払ってでも参加したい」と思わせるコアなRubyistを呼びたかったのではないかな？と想像しています。
+ メイン言語は英語  @kazuhisa1976氏曰く「世界を対象としたRubyのカンファレンスが、たまたま東京で開催された」
+今回のRubyKaigiはインターナショナルカンファレンスとして開催されたので、英語がメイン言語です。公式サイトも英語ですし、セッションのほとんどが英語です。また、参加者も600人ほどいたそうですが、そのうち100人ほどが海外からの参加です。日本人スピーカーの場合に、日本語でセッションを行うこともありましたが、海外の人向けに日本語から英語への同時通訳（！）が準備されていて、このあたりもインターナショナルカンファレンスなんだなーとおもったことろです。
+セッションについて 個人的に記憶に残ったセッションは
+ The Future of JRuby? High Performance Rails  の2つ。
+JRubyのセッションではJRubyのコアメンバーである、Thomas E. Enebo氏と、Charles O. Nutter氏が登壇。JRubyの高速化などについて話をしていました。で、気になったのがスライド中あったDalvik Generationという文字！将来JRubyでDalvikVMをサポートするような日が来るんでしょうかねぇ・・・
+High Performance Railsではクックパッドのエンジニア、成田一成氏によるRailsの高速化の話。超巨大なクックパッドを如何にして、パフォーマンスアップさせているかという内容。
+こちらの資料にはセッションで話した内容に、キャッシュの話がプラスアルファされていますので、参考までに。
+Conclusion 自分にとってはこれが初めてのRubyの大きなカンファレンスへの参加でした。最初はJavaとはまた違う雰囲気なんだろうなぁと思っていましたが、それほど大きな違いというのは正直感じませんでした。当然、自分はRubyのコミュニティには知り合いがいるわけではないので、ボッチ率高かったのですがw
+ちなみにRubyKaigiは2014年も開催されるらしいです。今から楽しみですね。
+RubyKaigiで撮った写真はこちらにまとめてます。 http://www.flickr.com/photos/zephiransas/sets/72157633895505417/</description>
+    </item>
+    
+  </channel>
+</rss>

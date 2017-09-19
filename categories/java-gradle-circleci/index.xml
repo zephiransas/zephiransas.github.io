@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Java Gradle Circleci on My New Hugo Site</title>
+    <link>http://example.org/categories/java-gradle-circleci/</link>
+    <description>Recent content in Java Gradle Circleci on My New Hugo Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 10 Mar 2017 09:32:48 +0000</lastBuildDate>
+    
+	<atom:link href="http://example.org/categories/java-gradle-circleci/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>CircleCIでGradleのテストを並列実行する</title>
+      <link>http://example.org/2017/03/10/ciecleci-and-gradle/</link>
+      <pubDate>Fri, 10 Mar 2017 09:32:48 +0000</pubDate>
+      
+      <guid>http://example.org/2017/03/10/ciecleci-and-gradle/</guid>
+      <description>現在開発を行っているプロジェクトでは、Spring Bootを使って開発を行っているのですが、そこでのテストをCI環境で実行できるよう設定を行ったので、その手順を書いておきます。
+CircleCIで普通にテストできるようにする 最初は並列ではなく、1つのコンテナを使ってCircleCIでテストできるように設定を行います。まずcircle.ymlを以下のように準備。
+``` yml circle.yml machine: java: version: openjdk8 timezone: Asia/Tokyo environment: _JAVA_OPTIONS: &amp;ldquo;-Xms512m -Xmx1024m&amp;rdquo; GRADLE_OPTS: &amp;lsquo;-Dorg.gradle.jvmargs=&amp;ldquo;-Xmx1024m -XX:+HeapDumpOnOutOfMemoryError&amp;rdquo;&amp;rsquo; post: - sudo service postgresql stop
+dependencies: override: - ./gradlew testClasses
+database: post: - mysql -e &amp;lsquo;create database [データベース名];&amp;rsquo; # flywayなどでのマイグレーション
+test: override: - ./gradlew test post: - mkdir -p $CIRCLE_TEST_REPORTS/junit/ &amp;amp;&amp;amp; find . -type f -regex &amp;ldquo;.*/build/test-results/.*xml&amp;rdquo; -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;:
+ ### メモリ割り当てについて machine.environmentでJAVA_OPTIONSに&amp;quot;-Xms512m -Xmx1024m&amp;quot;を指定しています。これはCircleCIでは1つのコンテナには4Gのメモリが割当られており、その上限をこえると、コンテナがフリーズして、10分経過するとテスト失敗になるという現象に対応するためです。合わせてGRADLE_OPTSにも同様の設定をおこなっています。 このあたりの設定も状況によっては増やせる場合もありますので、テストを実行しながら、調整してみてください。 - [Your build hit the 4G memory limit](https://circleci.</description>
+    </item>
+    
+  </channel>
+</rss>

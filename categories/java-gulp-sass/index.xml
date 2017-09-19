@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Java Gulp Sass on My New Hugo Site</title>
+    <link>http://example.org/categories/java-gulp-sass/</link>
+    <description>Recent content in Java Gulp Sass on My New Hugo Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 05 Apr 2017 16:13:17 +0000</lastBuildDate>
+    
+	<atom:link href="http://example.org/categories/java-gulp-sass/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Spring BootのCSSをGulpで管理する</title>
+      <link>http://example.org/2017/04/05/gulp-sass/</link>
+      <pubDate>Wed, 05 Apr 2017 16:13:17 +0000</pubDate>
+      
+      <guid>http://example.org/2017/04/05/gulp-sass/</guid>
+      <description>Spring BootのプロジェクトでもSASSが書きたい！という欲望から、Gulpを使ってSASSをコンパイルするようにしました。
+基本Gulpでやってるので、出力先だけ変えれば、特にSpring Bootには関係ない気もしますが・・・
+npmは既にインストールしてある前提で。
+フォルダの構成と基本方針 フォルダ構成は以下のようなイメージ。
+├── assets │ └── stylesheets │ └── application.scss ├── gulpfile.js ├── package.json └── src └── main └── resources └── static └── css ├── maps │ └── application.css.map └── application.css  assets/stylesheets以下にSASSを配置し、これをGulpでコンパイル。
+出力先をSpring BootのCSS配備先 src/main/resources/static/css にして、これをThymeleafから参照する、という方針です。
+必要なパッケージをインストールする まずは必要なパッケージをnpmでインストールしていきます。
+$ npm init (以降、全てデフォルトで) $ npm install --save-dev gulp gulp-sass gulp-sourcemaps gulp-minify-css gulp-plumber  これでpackage.jsonが作成され、node_modulesに依存ライブラリがインストールされます。node_modulesはgitignoreしておくといいでしょう。
+gulpfile.jsを作成する SASSをコンパイルできるようGulpのタスクを定義します。
+``` javascript gulpfile.js var gulp = require(&amp;lsquo;gulp&amp;rsquo;), sass = require(&amp;lsquo;gulp-sass&amp;rsquo;), sourcemaps = require(&amp;lsquo;gulp-sourcemaps&amp;rsquo;), minifyCss = require(&amp;lsquo;gulp-minify-css&amp;rsquo;), plumber = require(&amp;lsquo;gulp-plumber&amp;rsquo;);</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ゆとり on My New Hugo Site</title>
+    <link>http://example.org/categories/%E3%82%86%E3%81%A8%E3%82%8A/</link>
+    <description>Recent content in ゆとり on My New Hugo Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 20 May 2013 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://example.org/categories/%E3%82%86%E3%81%A8%E3%82%8A/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>写真で振り返るゆとり</title>
+      <link>http://example.org/2013/05/20/yutori-advent-calendar/</link>
+      <pubDate>Mon, 20 May 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/2013/05/20/yutori-advent-calendar/</guid>
+      <description>これは「ゆとりアドベントカレンダー」の5/20分のエントリです
+前日は @btnrouge さんの「WebLogicのDIは果たして出来損ないなのか？」でした。
+そもそも、このゆとりアドベントカレンダーが何なのかよく分からず、しかも誰に言われるまでもなく、（空気を呼んで）勝手にエントリした身ですので、何もネタがありません（ぉぃ
+なので、自分とゆとりさんとの出会いを、写真で振り返ってみたいと思います( ･`ω･´)
+First Contact 多分直接お会いしたのはTDDBC岡山 1.0の時ではないでしょうか。TDDBC前日にデミカツ丼で有名な「やまと」という店で会ったような気がします。当然、それはまではTL上でしか絡みがなかったので、お会いしてそのガタイのデカさに驚いた記憶があります。また、その時にJava7の日本語ドキュメントがさー的な話をしたような気がします。
+TDDBCでは、JavaのTAの一人として活躍して頂きました。
+その後 TDDBCの後は、多分去年のJavaOne Tokyoでお会いしたのかな・・・？
+つい最近は、先日のJava Day Tokyoで。長身にぐるぐるTシャツで、離れたところからでもすぐ確認できました。さすが、環境にやさしいゆとりさんですね！
+なんか最近はJJUGの幹事にもなられたらしいので、これからも日本のJava界の為、頑張ってくれると思われます。ゆとりさん、頑張ってー</description>
+    </item>
+    
+  </channel>
+</rss>

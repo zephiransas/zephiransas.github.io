@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Crystal on My New Hugo Site</title>
+    <link>http://example.org/categories/crystal/</link>
+    <description>Recent content in Crystal on My New Hugo Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 09 Dec 2015 17:24:39 +0000</lastBuildDate>
+    
+	<atom:link href="http://example.org/categories/crystal/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>合同勉強会でCrystalの話をしてきた</title>
+      <link>http://example.org/2015/12/09/talk-about-crystal-on-gbdaitokai/</link>
+      <pubDate>Wed, 09 Dec 2015 17:24:39 +0000</pubDate>
+      
+      <guid>http://example.org/2015/12/09/talk-about-crystal-on-gbdaitokai/</guid>
+      <description>これはCrystalアドベントカレンダー2015の12/9のエントリです。
+昨日はpine613さんの「Crystal-JP の活動紹介と、今後の活動について」でした。
+12/5に岡山県立大学にて行われた、合同勉強会 in 大都会岡山 -2015 Winter-にて、Crystalの紹介のセッションを行いました。
+スライドはこちら。
+ 主に伝えたかった内容としては
+ CrystalはRubyistには簡単に使えます Crystalは型があります コンパイルして高速に実行できます  といった3点を主題としました。
+時間配分がいい感じだったので、実際にRubyでの実行速度と、Crystalでの実行速度の違いをデモすることができたのは、良かったのではないでしょうか。
+途中うっかり「Rubyには型がないので云々」といったおかげで、現場の型警察のみなさんに
+型警察が登壇者を見守っています #gbdaitokai
+&amp;mdash; 人マン (@razon) 2015, 12月 5 
+「Rubyには型がないんですね」&amp;#10;「「「いやあるあるあるある！」」」&amp;#10;#gbdaitokai #おかやまこわい
+&amp;mdash; mzsm@3日目東シ58a(てくぶ) (@mzsm_j) 2015, 12月 5 
+となったのは迂闊でしたw
+岡山の大きな勉強会で使う懇親会場に「座・スタジアム」というちょっと珍しい会場があります。
+ここでLTしたいがために、東京、大阪からやってくる人もいるくらい、懇親会に最適な会場です。次はオープンセミナー岡山2016という勉強会がありますので、ぜひ県外の皆様にもお越しいただきたいですね。
+ Togetter - 合同勉強会 in 大都会岡山 -2015 Winter- &amp;amp; 忘年会議2015 まとめ #gbdaitokai #忘年会議 flickr - 合同勉強会 in 大都会岡山 -2015 Winter-  </description>
+    </item>
+    
+  </channel>
+</rss>

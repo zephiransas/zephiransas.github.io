@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Crystal Heroku on My New Hugo Site</title>
+    <link>http://example.org/categories/crystal-heroku/</link>
+    <description>Recent content in Crystal Heroku on My New Hugo Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 10 Nov 2015 12:28:48 +0000</lastBuildDate>
+    
+	<atom:link href="http://example.org/categories/crystal-heroku/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>CrystalをHerokuで動かしてみた</title>
+      <link>http://example.org/2015/11/10/crystal-on-heroku/</link>
+      <pubDate>Tue, 10 Nov 2015 12:28:48 +0000</pubDate>
+      
+      <guid>http://example.org/2015/11/10/crystal-on-heroku/</guid>
+      <description>最近ちょっと話題のcrystal。これをHerokuで動かしてみました。
+Herokuの準備 まずはHerokuにアプリケーションを作成します。
+Herokuでは当然crystalをサポートしていませんので、crystalのコンパイラを自前でインストールする必要があります。 Herokuにはこういったことを実現するために、buildpackという仕組みが用意されています。
+crystal用のbuildpackは既にあるので、今回はこれを利用します。
+ zamith/heroku-buildpack-crystal - https://github.com/zamith/heroku-buildpack-crystal  heroku createする際に上記のbuildpackを指定しておきます。
+heroku create --buildpack https://github.com/zamith/heroku-buildpack-crystal  ちなみに、これはあとから指定することも可能です。
+heroku  アプリケーションの準備 次にcrystalで簡単なWebサーバを実装します。といってもcrystalの公式ページにあるサンプルに手を加えた簡単なものです。
+app.crというファイル名で以下のファイルを準備します。
+``` ruby app.cr require &amp;ldquo;http/server&amp;rdquo; require &amp;ldquo;option_parser&amp;rdquo;
+server_port = 8080 OptionParser.parse! do |opts| opts.on(&amp;ldquo;-p PORT&amp;rdquo;, &amp;ldquo;&amp;ndash;port PORT&amp;rdquo;, &amp;ldquo;define port to run server&amp;rdquo;) do |port| server_port = port.to_i end end
+server = HTTP::Server.new(&amp;ldquo;0.0.0.0&amp;rdquo;, server_port) do |request| HTTP::Response.ok &amp;ldquo;text/plain&amp;rdquo;, &amp;ldquo;Hello world, got #{request.path}!&amp;rdquo; end
+puts &amp;ldquo;Listening on http://0.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Irof on My New Hugo Site</title>
+    <link>http://example.org/categories/irof/</link>
+    <description>Recent content in Irof on My New Hugo Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 12 Dec 2013 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://example.org/categories/irof/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>色んなバリエーションのirofさんを紹介しよう</title>
+      <link>http://example.org/2013/12/12/irof2013/</link>
+      <pubDate>Thu, 12 Dec 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://example.org/2013/12/12/irof2013/</guid>
+      <description>これはirofアドベントカレンダー2013の12月13日分のエントリのようです。
+昨日は@akuraruさんの「いろふさんの描かれていない領域には何があるのか」でした。
+このアドベントカレンダーは先日、急にJJUGの某幹事からQBKで振られたものです。
+@zephiransas ありがとうございます！名前書いておきました！
+&amp;mdash; (´・ω・｀) (@megascus) 2013, 12月 9 
+正直ネタを思いつかないだろうなーとおもいつつ、昨日の@akuraruさんのネタを見て、衝動的に思いついたので、書いてみます。
+皆さんご存知の用にirofさんには様々なインスタンスが存在しますが、それと同時に様々なバリエーションも存在します。BANDAIを始めとするおもちゃメーカーからもこぞってirofさんグッズが発売されていますが、今回はそのバリエーションの一部を皆さんにご紹介したいと思います。
+シャア専用irof シャア専用です。赤いです。3倍早いです。通常の3倍の速度でテストを書いてくれます。便利ですね。ぜひうちの会社に欲しいものです。
+量産型irof 量産型です。空から降ってきて、人の黒歴史に干渉します。ちょっとイヤですね。
+金剛型戦艦99番艦 irof 金剛型戦艦99番艦のirofﾃﾞｰｽ!!
+まとめ GIMP難しい</description>
+    </item>
+    
+  </channel>
+</rss>

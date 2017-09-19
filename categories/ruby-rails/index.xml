@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ruby Rails on My New Hugo Site</title>
+    <link>http://example.org/categories/ruby-rails/</link>
+    <description>Recent content in Ruby Rails on My New Hugo Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 29 Jul 2015 15:57:26 +0000</lastBuildDate>
+    
+	<atom:link href="http://example.org/categories/ruby-rails/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>unicorn-worker-killerが便利だった件</title>
+      <link>http://example.org/2015/07/29/unicorn-worker-killer/</link>
+      <pubDate>Wed, 29 Jul 2015 15:57:26 +0000</pubDate>
+      
+      <guid>http://example.org/2015/07/29/unicorn-worker-killer/</guid>
+      <description>自分が現在関わっているプロジェクトでは、nginx + unicornの構成で運用しているのですが、この構成でサーバのメモリが足りなくなるという現象に悩まされていました。
+unicornのワーカプロセスは、通常では起動したままユーザからのリクエストを処理し、再起動されることはありません。 その関係で、長時間運用していると、そのワーカプロセスがメモリをあるだけ食いつぶすような挙動になります。
+こんな時に便利なのが「unicorn-worker-killer」です。
+unicorn-worker-killerを使うことで、ワーカプロセスが以下の条件の場合に、自動的に再起動してくれます。
+ ワーカプロセスが指定回数のリクエストを処理した場合 ワーカプロセスが指定量のメモリを使用している場合  いずれの場合でもワーカプロセスの再起動は、現在のリクエストを処理した後に再起動（いわゆるgraceful restart）されます。
+設定のしかた 設定はconfig.ruにて行います。
+リクエストの回数基準で再起動する ``` ruby config.ru use Unicorn::WorkerKiller::MaxRequests, 3072, 4096
+ これはワーカプロセスが、3072回~4096回のいずれかの回数リクエストを処理したら再起動する設定です。 ``` ruby config.ru use Unicorn::WorkerKiller::MaxRequests, 3072, 4096, true  とすることで、unicorn.rbのstderr_pathで指定されたパスに状況を出力することができます。
+メモリの使用量を基準に再起動する ``` ruby config.ru use Unicorn::WorkerKiller::Oom, (192*(10242)), (256*(10242)), 16
+ これはワーカプロセスが16回リクエストを処理する度に、自身のメモリ使用量をチェックし、これが192M~256Mのいずれかの使用量をオーバーしていた場合に、再起動する設定です。 ### 設定が2つある理由 リクエスト回数とメモリ使用量の設定両方とも、しきい値を範囲で指定するようになっていますが、これには理由があります。 1つのしきい値だと、各ワーカが再起動するタイミングが、ほぼ同じになるからです。同じタイミングで全てのワーカプロセスが再起動してしまうと、その間リクエストを処理することができなくなってしまうので、これは好ましくありません。 ですので、しきい値を範囲で指定し、その範囲内のいずれかの値を実際のしきい値として採用するという仕組みになっています。 なので、しきい値の範囲は狭いより、広いほうが、ベターです。 ## unicorn-worker-killerを試してみる では、unicorn-worker-killerがちゃんとワーカプロセスをKillできているかを確認してみます。 シナリオとしては - config/unicorn.rbのworker_processesは1として、ワーカプロセスは1つだけにする - unicorn-worker-killerの設定は100回〜120回のリクエストを受けたタイミングで、ワーカプロセスを再起動するようにする まずはGemfileに ``` ruby Gemfile gem &#39;unicorn-worker-killer&#39;  と設定します。config.ruの設定は、以下のようになります。
+``` ruby config.</description>
+    </item>
+    
+    <item>
+      <title>論理削除とeager_loadでN&#43;1問題が発生する件</title>
+      <link>http://example.org/2015/07/08/eager-load-with-paranoia/</link>
+      <pubDate>Wed, 08 Jul 2015 09:53:55 +0000</pubDate>
+      
+      <guid>http://example.org/2015/07/08/eager-load-with-paranoia/</guid>
+      <description>Railsアプリにて論理削除とeager_loadを合わせて使うとN+1問題が発生することに気づいたのでメモ。
+N+1問題を確認する まずはN+1問題が起きるようなモデルを作成します。よくあるブログアプリのような、ブログのエントリがあり、それにコメントが複数あるパターンです。
+class Post &amp;lt; ActiveRecord::Base attr_accessible :title, :content has_many :comments end class Comment &amp;lt; ActiveRecord::Base attr_accessible :post_id, :name, :content belongs_to :post end  適当なデータを入れた後、これに対してrails cで以下のようにレコードを取得します。
+Post.all.each do |post| puts post.comments.first.name end  すると、以下のようなSQLが発行されます。
+Post Load (0.1ms) SELECT &amp;quot;posts&amp;quot;.* FROM &amp;quot;posts&amp;quot; Comment Load (0.1ms) SELECT &amp;quot;comments&amp;quot;.* FROM &amp;quot;comments&amp;quot; WHERE &amp;quot;comments&amp;quot;.&amp;quot;post_id&amp;quot; = 12 LIMIT 1 ユーザ1 Comment Load (0.1ms) SELECT &amp;quot;comments&amp;quot;.* FROM &amp;quot;comments&amp;quot; WHERE &amp;quot;comments&amp;quot;.&amp;quot;post_id&amp;quot; = 13 LIMIT 1 ユーザ1 Comment Load (0.</description>
+    </item>
+    
+  </channel>
+</rss>
