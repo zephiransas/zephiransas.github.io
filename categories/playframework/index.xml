@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Playframework on My New Hugo Site</title>
-    <link>http://example.org/categories/playframework/</link>
-    <description>Recent content in Playframework on My New Hugo Site</description>
+    <title>Playframework on zephiransasのチラシの裏</title>
+    <link>https://zephiransas.github.io/categories/playframework/</link>
+    <description>Recent content in Playframework on zephiransasのチラシの裏</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>ja</language>
     <lastBuildDate>Wed, 24 Apr 2013 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://example.org/categories/playframework/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://zephiransas.github.io/categories/playframework/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>slickを使う（基礎編）</title>
-      <link>http://example.org/2013/04/24/slickwoshi-u/</link>
+      <link>https://zephiransas.github.io/2013/04/24/slickwoshi-u/</link>
       <pubDate>Wed, 24 Apr 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/2013/04/24/slickwoshi-u/</guid>
+      <guid>https://zephiransas.github.io/2013/04/24/slickwoshi-u/</guid>
       <description>最近playframework2.1をちゃんと使いたいなぁと思ったので、Scala含めて色々調べてます。 で、ドキュメントを眺めてて気になったのがO/Rマッパ。play1.2系のころはEBean等のO/Rマッパを利用できたんですが、play2.1系ではなくなってる！一応Anormという仕組みでSQLを発行出来ますが、SQL直書きするのは小学生までよねー？！的な感じ。
 で、更に調べてみると、typesafeでSlickというO/Rマッパがあるので、これが良さそうじゃね？ってことで、試してみました。 本来はplayから利用するのがベストですが、実験なのでスタンドアロンで。
 build.sbtとplugin.sbtの準備 まずはsbtで環境を作るところから。以下のようにbuild.sbtを作成 ``` scala build.sbt name := &amp;ldquo;slicksample&amp;rdquo;

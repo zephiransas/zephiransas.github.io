@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Javascript on My New Hugo Site</title>
-    <link>http://example.org/categories/javascript/</link>
-    <description>Recent content in Javascript on My New Hugo Site</description>
+    <title>Javascript on zephiransasのチラシの裏</title>
+    <link>https://zephiransas.github.io/categories/javascript/</link>
+    <description>Recent content in Javascript on zephiransasのチラシの裏</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>ja</language>
     <lastBuildDate>Thu, 20 Mar 2014 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://example.org/categories/javascript/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://zephiransas.github.io/categories/javascript/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Pusherを使ったChrome拡張を作る</title>
-      <link>http://example.org/2014/03/20/pusher-with-chrome-extension/</link>
+      <link>https://zephiransas.github.io/2014/03/20/pusher-with-chrome-extension/</link>
       <pubDate>Thu, 20 Mar 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/2014/03/20/pusher-with-chrome-extension/</guid>
+      <guid>https://zephiransas.github.io/2014/03/20/pusher-with-chrome-extension/</guid>
       <description>メッセージ等の新着通知やアップデート情報の配信など、アプリケーションへの通知の方法として、スマートフォンなどで使われるpush通知など、最近では様々なものがあります。
 しかし自前で通知用のサーバを運用するのは手間がかかるので、これを簡単に使えるようにするサービスも増えてきました。例えばPusher.comなどがあります。これを使うことで、ブラウザへのリアルタイムな通知機能を、WebSocketを使って簡単に作成することができます。
 今回はPusherからの通知をChrome拡張で受信し、これをデスクトップ通知するサンプルを作成しましたので、解説してみます。

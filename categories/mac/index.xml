@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Mac on My New Hugo Site</title>
-    <link>http://example.org/categories/mac/</link>
-    <description>Recent content in Mac on My New Hugo Site</description>
+    <title>Mac on zephiransasのチラシの裏</title>
+    <link>https://zephiransas.github.io/categories/mac/</link>
+    <description>Recent content in Mac on zephiransasのチラシの裏</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>ja</language>
     <lastBuildDate>Fri, 16 Aug 2013 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://example.org/categories/mac/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://zephiransas.github.io/categories/mac/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>TimeMachineで検証エラーが発生した場合の復旧方法</title>
-      <link>http://example.org/2013/08/16/resque-timemachine/</link>
+      <link>https://zephiransas.github.io/2013/08/16/resque-timemachine/</link>
       <pubDate>Fri, 16 Aug 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/2013/08/16/resque-timemachine/</guid>
+      <guid>https://zephiransas.github.io/2013/08/16/resque-timemachine/</guid>
       <description>我が家の環境では、BuffaloのLS-XLシリーズというNASを使って、MBAのTime Machine環境を作っているのですが、最近よくこんなメッセージが出るようになりました。
 これはApple純正のTime Capsule以外をTime Machine環境に使用すると出てくるらしいです。 しかもこうなってしまうと、「後でバックアップを作成」にしても再度同じメッセージが表示されるし、「新規バックアップを作成」を選ぶと、それまでのバックアップの履歴は全て消えてしまいます。
 なので、この場合の復旧手順をメモっておきます。

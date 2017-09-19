@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Lambda on My New Hugo Site</title>
-    <link>http://example.org/categories/lambda/</link>
-    <description>Recent content in Lambda on My New Hugo Site</description>
+    <title>Lambda on zephiransasのチラシの裏</title>
+    <link>https://zephiransas.github.io/categories/lambda/</link>
+    <description>Recent content in Lambda on zephiransasのチラシの裏</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>ja</language>
     <lastBuildDate>Wed, 12 Mar 2014 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://example.org/categories/lambda/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://zephiransas.github.io/categories/lambda/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Java8で始めるLambda（基礎編）</title>
-      <link>http://example.org/2014/03/12/java8lambda/</link>
+      <link>https://zephiransas.github.io/2014/03/12/java8lambda/</link>
       <pubDate>Wed, 12 Mar 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/2014/03/12/java8lambda/</guid>
+      <guid>https://zephiransas.github.io/2014/03/12/java8lambda/</guid>
       <description>まもなくリリース予定のJava8。その中でも最も大きなインパクトを持つというProject Lambdaについて、ここ数日調べてみました。 今からLambdaをはじめようとする人向けに、何回かに分けてまとめてみたいと思います。
 インターフェースの宣言 まずは手始めに、引数で指定された文字列の前後に&amp;rdquo;[&amp;ldquo;と&amp;rdquo;]&amp;ldquo;をつける処理を考えてみましょう。
 Lambdaを使用するには、まずインターフェースを宣言する必要があります。上記の仕様から考えると

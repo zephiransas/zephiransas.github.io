@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Ruby Rails on My New Hugo Site</title>
-    <link>http://example.org/categories/ruby-rails/</link>
-    <description>Recent content in Ruby Rails on My New Hugo Site</description>
+    <title>Ruby Rails on zephiransasのチラシの裏</title>
+    <link>https://zephiransas.github.io/categories/ruby-rails/</link>
+    <description>Recent content in Ruby Rails on zephiransasのチラシの裏</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>ja</language>
     <lastBuildDate>Wed, 29 Jul 2015 15:57:26 +0000</lastBuildDate>
     
-	<atom:link href="http://example.org/categories/ruby-rails/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://zephiransas.github.io/categories/ruby-rails/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>unicorn-worker-killerが便利だった件</title>
-      <link>http://example.org/2015/07/29/unicorn-worker-killer/</link>
+      <link>https://zephiransas.github.io/2015/07/29/unicorn-worker-killer/</link>
       <pubDate>Wed, 29 Jul 2015 15:57:26 +0000</pubDate>
       
-      <guid>http://example.org/2015/07/29/unicorn-worker-killer/</guid>
+      <guid>https://zephiransas.github.io/2015/07/29/unicorn-worker-killer/</guid>
       <description>自分が現在関わっているプロジェクトでは、nginx + unicornの構成で運用しているのですが、この構成でサーバのメモリが足りなくなるという現象に悩まされていました。
 unicornのワーカプロセスは、通常では起動したままユーザからのリクエストを処理し、再起動されることはありません。 その関係で、長時間運用していると、そのワーカプロセスがメモリをあるだけ食いつぶすような挙動になります。
 こんな時に便利なのが「unicorn-worker-killer」です。
@@ -32,10 +32,10 @@ unicorn-worker-killerを使うことで、ワーカプロセスが以下の条�
     
     <item>
       <title>論理削除とeager_loadでN&#43;1問題が発生する件</title>
-      <link>http://example.org/2015/07/08/eager-load-with-paranoia/</link>
+      <link>https://zephiransas.github.io/2015/07/08/eager-load-with-paranoia/</link>
       <pubDate>Wed, 08 Jul 2015 09:53:55 +0000</pubDate>
       
-      <guid>http://example.org/2015/07/08/eager-load-with-paranoia/</guid>
+      <guid>https://zephiransas.github.io/2015/07/08/eager-load-with-paranoia/</guid>
       <description>Railsアプリにて論理削除とeager_loadを合わせて使うとN+1問題が発生することに気づいたのでメモ。
 N+1問題を確認する まずはN+1問題が起きるようなモデルを作成します。よくあるブログアプリのような、ブログのエントリがあり、それにコメントが複数あるパターンです。
 class Post &amp;lt; ActiveRecord::Base attr_accessible :title, :content has_many :comments end class Comment &amp;lt; ActiveRecord::Base attr_accessible :post_id, :name, :content belongs_to :post end  適当なデータを入れた後、これに対してrails cで以下のようにレコードを取得します。

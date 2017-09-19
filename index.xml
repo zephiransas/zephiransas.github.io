@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>My New Hugo Site</title>
-    <link>http://example.org/</link>
-    <description>Recent content on My New Hugo Site</description>
+    <title>zephiransasのチラシの裏</title>
+    <link>https://zephiransas.github.io/</link>
+    <description>Recent content on zephiransasのチラシの裏</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>ja</language>
     <lastBuildDate>Wed, 05 Apr 2017 16:13:17 +0000</lastBuildDate>
     
-	<atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://zephiransas.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Spring BootのCSSをGulpで管理する</title>
-      <link>http://example.org/2017/04/05/gulp-sass/</link>
+      <link>https://zephiransas.github.io/2017/04/05/gulp-sass/</link>
       <pubDate>Wed, 05 Apr 2017 16:13:17 +0000</pubDate>
       
-      <guid>http://example.org/2017/04/05/gulp-sass/</guid>
+      <guid>https://zephiransas.github.io/2017/04/05/gulp-sass/</guid>
       <description>Spring BootのプロジェクトでもSASSが書きたい！という欲望から、Gulpを使ってSASSをコンパイルするようにしました。
 基本Gulpでやってるので、出力先だけ変えれば、特にSpring Bootには関係ない気もしますが・・・
 npmは既にインストールしてある前提で。
@@ -31,10 +31,10 @@ gulpfile.jsを作成する SASSをコンパイルできるようGulpのタスク
     
     <item>
       <title>CircleCIでGradleのテストを並列実行する</title>
-      <link>http://example.org/2017/03/10/ciecleci-and-gradle/</link>
+      <link>https://zephiransas.github.io/2017/03/10/ciecleci-and-gradle/</link>
       <pubDate>Fri, 10 Mar 2017 09:32:48 +0000</pubDate>
       
-      <guid>http://example.org/2017/03/10/ciecleci-and-gradle/</guid>
+      <guid>https://zephiransas.github.io/2017/03/10/ciecleci-and-gradle/</guid>
       <description>現在開発を行っているプロジェクトでは、Spring Bootを使って開発を行っているのですが、そこでのテストをCI環境で実行できるよう設定を行ったので、その手順を書いておきます。
 CircleCIで普通にテストできるようにする 最初は並列ではなく、1つのコンテナを使ってCircleCIでテストできるように設定を行います。まずcircle.ymlを以下のように準備。
 ``` yml circle.yml machine: java: version: openjdk8 timezone: Asia/Tokyo environment: _JAVA_OPTIONS: &amp;ldquo;-Xms512m -Xmx1024m&amp;rdquo; GRADLE_OPTS: &amp;lsquo;-Dorg.gradle.jvmargs=&amp;ldquo;-Xmx1024m -XX:+HeapDumpOnOutOfMemoryError&amp;rdquo;&amp;rsquo; post: - sudo service postgresql stop
@@ -46,10 +46,10 @@ test: override: - ./gradlew test post: - mkdir -p $CIRCLE_TEST_REPORTS/junit/ &a
     
     <item>
       <title>スクフェス・ログサーバをつくった</title>
-      <link>http://example.org/2016/12/31/schfeslogsvr/</link>
+      <link>https://zephiransas.github.io/2016/12/31/schfeslogsvr/</link>
       <pubDate>Sat, 31 Dec 2016 12:47:59 +0000</pubDate>
       
-      <guid>http://example.org/2016/12/31/schfeslogsvr/</guid>
+      <guid>https://zephiransas.github.io/2016/12/31/schfeslogsvr/</guid>
       <description>今日は大晦日ですね。年末ですが今年も例によって、コード書いたりプラモ作ったり、普段の連休と同じくダラダラ過ごしております。
 ところで今年のラブライブ！アドベントカレンダーはチェックしましたか？ 自分も20日目に劇場版ラブライブとμ’ｓメンバーのその後というタイトルでエントリしてます。 今年はその他にも、さまざまな視点から見た素晴らしいエントリがたくさん集まってますので、ラブライバーならぜひチェックしてみてください。
 で、22日目のエントリには@hideo54さんのスクフェスのライブスコアを取得する”schfeslog”を作った話というのがあります。 これはnodeで建てたプロキシを使って、スクフェスがサーバに送信してる通信内容をみて、ライブのプレイ結果をツイートすることができるツールです。
@@ -64,10 +64,10 @@ test: override: - ./gradlew test post: - mkdir -p $CIRCLE_TEST_REPORTS/junit/ &a
     
     <item>
       <title>合同勉強会2016に参加してきた</title>
-      <link>http://example.org/2016/12/18/gbdaitokai2016/</link>
+      <link>https://zephiransas.github.io/2016/12/18/gbdaitokai2016/</link>
       <pubDate>Sun, 18 Dec 2016 21:21:31 +0000</pubDate>
       
-      <guid>http://example.org/2016/12/18/gbdaitokai2016/</guid>
+      <guid>https://zephiransas.github.io/2016/12/18/gbdaitokai2016/</guid>
       <description>このエントリは大都会岡山アドベントカレンダー2016の18日目のエントリです。
 昨日のエントリは たがみだいきさんの「RailsGirlsOkayama 2ndを2月25日26日に開催する予定です！」でした。 去年の第1回には、自分もコーチとして参加させてもらいましたが、そこから新たに岡山に女性エンジニアのコミュニティができ、それが主体となってRailsGirlsをやる、というのは素晴らしいことだと思います。きっとイベントも大成功することでしょう。
 先日、毎年恒例となった合同勉強会と忘年会議が開催されました。
@@ -87,10 +87,10 @@ test: override: - ./gradlew test post: - mkdir -p $CIRCLE_TEST_REPORTS/junit/ &a
     
     <item>
       <title>Maven Wrapperを使ってプロジェクトで使うMavenのバージョンを指定する</title>
-      <link>http://example.org/2016/05/23/maven-wrapper/</link>
+      <link>https://zephiransas.github.io/2016/05/23/maven-wrapper/</link>
       <pubDate>Mon, 23 May 2016 16:34:12 +0000</pubDate>
       
-      <guid>http://example.org/2016/05/23/maven-wrapper/</guid>
+      <guid>https://zephiransas.github.io/2016/05/23/maven-wrapper/</guid>
       <description>Javaでの開発において、ライブラリのバージョン管理にMavenを用いているところはたくさんあると思います。
 しかし、pom.xmlを使って各ライブラリのバージョンを管理していても、各開発者が使うMavenのバージョンを固定することはできません。
 プロジェクトで使うMavenのバージョンを固定したい！そんな場合に使えるのがMaven Wrapperです。
@@ -111,10 +111,10 @@ YOSHIDAさん慣れないジャバやるから
     
     <item>
       <title>Past, Present and Future</title>
-      <link>http://example.org/2015/12/20/past-present-and-future/</link>
+      <link>https://zephiransas.github.io/2015/12/20/past-present-and-future/</link>
       <pubDate>Sun, 20 Dec 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/2015/12/20/past-present-and-future/</guid>
+      <guid>https://zephiransas.github.io/2015/12/20/past-present-and-future/</guid>
       <description>これは大都会アドベントカレンダー24日目の記事です。
 昨日は@yantonaさんの君は「玉野音頭」を知っているかでした。
 不覚にも自分は知りませんでした・・・瀬戸大橋音頭なら・・・！
@@ -156,10 +156,10 @@ the Future そしてもう一つ。来年に新しいことをスタートしよ
     
     <item>
       <title>合同勉強会でCrystalの話をしてきた</title>
-      <link>http://example.org/2015/12/09/talk-about-crystal-on-gbdaitokai/</link>
+      <link>https://zephiransas.github.io/2015/12/09/talk-about-crystal-on-gbdaitokai/</link>
       <pubDate>Wed, 09 Dec 2015 17:24:39 +0000</pubDate>
       
-      <guid>http://example.org/2015/12/09/talk-about-crystal-on-gbdaitokai/</guid>
+      <guid>https://zephiransas.github.io/2015/12/09/talk-about-crystal-on-gbdaitokai/</guid>
       <description>これはCrystalアドベントカレンダー2015の12/9のエントリです。
 昨日はpine613さんの「Crystal-JP の活動紹介と、今後の活動について」でした。
 12/5に岡山県立大学にて行われた、合同勉強会 in 大都会岡山 -2015 Winter-にて、Crystalの紹介のセッションを行いました。
@@ -180,10 +180,10 @@ the Future そしてもう一つ。来年に新しいことをスタートしよ
     
     <item>
       <title>CrystalをHerokuで動かしてみた</title>
-      <link>http://example.org/2015/11/10/crystal-on-heroku/</link>
+      <link>https://zephiransas.github.io/2015/11/10/crystal-on-heroku/</link>
       <pubDate>Tue, 10 Nov 2015 12:28:48 +0000</pubDate>
       
-      <guid>http://example.org/2015/11/10/crystal-on-heroku/</guid>
+      <guid>https://zephiransas.github.io/2015/11/10/crystal-on-heroku/</guid>
       <description>最近ちょっと話題のcrystal。これをHerokuで動かしてみました。
 Herokuの準備 まずはHerokuにアプリケーションを作成します。
 Herokuでは当然crystalをサポートしていませんので、crystalのコンパイラを自前でインストールする必要があります。 Herokuにはこういったことを実現するために、buildpackという仕組みが用意されています。
@@ -200,10 +200,10 @@ puts &amp;ldquo;Listening on http://0.</description>
     
     <item>
       <title>unicorn-worker-killerが便利だった件</title>
-      <link>http://example.org/2015/07/29/unicorn-worker-killer/</link>
+      <link>https://zephiransas.github.io/2015/07/29/unicorn-worker-killer/</link>
       <pubDate>Wed, 29 Jul 2015 15:57:26 +0000</pubDate>
       
-      <guid>http://example.org/2015/07/29/unicorn-worker-killer/</guid>
+      <guid>https://zephiransas.github.io/2015/07/29/unicorn-worker-killer/</guid>
       <description>自分が現在関わっているプロジェクトでは、nginx + unicornの構成で運用しているのですが、この構成でサーバのメモリが足りなくなるという現象に悩まされていました。
 unicornのワーカプロセスは、通常では起動したままユーザからのリクエストを処理し、再起動されることはありません。 その関係で、長時間運用していると、そのワーカプロセスがメモリをあるだけ食いつぶすような挙動になります。
 こんな時に便利なのが「unicorn-worker-killer」です。
@@ -219,10 +219,10 @@ unicorn-worker-killerを使うことで、ワーカプロセスが以下の条�
     
     <item>
       <title>論理削除とeager_loadでN&#43;1問題が発生する件</title>
-      <link>http://example.org/2015/07/08/eager-load-with-paranoia/</link>
+      <link>https://zephiransas.github.io/2015/07/08/eager-load-with-paranoia/</link>
       <pubDate>Wed, 08 Jul 2015 09:53:55 +0000</pubDate>
       
-      <guid>http://example.org/2015/07/08/eager-load-with-paranoia/</guid>
+      <guid>https://zephiransas.github.io/2015/07/08/eager-load-with-paranoia/</guid>
       <description>Railsアプリにて論理削除とeager_loadを合わせて使うとN+1問題が発生することに気づいたのでメモ。
 N+1問題を確認する まずはN+1問題が起きるようなモデルを作成します。よくあるブログアプリのような、ブログのエントリがあり、それにコメントが複数あるパターンです。
 class Post &amp;lt; ActiveRecord::Base attr_accessible :title, :content has_many :comments end class Comment &amp;lt; ActiveRecord::Base attr_accessible :post_id, :name, :content belongs_to :post end  適当なデータを入れた後、これに対してrails cで以下のようにレコードを取得します。
@@ -232,10 +232,10 @@ Post Load (0.1ms) SELECT &amp;quot;posts&amp;quot;.* FROM &amp;quot;posts&amp;qu
     
     <item>
       <title>JavaプログラマがKindle50%還元セールで買っておくべきIT技術書</title>
-      <link>http://example.org/2015/05/31/java-programmer-must-buy/</link>
+      <link>https://zephiransas.github.io/2015/05/31/java-programmer-must-buy/</link>
       <pubDate>Sun, 31 May 2015 22:29:48 +0000</pubDate>
       
-      <guid>http://example.org/2015/05/31/java-programmer-must-buy/</guid>
+      <guid>https://zephiransas.github.io/2015/05/31/java-programmer-must-buy/</guid>
       <description>Kindle Storeでセールをやってるようです。今回は50%をポイント還元するってセールらしいです。
 で、こちらを見てたらRubyやPHPはあっても、Javaがなかったので、ついカッとなってJavaプログラマ向けのオススメ技術書をチョイスしました。 セールは6/1の正午までですので、お早めにどーぞ。
  これは店頭で目次を見た程度です。わりと初心者向けな印象なので、これからJavaを勉強したい人にオススメです。
@@ -248,10 +248,10 @@ Post Load (0.1ms) SELECT &amp;quot;posts&amp;quot;.* FROM &amp;quot;posts&amp;qu
     
     <item>
       <title>Project Kullaを試す</title>
-      <link>http://example.org/2015/04/16/project-kulla/</link>
+      <link>https://zephiransas.github.io/2015/04/16/project-kulla/</link>
       <pubDate>Thu, 16 Apr 2015 12:26:30 +0000</pubDate>
       
-      <guid>http://example.org/2015/04/16/project-kulla/</guid>
+      <guid>https://zephiransas.github.io/2015/04/16/project-kulla/</guid>
       <description>以前から気になっていたJavaのREPL、Project Kullaを動かしてみました。
 REPLとはRead-eval-print loopの略で、CUIからコードを直接入力していって、その場で動作を確認できるツールです。 Rubyであればirbやpryなどが有名ですね。
 Project KullaはOpenJDKにて開発されている、JavaのREPL環境をつくるプロジェクトです。 ちなみにこの機能はJDK9で、正式導入される予定になっています。
@@ -271,10 +271,10 @@ hg clone http://hg.openjdk.java.net/kulla/dev ~/kulla cd ~/kulla  次に、そ�
     
     <item>
       <title>GitHubのPull requestから、CHANGELOGっぽいものを作成するgemを作った</title>
-      <link>http://example.org/2015/04/02/introduce-octocam/</link>
+      <link>https://zephiransas.github.io/2015/04/02/introduce-octocam/</link>
       <pubDate>Thu, 02 Apr 2015 17:31:42 +0000</pubDate>
       
-      <guid>http://example.org/2015/04/02/introduce-octocam/</guid>
+      <guid>https://zephiransas.github.io/2015/04/02/introduce-octocam/</guid>
       <description>gemを作りました。名前はoctocamです。
  octocam - https://rubygems.org/gems/octocam  主な機能としては「GitHubから指定された日付期間にマージされたPull requestを抽出し、CHANGELOGっぽいMarkdownを生成する」というgemです。
 定期的にリリースを行っている場合に、以前リリースされたときからどのような機能が増えたかをCHANGELOGとかに書き出しますが、そういった時に便利に使えると思います。
@@ -291,10 +291,10 @@ octocam -o zephiransas -r octocam -f 2015-01-01 -t 2015-01-31  -f,-tオプショ
     
     <item>
       <title>lambda-behaveでテストを書こう</title>
-      <link>http://example.org/2014/12/16/about-lambda-behave/</link>
+      <link>https://zephiransas.github.io/2014/12/16/about-lambda-behave/</link>
       <pubDate>Tue, 16 Dec 2014 18:17:15 +0000</pubDate>
       
-      <guid>http://example.org/2014/12/16/about-lambda-behave/</guid>
+      <guid>https://zephiransas.github.io/2014/12/16/about-lambda-behave/</guid>
       <description>これはJavaアドベントカレンダー2014の12/16分の記事です。
 昨日はgrimroseさんの、[書評] Gradle徹底入門 でした。
 明日は@com4dcさんの、はじめて触るStreamの世界 です。
@@ -312,10 +312,10 @@ import static com.insightfullogic.lambdabehave.Suite.*; @RunWith(JunitSuiteRunne
     
     <item>
       <title>JJUG CCC 2014 Fallで発表してきた</title>
-      <link>http://example.org/2014/11/17/attend-jjug-ccc-2014-fall/</link>
+      <link>https://zephiransas.github.io/2014/11/17/attend-jjug-ccc-2014-fall/</link>
       <pubDate>Mon, 17 Nov 2014 20:40:56 +0000</pubDate>
       
-      <guid>http://example.org/2014/11/17/attend-jjug-ccc-2014-fall/</guid>
+      <guid>https://zephiransas.github.io/2014/11/17/attend-jjug-ccc-2014-fall/</guid>
       <description>11月15日に、東京は新宿の西新宿ベルサールにて開催されたJJUG CCC 2014 Fallに参加してきました。
 JJUC CCC（クロス・コミュニティ・カンファレンス）日本Javaユーザ会が春/秋と、年に2回開催している、JJUG主催としては最大のイベントです。
 今回はこれのセッション公募(CfP)に応募したところ嬉しい事にセッション枠を1つ受け持つことになったので、それも兼ねて東京まで参加してきました。 久々に東京のJavaコミュニティの勉強会で、普段はTL上でしか面識のない人たちに会えるのも、楽しみの一つ。
@@ -350,10 +350,10 @@ Javaコミュニティの復活の兆し  つい先日発売された「Javaエ�
     
     <item>
       <title>Pusherを使ったChrome拡張を作る</title>
-      <link>http://example.org/2014/03/20/pusher-with-chrome-extension/</link>
+      <link>https://zephiransas.github.io/2014/03/20/pusher-with-chrome-extension/</link>
       <pubDate>Thu, 20 Mar 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/2014/03/20/pusher-with-chrome-extension/</guid>
+      <guid>https://zephiransas.github.io/2014/03/20/pusher-with-chrome-extension/</guid>
       <description>メッセージ等の新着通知やアップデート情報の配信など、アプリケーションへの通知の方法として、スマートフォンなどで使われるpush通知など、最近では様々なものがあります。
 しかし自前で通知用のサーバを運用するのは手間がかかるので、これを簡単に使えるようにするサービスも増えてきました。例えばPusher.comなどがあります。これを使うことで、ブラウザへのリアルタイムな通知機能を、WebSocketを使って簡単に作成することができます。
 今回はPusherからの通知をChrome拡張で受信し、これをデスクトップ通知するサンプルを作成しましたので、解説してみます。
@@ -368,10 +368,10 @@ Chrome拡張の作成 manifest.jsonの設定 ``` json manifest.json { &amp;ldquo
     
     <item>
       <title>岡山の勉強会に参加する際の心構え</title>
-      <link>http://example.org/2014/03/15/what-you-shoud-eat-in-daitokai/</link>
+      <link>https://zephiransas.github.io/2014/03/15/what-you-shoud-eat-in-daitokai/</link>
       <pubDate>Sat, 15 Mar 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/2014/03/15/what-you-shoud-eat-in-daitokai/</guid>
+      <guid>https://zephiransas.github.io/2014/03/15/what-you-shoud-eat-in-daitokai/</guid>
       <description> IT勉強会はなにも東京ばかりで開催されているわけではない。
 地方の勉強会に参加するのであれば、ついでに観光地を巡ったり、その土地の美味しいモノを食べたいというのが人情である。
 本エントリでは岡山の勉強会に来た際に食べるべきものを紹介する。
@@ -400,10 +400,10 @@ Chrome拡張の作成 manifest.jsonの設定 ``` json manifest.json { &amp;ldquo
     
     <item>
       <title>Java8で始めるLambda（基礎編）</title>
-      <link>http://example.org/2014/03/12/java8lambda/</link>
+      <link>https://zephiransas.github.io/2014/03/12/java8lambda/</link>
       <pubDate>Wed, 12 Mar 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/2014/03/12/java8lambda/</guid>
+      <guid>https://zephiransas.github.io/2014/03/12/java8lambda/</guid>
       <description>まもなくリリース予定のJava8。その中でも最も大きなインパクトを持つというProject Lambdaについて、ここ数日調べてみました。 今からLambdaをはじめようとする人向けに、何回かに分けてまとめてみたいと思います。
 インターフェースの宣言 まずは手始めに、引数で指定された文字列の前後に&amp;rdquo;[&amp;ldquo;と&amp;rdquo;]&amp;ldquo;をつける処理を考えてみましょう。
 Lambdaを使用するには、まずインターフェースを宣言する必要があります。上記の仕様から考えると
@@ -416,10 +416,10 @@ public static void main(String&amp;hellip; args) { LambdaInterface lambda = (Str
     
     <item>
       <title>Photo Leafをちょっとリニューアルしました</title>
-      <link>http://example.org/2014/02/06/renew-photoleaf/</link>
+      <link>https://zephiransas.github.io/2014/02/06/renew-photoleaf/</link>
       <pubDate>Thu, 06 Feb 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/2014/02/06/renew-photoleaf/</guid>
+      <guid>https://zephiransas.github.io/2014/02/06/renew-photoleaf/</guid>
       <description>前から気になっていたPhoto Leafのフォトブック作成画面のリニューアルをしました。
 画面の中央部分にフォトブックのページ一覧。画面の一番下に、flickrの写真一覧を表示するようにしました。今までとは、真逆のレイアウトになっています。
  flickrの写真一覧は左右のスライダーでページを移動できます。 ちなみに、スクロールする度にPhotoStreamの写真を逐次読み込む仕様になっています。 flickrの写真は、クリックすることで大きめの画像を画面中央に表示できます。 Set内の写真のみを一覧に表示した場合は「Setを選ぶ」ボタンを押すことで、Setを選択できます。  写真選択は今まで通り、ドラッグ&amp;amp;ドロップでフォトブックの各ページに写真を置いていきます。
@@ -431,10 +431,10 @@ flickrに写真を保存していて、フォトブックを作ってみたい�
     
     <item>
       <title>werckerでrspecとcucumberのCI環境を作る</title>
-      <link>http://example.org/2014/01/23/webkit-on-wercker/</link>
+      <link>https://zephiransas.github.io/2014/01/23/webkit-on-wercker/</link>
       <pubDate>Thu, 23 Jan 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/2014/01/23/webkit-on-wercker/</guid>
+      <guid>https://zephiransas.github.io/2014/01/23/webkit-on-wercker/</guid>
       <description>去年作ったPhoto LeafというWebサービスがあるのですが、これのCI環境を作成したいなぁと思っていたところwerckerというCIサービスを使って構築できたので、そのまとめです。
 werckerとは？ werckerはTravisCIなどに代表されるように、外部でビルド（というかテスト）やデプロイを行ってくれるCI（継続的インテグレーション）サービスです。
 使い方としては、リモートリポジトリに変更がpushされた時点でこれをフックして、CIサービス側でテストしたり、場合によってはそのまま本番環境に自動デプロイとかもしてしまえば、変更内容を安全、かつ迅速にリリースできる仕組みが出来上がるわけです。イマドキっぽいですね！
@@ -453,10 +453,10 @@ See more about services on our devcenter: http://devcenter.wercker.com/articles/
     
     <item>
       <title>2013年を振り返って</title>
-      <link>http://example.org/2013/12/30/end-of-2013/</link>
+      <link>https://zephiransas.github.io/2013/12/30/end-of-2013/</link>
       <pubDate>Mon, 30 Dec 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/2013/12/30/end-of-2013/</guid>
+      <guid>https://zephiransas.github.io/2013/12/30/end-of-2013/</guid>
       <description>今年も終わりですね。というわけで恒例の、今年の振り返りエントリです。
 今年の出来事 まずは1月。このときには転職して新しい職場での仕事をスタートさせました。もともと外注として仕事をしていたせいもあって、他の社員の方たちも「まだ1年？」と驚かれる程度にはスムーズに会社に溶け込むことができましたし、素晴らしいチームメンバーにも恵まれて、仕事においてはとても充実していたように思います。仕事ではずっとRuby on Railsでも開発でしたが、Ruby（というより動的型付け言語）にも、かなり慣れてきたかな？という感触を持っています。エンジニアとして更に成長するためにも、異なるパラダイムの言語とその文化を学ぶことは重要だと感じていたので、この点についても非常に良かったのではないかと思っています。
 2月には大阪の楽天で「勉強会勉強会」に参加しました。勉強会を主催することの意味を改めて考えさせるキッカケにもなったと思います。それから岡山Javaユーザ会で「JUnit実践入門読書会」を開催しました。これ、結局継続できてないんですよねー・・・・(´・ω・｀)
@@ -476,10 +476,10 @@ See more about services on our devcenter: http://devcenter.wercker.com/articles/
     
     <item>
       <title>牡蠣駆動勉強会を行いました</title>
-      <link>http://example.org/2013/12/23/daitokai2013/</link>
+      <link>https://zephiransas.github.io/2013/12/23/daitokai2013/</link>
       <pubDate>Mon, 23 Dec 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/2013/12/23/daitokai2013/</guid>
+      <guid>https://zephiransas.github.io/2013/12/23/daitokai2013/</guid>
       <description>これは大都会アドベントカレンダー2013の12/23分のエントリーです。
 前日は @mao_instantlife さんの岡山のお気に入りな飲み屋
 明日は @kotanin さんです。
@@ -494,10 +494,10 @@ BBQスペースは五味の市の近くにある、海の駅「しおじ」と�
     
     <item>
       <title>Illumination Photo Advent Calendar 2013</title>
-      <link>http://example.org/2013/12/19/photo-advent2013/</link>
+      <link>https://zephiransas.github.io/2013/12/19/photo-advent2013/</link>
       <pubDate>Thu, 19 Dec 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/2013/12/19/photo-advent2013/</guid>
+      <guid>https://zephiransas.github.io/2013/12/19/photo-advent2013/</guid>
       <description>これはIllumination Photo Advent Calendar 2013の12月21日分のエントリです。
 自分にしては珍しく、非技術系のアドベントカレンダーに参加してみました。
 ところで自分は大都会岡山在住なのですが、岡山の観光名所といえば「後楽園」です。倉敷の美観地区とならび、有名だと思います。
@@ -508,10 +508,10 @@ BBQスペースは五味の市の近くにある、海の駅「しおじ」と�
     
     <item>
       <title>色んなバリエーションのirofさんを紹介しよう</title>
-      <link>http://example.org/2013/12/12/irof2013/</link>
+      <link>https://zephiransas.github.io/2013/12/12/irof2013/</link>
       <pubDate>Thu, 12 Dec 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/2013/12/12/irof2013/</guid>
+      <guid>https://zephiransas.github.io/2013/12/12/irof2013/</guid>
       <description>これはirofアドベントカレンダー2013の12月13日分のエントリのようです。
 昨日は@akuraruさんの「いろふさんの描かれていない領域には何があるのか」でした。
 このアドベントカレンダーは先日、急にJJUGの某幹事からQBKで振られたものです。
@@ -527,10 +527,10 @@ BBQスペースは五味の市の近くにある、海の駅「しおじ」と�
     
     <item>
       <title>JavaOne2013報告会@岡山を開催しました</title>
-      <link>http://example.org/2013/12/08/javaadvent2013/</link>
+      <link>https://zephiransas.github.io/2013/12/08/javaadvent2013/</link>
       <pubDate>Sun, 08 Dec 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/2013/12/08/javaadvent2013/</guid>
+      <guid>https://zephiransas.github.io/2013/12/08/javaadvent2013/</guid>
       <description>これはJava Advent Calendar2013の12月7日分のエントリです。
 前日は@muraken702さんの「RxJavaを使ってCallback Hellから脱出する（ Vert.x がいいね！第5回 ）」でした。
 次の日は@nabedgeさんの「Mixer2のSpringMVC連携機能がver 1.2.17でさらに進化！」です。
@@ -545,10 +545,10 @@ JavaOne2013の報告の中ではRaspberry piなどにも注目が集まってい
     
     <item>
       <title>weinreでiOSのブラウザのデバッグを行う手順</title>
-      <link>http://example.org/2013/08/20/debug-with-weinre/</link>
+      <link>https://zephiransas.github.io/2013/08/20/debug-with-weinre/</link>
       <pubDate>Tue, 20 Aug 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/2013/08/20/debug-with-weinre/</guid>
+      <guid>https://zephiransas.github.io/2013/08/20/debug-with-weinre/</guid>
       <description>モバイル対応のWeb開発をしている時、iPhoneやiPadのブラウザでのデバッグに苦労したことはないですか？
 PCの場合であれば、Chormeのデベロッパーツールとかでかなり簡単にデバッグを行うことができますが、iOSとかのSafariではデバッグツールをつかうことができません。
 そんな時に便利なのがweinreです。weinreを使うことで、iOS側で表示されたWebページのデバッグツールの情報を、PCから見ることができる大変便利なツールです。
@@ -578,10 +578,10 @@ iOSデバイス側からは、まずデバッグしたいWebページを表示�
     
     <item>
       <title>TimeMachineで検証エラーが発生した場合の復旧方法</title>
-      <link>http://example.org/2013/08/16/resque-timemachine/</link>
+      <link>https://zephiransas.github.io/2013/08/16/resque-timemachine/</link>
       <pubDate>Fri, 16 Aug 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/2013/08/16/resque-timemachine/</guid>
+      <guid>https://zephiransas.github.io/2013/08/16/resque-timemachine/</guid>
       <description>我が家の環境では、BuffaloのLS-XLシリーズというNASを使って、MBAのTime Machine環境を作っているのですが、最近よくこんなメッセージが出るようになりました。
 これはApple純正のTime Capsule以外をTime Machine環境に使用すると出てくるらしいです。 しかもこうなってしまうと、「後でバックアップを作成」にしても再度同じメッセージが表示されるし、「新規バックアップを作成」を選ぶと、それまでのバックアップの履歴は全て消えてしまいます。
 なので、この場合の復旧手順をメモっておきます。
@@ -597,10 +597,10 @@ $ tail -f /var/log/fsck_hfs.log  おそらくこんな感じ。
     
     <item>
       <title>Photo Leafをリリースしました</title>
-      <link>http://example.org/2013/06/27/photoleaf-release/</link>
+      <link>https://zephiransas.github.io/2013/06/27/photoleaf-release/</link>
       <pubDate>Thu, 27 Jun 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/2013/06/27/photoleaf-release/</guid>
+      <guid>https://zephiransas.github.io/2013/06/27/photoleaf-release/</guid>
       <description>本日、フォトブック作成サービス「Photo Leaf」をリリースしました。
 Photo Leafは1冊¥500でフォトブックを作成できるサービス「TOLOT」と連携して、flickrにアップした自分の写真からフォトブックを簡単に作成できます。
 Photo Leafの利用は無料ですので、ぜひ使ってみてください！
@@ -621,10 +621,10 @@ TOLOTの連携ファイルにはフォトブックのタイトルなどの情報
     
     <item>
       <title>Java Day Tokyo 2013報告会@岡山を開催してきた</title>
-      <link>http://example.org/2013/06/18/jdt2013-okayama-report/</link>
+      <link>https://zephiransas.github.io/2013/06/18/jdt2013-okayama-report/</link>
       <pubDate>Tue, 18 Jun 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/2013/06/18/jdt2013-okayama-report/</guid>
+      <guid>https://zephiransas.github.io/2013/06/18/jdt2013-okayama-report/</guid>
       <description>2013年6月15日（土）に、奉還町リブラホールにて「Java Day Tokyo 2013報告会@岡山」を開催してきました。
 自分は「Java Day Tokyo2013基調公演より」と題して、報告をさせていただきました。
  当日のTwitterのまとめは、こちら
@@ -636,10 +636,10 @@ TOLOTの連携ファイルにはフォトブックのタイトルなどの情報
     
     <item>
       <title>RubyKaigi2013に参加してきた</title>
-      <link>http://example.org/2013/06/04/attended-rubykaigi2013/</link>
+      <link>https://zephiransas.github.io/2013/06/04/attended-rubykaigi2013/</link>
       <pubDate>Tue, 04 Jun 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/2013/06/04/attended-rubykaigi2013/</guid>
+      <guid>https://zephiransas.github.io/2013/06/04/attended-rubykaigi2013/</guid>
       <description>5/30〜6/1まで、東京国際交流館で開催されたRubyKaigi2013に参加してきました。
 RubyKaigiはRuby界では最大級のイベントですが、一度2011年をもって終了しています。それが今回はいろいろコンセプトを変えて復活した、ということで自分も参加してきました。
 RubyKaigiについて 自分は今回が初参加なので、以前のRubyKaigiとの比較はできないのですが、他とは違うなと感じたのは以下のところ。
@@ -659,10 +659,10 @@ RubyKaigiで撮った写真はこちらにまとめてます。 http://www.flick
     
     <item>
       <title>GlassFishのアップグレード方法</title>
-      <link>http://example.org/2013/05/24/how-to-upgrade-gf/</link>
+      <link>https://zephiransas.github.io/2013/05/24/how-to-upgrade-gf/</link>
       <pubDate>Fri, 24 May 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/2013/05/24/how-to-upgrade-gf/</guid>
+      <guid>https://zephiransas.github.io/2013/05/24/how-to-upgrade-gf/</guid>
       <description>会社で使ってるJenkinsさんはGlassFish上で動いているんですが、これのアップグレードを行ったので、そのメモ。
 具体的にはGlassFish 3.1.1からGlassFish 3.1.2へアップグレードしました。
 updatetoolのインストール まずはアップグレードに使用するupdatetoolをインストールします。
@@ -676,10 +676,10 @@ $ ./asadmin version  などで、アップグレードできていることを�
     
     <item>
       <title>写真で振り返るゆとり</title>
-      <link>http://example.org/2013/05/20/yutori-advent-calendar/</link>
+      <link>https://zephiransas.github.io/2013/05/20/yutori-advent-calendar/</link>
       <pubDate>Mon, 20 May 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/2013/05/20/yutori-advent-calendar/</guid>
+      <guid>https://zephiransas.github.io/2013/05/20/yutori-advent-calendar/</guid>
       <description>これは「ゆとりアドベントカレンダー」の5/20分のエントリです
 前日は @btnrouge さんの「WebLogicのDIは果たして出来損ないなのか？」でした。
 そもそも、このゆとりアドベントカレンダーが何なのかよく分からず、しかも誰に言われるまでもなく、（空気を呼んで）勝手にエントリした身ですので、何もネタがありません（ぉぃ
@@ -693,10 +693,10 @@ TDDBCでは、JavaのTAの一人として活躍して頂きました。
     
     <item>
       <title>Java Day Tokyo 2013に参加してきた（セッション）</title>
-      <link>http://example.org/2013/05/18/javadaytokyo2/</link>
+      <link>https://zephiransas.github.io/2013/05/18/javadaytokyo2/</link>
       <pubDate>Sat, 18 May 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/2013/05/18/javadaytokyo2/</guid>
+      <guid>https://zephiransas.github.io/2013/05/18/javadaytokyo2/</guid>
       <description>前回の基調講演につづいて、今回は自分が参加したセッションのレポートです。
 Ask the Experts 基調講演にも登壇したJavaSE,JavaFX,JavaEEの各キーパーソンに、直接質問できるセッションです。ちょうど昼の時間だったので、本来は昼食をとりつつ受けるセッションなんですが、うっかり自分は昼食を仕入れるのを忘れてました・・・
 JavaSEの担当は、Simon Ritter氏
@@ -723,10 +723,10 @@ JavaSE7がリリースされて随分経ちますが、これでようやくス�
     
     <item>
       <title>Java Day Tokyo 2013に参加してきた（基調講演）</title>
-      <link>http://example.org/2013/05/16/javadaytokyo2013/</link>
+      <link>https://zephiransas.github.io/2013/05/16/javadaytokyo2013/</link>
       <pubDate>Thu, 16 May 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/2013/05/16/javadaytokyo2013/</guid>
+      <guid>https://zephiransas.github.io/2013/05/16/javadaytokyo2013/</guid>
       <description>前日、5月14日に秋葉原UDXにて開催されたJava Day Tokyo2013に参加してきました。 JavaOne Tokyo2012が開催されてからほぼ1年。去年イベントが終わった時には「もう、こういったイベントは当分ないだろうなぁ」とか思っていたので、JavaOneではないにしてもちゃんとイベントを開催してくれた日本オラクル＆寺田さんには感謝ですね。
 Keynoteの報告 基本的には去年のサンフランシスコでのJavaOneとかで発表された内容とかぶる感じ。ただ、普段はこういった最新情報をチェックしていない人たちでも、イベントであれば直に最新情報を聞けるので、そういった人たちにリーチできるだけでも、意味はあるかと。 残念だったのは最初、写真撮影がNGにされていたこと。
 写真撮影禁止とか、俺の仕事＼(^o^)／ｵﾜﾀ　#jdt2013
@@ -748,10 +748,10 @@ JavaEE7の主な新機能としては
     
     <item>
       <title>slickを使う（基礎編）</title>
-      <link>http://example.org/2013/04/24/slickwoshi-u/</link>
+      <link>https://zephiransas.github.io/2013/04/24/slickwoshi-u/</link>
       <pubDate>Wed, 24 Apr 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/2013/04/24/slickwoshi-u/</guid>
+      <guid>https://zephiransas.github.io/2013/04/24/slickwoshi-u/</guid>
       <description>最近playframework2.1をちゃんと使いたいなぁと思ったので、Scala含めて色々調べてます。 で、ドキュメントを眺めてて気になったのがO/Rマッパ。play1.2系のころはEBean等のO/Rマッパを利用できたんですが、play2.1系ではなくなってる！一応Anormという仕組みでSQLを発行出来ますが、SQL直書きするのは小学生までよねー？！的な感じ。
 で、更に調べてみると、typesafeでSlickというO/Rマッパがあるので、これが良さそうじゃね？ってことで、試してみました。 本来はplayから利用するのがベストですが、実験なのでスタンドアロンで。
 build.sbtとplugin.sbtの準備 まずはsbtで環境を作るところから。以下のようにbuild.sbtを作成 ``` scala build.sbt name := &amp;ldquo;slicksample&amp;rdquo;
@@ -766,10 +766,10 @@ $ sbt gen-idea  ついでにscalaのソースファイル置き場であるsrc/m
     
     <item>
       <title>ブログを引越しました</title>
-      <link>http://example.org/2013/04/06/blog-moved/</link>
+      <link>https://zephiransas.github.io/2013/04/06/blog-moved/</link>
       <pubDate>Sat, 06 Apr 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/2013/04/06/blog-moved/</guid>
+      <guid>https://zephiransas.github.io/2013/04/06/blog-moved/</guid>
       <description>以前使っていた、はてなダイアリーからGithub Pagesへ移行しようとおもって、はや４ヶ月・・・ ようやく引越しました。
 本当は今年始めの転職と同時に移行したかったんですが、あれよあれよという間に時間だけが経過して・・・
 今後はこちらをメインのブログとして使用していきたいと思います。はてダもそのまま残しておきます。

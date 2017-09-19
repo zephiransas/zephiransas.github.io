@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Crystal on My New Hugo Site</title>
-    <link>http://example.org/categories/crystal/</link>
-    <description>Recent content in Crystal on My New Hugo Site</description>
+    <title>Crystal on zephiransasのチラシの裏</title>
+    <link>https://zephiransas.github.io/categories/crystal/</link>
+    <description>Recent content in Crystal on zephiransasのチラシの裏</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>ja</language>
     <lastBuildDate>Wed, 09 Dec 2015 17:24:39 +0000</lastBuildDate>
     
-	<atom:link href="http://example.org/categories/crystal/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://zephiransas.github.io/categories/crystal/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>合同勉強会でCrystalの話をしてきた</title>
-      <link>http://example.org/2015/12/09/talk-about-crystal-on-gbdaitokai/</link>
+      <link>https://zephiransas.github.io/2015/12/09/talk-about-crystal-on-gbdaitokai/</link>
       <pubDate>Wed, 09 Dec 2015 17:24:39 +0000</pubDate>
       
-      <guid>http://example.org/2015/12/09/talk-about-crystal-on-gbdaitokai/</guid>
+      <guid>https://zephiransas.github.io/2015/12/09/talk-about-crystal-on-gbdaitokai/</guid>
       <description>これはCrystalアドベントカレンダー2015の12/9のエントリです。
 昨日はpine613さんの「Crystal-JP の活動紹介と、今後の活動について」でした。
 12/5に岡山県立大学にて行われた、合同勉強会 in 大都会岡山 -2015 Winter-にて、Crystalの紹介のセッションを行いました。
