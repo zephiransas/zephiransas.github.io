@@ -7,24 +7,29 @@
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-        <meta property="og:title" content=" Spring BootのCSSをGulpで管理する &middot;  zephiransasのチラシの裏" />
+        <meta property="og:title" content=" serverless frameworkでAWS Lambda環境を作る &middot;  zephiransasのチラシの裏" />
         <meta property="og:site_name" content="zephiransasのチラシの裏" />
-        <meta property="og:url" content="https://zephiransas.github.io/blog/2017/04/05/gulp-sass/" />
+        <meta property="og:url" content="https://zephiransas.github.io/post/serverless-with-aws/" />
 
     
         <meta property="og:type" content="article" />
-        <meta property="og:article:published_time" content="2017-04-05T16:13:17Z" />
+        <meta property="og:article:published_time" content="2017-10-17T15:54:24&#43;09:00" />
+        <meta property="og:article:tag" content="Java" />
+        <meta property="og:article:tag" content="AWS" />
+        <meta property="og:article:tag" content="serverless" />
+        <meta property="og:article:tag" content="lambda" />
+        <meta property="og:article:tag" content="dynamodb" />
         
 
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:site" content="@zephiransas" />
         <meta name="twitter:creator" content="@zephiransas" />
-        <meta name="twitter:title" content="Spring BootのCSSをGulpで管理する" />
+        <meta name="twitter:title" content="serverless frameworkでAWS Lambda環境を作る" />
         <meta name="twitter:description" content="" />
-        <meta name="twitter:url" content="https://zephiransas.github.io/blog/2017/04/05/gulp-sass/" />
+        <meta name="twitter:url" content="https://zephiransas.github.io/post/serverless-with-aws/" />
     
 
-        <title> Spring BootのCSSをGulpで管理する &middot;  zephiransasのチラシの裏</title>
+        <title> serverless frameworkでAWS Lambda環境を作る &middot;  zephiransasのチラシの裏</title>
 
         <link rel="preload" href="https://zephiransas.github.io/js/main.js" as="script" />
         <link rel="preload" href="https://zephiransas.github.io/css/main.css" as="style" />
@@ -49,7 +54,7 @@
     
 
     
-        <link rel="canonical" href="https://zephiransas.github.io/blog/2017/04/05/gulp-sass/" />
+        <link rel="canonical" href="https://zephiransas.github.io/post/serverless-with-aws/" />
 
 
     <script type="application/ld+json">
@@ -58,9 +63,9 @@
         "@type": "BlogPosting",
         "mainEntityOfPage": {
           "@type": "WebPage",
-          "@id": "https://zephiransas.github.io/blog/2017/04/05/gulp-sass/"
+          "@id": "https://zephiransas.github.io/post/serverless-with-aws/"
         },
-        "headline": "Spring BootのCSSをGulpで管理する",
+        "headline": "serverless frameworkでAWS Lambda環境を作る",
         "description": "",
         "author": {
             "@type": "Person",
@@ -92,10 +97,10 @@
           "height": 80,
           "width": 80
         },
-        "datePublished": "2017-04-05",
-        "dateModified": "2017-04-05",
-        "wordCount": 190,
-        
+        "datePublished": "2017-10-17",
+        "dateModified": "2017-10-17",
+        "wordCount": 270,
+        "keywords": ["Java","AWS","serverless","lambda","dynamodb"] 
     }
     </script>
 
@@ -151,178 +156,217 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
 
   			<header class="post-header">
   				<span class="post-meta">
-						<span class="post-date">5 Apr 2017</span> <span class="reading-time">| <span class="estimated-reading-time">1 min.</span> (<span class="word-count">190</span> words)</span></span>
+						<span class="post-date">17 Oct 2017</span> <span class="reading-time">| <span class="estimated-reading-time">2 min.</span> (<span class="word-count">270</span> words)</span></span>
   				</span>
   				<div class="clear"></div>
-  				<h1 class="post-title">Spring BootのCSSをGulpで管理する</h1>
+  				<h1 class="post-title">serverless frameworkでAWS Lambda環境を作る</h1>
   			</header>
 
   			<section class="post-content">
   				
 
-<p>Spring BootのプロジェクトでもSASSが書きたい！という欲望から、Gulpを使ってSASSをコンパイルするようにしました。</p>
+<p>serverless framewokを使って、AWS Lambdaの開発＆デプロイを簡単に行えるようになったので、メモ。</p>
 
-<p>基本Gulpでやってるので、出力先だけ変えれば、特にSpring Bootには関係ない気もしますが・・・</p>
+<h1 id="serverless-frameworkをインストール">serverless frameworkをインストール</h1>
 
-<p>npmは既にインストールしてある前提で。</p>
+<p>まずはserverless frameworkをインストールします。</p>
 
-<h2 id="フォルダの構成と基本方針">フォルダの構成と基本方針</h2>
-
-<p>フォルダ構成は以下のようなイメージ。</p>
-
-<pre><code class="language-bash">├── assets
-│   └── stylesheets
-│       └── application.scss
-├── gulpfile.js
-├── package.json
-└── src
-    └── main
-        └── resources
-            └── static
-                └── css
-                    ├── maps
-                    │   └── application.css.map
-                    └── application.css
+<pre><code class="language-bash">npm install -g serverless
 </code></pre>
 
-<p>assets/stylesheets以下にSASSを配置し、これをGulpでコンパイル。</p>
+<p>これでslsコマンドがインストールされます。</p>
 
-<p>出力先をSpring BootのCSS配備先 <code>src/main/resources/static/css</code> にして、これをThymeleafから参照する、という方針です。</p>
+<p>次に、serverless frameworkでAWS Lambdaの開発環境をscaffoldします。</p>
 
-<h2 id="必要なパッケージをインストールする">必要なパッケージをインストールする</h2>
-
-<p>まずは必要なパッケージをnpmでインストールしていきます。</p>
-
-<pre><code class="language-bash">$ npm init
-(以降、全てデフォルトで)
-$ npm install --save-dev gulp gulp-sass gulp-sourcemaps gulp-minify-css gulp-plumber
+<pre><code class="language-bash">sls create -t aws-java-gradle -n firstsls
 </code></pre>
 
-<p>これでpackage.jsonが作成され、node_modulesに依存ライブラリがインストールされます。node_modulesはgitignoreしておくといいでしょう。</p>
+<p>-tオプションに<code>aws-java-gradle</code>を指定することで、Java + Gradleの環境をScaffoldすることができます。</p>
 
-<h2 id="gulpfile-jsを作成する">gulpfile.jsを作成する</h2>
-
-<p>SASSをコンパイルできるようGulpのタスクを定義します。</p>
-
-<pre><code class="language-javascript">var gulp = require('gulp'),
-    sass = require('gulp-sass'),
-    sourcemaps = require('gulp-sourcemaps'),
-    minifyCss = require('gulp-minify-css'),
-    plumber = require('gulp-plumber');
-
-gulp.task('sass', function(){
-  gulp.src('assets/stylesheets/*.scss')
-    .pipe(plumber())
-    .pipe(sourcemaps.init())
-    .pipe(sass())
-    .pipe(minifyCss())
-    .pipe(sourcemaps.write('./maps'))
-    .pipe(gulp.dest('src/main/resources/static/css'))
-});
-</code></pre>
-
-<p>まずscssファイルの置き場所を <code>gulp.src('assets/stylesheets/*.scss')</code> としてassets/stylesheetsディレクトリに設定します。</p>
-
-<p><code>.pipe(sass())</code>でSASSのコンパイル、<code>.pipe(minifyCss())</code>でCSSの圧縮をしています。</p>
-
-<p>圧縮したCSSだと、元のSASSでの場所がわからなくなるので <code>.pipe(sourcemaps.write('./maps'))</code>でmapファイルを作成します。</p>
-
-<p><code>sourcemaps.write()</code>はデフォルトだとコンパイルされたcss内部にインラインでmapを書き込むので、別途mapsディレクトリにmapファイルを書き込むよう設定しておきます。こうしておくことでChromeなどのDeveloper toolで見たときにSASSの場所が分かるようになります。</p>
-
-<p>最後に <code>.pipe(gulp.dest('src/main/resources/static/css'))</code>でCSS出力しています。</p>
-
-<p>設定したタスクを実行します。</p>
-
-<pre><code class="language-bash">$ gulp sass
-</code></pre>
-
-<p>これでCSSが出力されますので、あとはThymeleaf側から</p>
-
-<pre><code class="language-html">&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;@{/css/application.css}&quot;/&gt;
-</code></pre>
-
-<p>として参照できます。</p>
-
-<h2 id="sassを分割したい">SASSを分割したい</h2>
-
-<p>よくあるケースとして、画面単位でSASSを分け、最終的なCSSでは1つにまとめてしまいたい、というケースがあります。
-例えば、以下のようなイメージ。</p>
-
-<pre><code class="language-bash">assets
-└── stylesheets
-    ├── modules &lt;- 各画面ごとのSASS
-    │   ├── _hoge.scss
-    │   └── _fuga.scss
-    └── application.scss &lt;- modulesを全てimportしたい
-</code></pre>
-
-<p>こういった時にはgulp-sass-bulk-importが便利です。</p>
-
-<pre><code class="language-bash">$ npm install --save-dev gulp-sass-bulk-import
-</code></pre>
-
-<p>としてgulp-sass-bulk-importをインストールした後、gulpfile.jsを修正します。</p>
-
-<pre><code class="language-javascript">var sassBulk = require('gulp-sass-bulk-import');
-
-...
-
-gulp.task('sass', function(){
-  gulp.src('assets/stylesheets/*.scss')
-    .pipe(plumber())
-    .pipe(sourcemaps.init())
-    .pipe(sassBulk()) # 追加
-    .pipe(sass())
-    .pipe(minifyCss())
-    .pipe(sourcemaps.write('./maps'))
-    .pipe(gulp.dest('src/main/resources/static/css'))
-});
-</code></pre>
-
-<p>あとはapplication.scssで</p>
-
-<pre><code class="language-css">@import &quot;modules/*&quot;;
-</code></pre>
-
-<p>とすることで、modules内のSASSを含めて、CSSがコンパイルされます。</p>
-
-<p>注意点として、modules以下のSASSファイルは、プレフィックスとしてアンダーバーが付与されています。付与しない場合は、modules以下のSASSも普通にコンパイルの対象になり、そのままdestに出力されてしまうので、これを防止するため、アンダーバーを付与しています。</p>
-
-<h2 id="bootstrapを使いたい">Bootstrapを使いたい</h2>
-
-<p>まずBoostrapをnpmでインストールします。</p>
-
-<pre><code class="language-bash">$ npm install --save-dev bootstrap@4.0.0-alpha.4
-</code></pre>
-
-<p>これでnode_modulesにBootstrapがインストールされたので、これをGulpから参照できるようgulpfile.jsを修正します。</p>
-
-<pre><code class="language-javascript">gulp.task('sass', function(){
-  gulp.src('assets/stylesheets/*.scss')
-    .pipe(plumber())
-    .pipe(sourcemaps.init())
-    .pipe(sassBulk()) # 追加
-    .pipe(sass({
-      includePaths: ['./node_modules/bootstrap/scss']   # 追加
-    }))
-    .pipe(minifyCss())
-    .pipe(sourcemaps.write('./maps'))
-    .pipe(gulp.dest('src/main/resources/static/css'))
-});
-</code></pre>
-
-<p>あとはapplication.scssで</p>
-
-<pre><code class="language-css">@import &quot;bootstrap&quot;;
-</code></pre>
-
-<p>とするだけです。SASSのコンパイルを実行すると、application.cssにBootstrapのcssが含まれていることがわかります。</p>
-
-<h2 id="参考など">参考など</h2>
+<p>-tオプションではscaffoldのテンプレートを指定することができ<code>aws-java-gradle</code>以外にも</p>
 
 <ul>
-<li><a href="http://qiita.com/steelydylan/items/37aa028fa11046cf4f51">gulpの設定を簡単に行える、gulpfile generatorを作りました。</a></li>
-<li><a href="http://steelydylan.github.io/gulp-generator/">gulp generator</a></li>
+<li>aws-nodejs</li>
+<li>aws-python</li>
+<li>aws-java-maven</li>
+<li>aws-kotlin-jvm-maven</li>
+</ul>
+
+<p>などといったテンプレートがあるようです。</p>
+
+<h1 id="生成されたコード">生成されたコード</h1>
+
+<p>この時点でHello World的なLambdaが既に生成されています。Handler.javaを見てみましょう。</p>
+
+<pre><code class="language-java">public class Handler implements RequestHandler&lt;Map&lt;String, Object&gt;, ApiGatewayResponse&gt; {
+
+    @Override
+    public ApiGatewayResponse handleRequest(Map&lt;String, Object&gt; input, Context context) {
+    LOG.info(&quot;received: &quot; + input);
+        Response responseBody = new Response(&quot;Go Serverless v1.x! Your function executed successfully!&quot;, input);
+        return ApiGatewayResponse.builder()
+                .setStatusCode(200)
+                .setObjectBody(responseBody)
+                .setHeaders(Collections.singletonMap(&quot;X-Powered-By&quot;, &quot;AWS Lambda &amp; serverless&quot;))
+                .build();
+  }
+}  
+</code></pre>
+
+<p>HanderクラスはAWS SDKが提供するRequestHandlerインターフェイスを実装しています。こうすることでこのクラスをAWS Lambdaの関数として機能させることができます。</p>
+
+<p>またジェネリクスで<code>RequestHandler&lt;Map&lt;String, Object&gt;, ApiGatewayResponse&gt;</code>となっていることから、<code>&lt;Map&lt;String, Object&gt;</code>を入力値とし<code>ApiGatewayResponse</code>を返すfunction、ということになります。</p>
+
+<p>入力値はMap型になっているので、実際には</p>
+
+<pre><code class="language-json">{
+  &quot;key1&quot;: &quot;value1&quot;,
+  &quot;key2&quot;: &quot;value2&quot;
+}
+</code></pre>
+
+<p>のようなjsonをパラメータとして受け取る形になります。詳細は以下が参考になります。</p>
+
+<ul>
+<li><a href="http://docs.aws.amazon.com/ja_jp/lambda/latest/dg/java-handler-using-predefined-interfaces.html">ハンドラー作成用に事前定義されているインターフェイスの利用 (Java)</a></li>
+</ul>
+
+<p>ApiGatewayResponseはserverless frameworkが生成したクラスです。functionもレスポンスとして汎用的に使えますので、ここではこのまま使うようにします。</p>
+
+<p>そして、関数の実体になるメソッドが<code>handleRequest</code>メソッドです。AWS Lambdaのfunctionを呼び出した場合には、このメソッドが実行されます。</p>
+
+<h1 id="最初のデプロイ">最初のデプロイ</h1>
+
+<p>まずはじめに、functionのデプロイ先リージョンを東京にしておきたいので、serverless.ymlを以下のように修正しておきます。</p>
+
+<pre><code class="language-yml">provider:
+    ...
+    stage: dev
+    region: ap-northeast-1
+</code></pre>
+
+<p>scaffoldされたコードはこのままでも動くので、早速ビルド＆デプロイしてみます。</p>
+
+<pre><code class="language-bash">./gradlew build
+sls deploy
+</code></pre>
+
+<p>serverless frameworkでデプロイすると、実際には、serverless.ymlに設定された内容をもとにCloudFormation経由でデプロイが実行され、AWS Lambdaだけではなくzipファイルを置くS3のバケットなど、必要なリソースをすべて自動で準備してくれます。</p>
+
+<p>デプロイが完了したら、AWSのコンソールなどからLambdaが実際に動作しているかどうか、確認しておきましょう。</p>
+
+<p>意図しない課金が発生しないように使わないリソースを消したい、といった時でもCloudFormationですのでスタックを消してしまえば、リソースもすべて消えるので便利です。serverless frameworkからであれば</p>
+
+<pre><code class="language-bash">sls remove
+</code></pre>
+
+<p>で消すこともできます。</p>
+
+<h1 id="dymanodbを設定する">DymanoDBを設定する</h1>
+
+<p>おおまかなところはできたので、ここでは先程作ったfunctionをREST APIとして公開し、クエリパラメータをDynamoDBに保存するようなAPIにすることを考えてみます。</p>
+
+<p>最初にfunctionから使うDynamoDBのテーブル名をLambdaの環境変数に設定できるよう、serverless.ymlに以下の記述を追加します。</p>
+
+<pre><code class="language-yml">provider:
+    ...
+    environment:
+        DYNAMODB_TABLE: ${self:service}-${opt:stage, self:provider.stage}
+</code></pre>
+
+<p>この設定により、DYNAMODB_TABLEという環境変数が設定されるようになります。
+またserverless.ymlの設定では上記のように<code>${self:service}</code>などとするとこで、他の設定値を参照することができます。</p>
+
+<p>次にデプロイ時にDynamoDBを作成するよう、serverless.ymlに設定を追加します。</p>
+
+<pre><code class="language-yml">resources:
+  Resources:
+    FirstServerlessDynamoDbTable:
+      Type: 'AWS::DynamoDB::Table'
+      DeletionPolicy: Retain
+      Properties:
+        AttributeDefinitions:
+          -
+            AttributeName: id
+            AttributeType: S
+        KeySchema:
+          -
+            AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        TableName: ${self:provider.environment.DYNAMODB_TABLE}
+</code></pre>
+
+<p>合わせて、DynamoDBへのアクセス権限を付与するように設定を追加します。</p>
+
+<pre><code class="language-yml">provider:
+    ...
+    iamRoleStatements:
+        - Effect: Allow
+            Action:
+                - dynamodb:Query
+                - dynamodb:Scan
+                - dynamodb:GetItem
+                - dynamodb:PutItem
+                - dynamodb:UpdateItem
+                - dynamodb:DeleteItem
+            Resource: &quot;arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.DYNAMODB_TABLE}&quot;
+</code></pre>
+
+<p>あとはHandlerのhandleRequestにDynamoDBへ書き込む処理を実装していきます。</p>
+
+<p>API Gatewayに渡されたクエリパラメータは、&rdquo;queryStringParameters&rdquo;という名前で取得できるので、以下のコードで取得します。</p>
+
+<pre><code class="language-java">@Override
+public ApiGatewayResponse handleRequest(Map&lt;String, Object&gt; input, Context context) {
+    final String PARAM_NAME = &quot;queryStringParameters&quot;;
+    Map&lt;String, Object&gt; params = (Map&lt;String, Object&gt;) input.get(PARAM_NAME);
+    ...
+}
+</code></pre>
+
+<p>次にこれを以下のコードでDynamoDBに書き込みます。</p>
+
+<pre><code class="language-java">private void writeDynamoDB(Map&lt;String, Object&gt; input) {
+    AmazonDynamoDB client = AmazonDynamoDBClientBuilder
+            .standard()
+            .withRegion(Regions.AP_NORTHEAST_1)
+            .build();
+
+    DynamoDB dynamoDB = new DynamoDB(client);
+    Table table = dynamoDB.getTable(System.getenv(&quot;DYNAMODB_TABLE&quot;));
+
+    SimpleDateFormat format = new SimpleDateFormat(&quot;yyyy-MM-dd'T'HH:mm:ssX&quot;);
+    Item item = new Item()
+            .withPrimaryKey(&quot;id&quot;, UUID.randomUUID().toString())
+            .with(&quot;created_at&quot;, format.format(new Date()));
+    input.forEach((key, value) -&gt; item.with(key, value));
+
+    table.putItem(item);
+}
+</code></pre>
+
+<p>created_atには現在の日時をセットしていますが、DynamoDBには日付型に相当する型はありませんので、ISO-8601で文字列に変換して格納しています。</p>
+
+<p>あとは再度ビルド＆デプロイします。</p>
+
+<pre><code class="language-bash">./gradlew clean build
+sls deploy
+</code></pre>
+
+<p>正しくデプロイできたら、APIをcurlなどで呼び出してみます。</p>
+
+<pre><code class="language-bash">curl -X GET https://xxxxxxxxx.execute-api.ap-northeast-1.amazonaws.com/dev/hello?key1=value1
+</code></pre>
+
+<p>正しく呼び出せれば、DynamoDBにkey1という項目がvalue1という値で保存されているはずです。</p>
+
+<p>今回作成したコードは以下のありますので、参考までに。</p>
+
+<ul>
+<li><a href="https://github.com/zephiransas/firstsls">https://github.com/zephiransas/firstsls</a></li>
 </ul>
 
   			</section>
@@ -330,12 +374,24 @@ gulp.task('sass', function(){
   			<footer class="post-footer">
   				<div class="post-tags">
             
+            
+                <a href="https://zephiransas.github.io/tags/Java/">Java</a>
+            
+                <a href="https://zephiransas.github.io/tags/AWS/">AWS</a>
+            
+                <a href="https://zephiransas.github.io/tags/serverless/">serverless</a>
+            
+                <a href="https://zephiransas.github.io/tags/lambda/">lambda</a>
+            
+                <a href="https://zephiransas.github.io/tags/dynamodb/">dynamodb</a>
+            
+            
   				</div>
   				<div class="post-share">
-  					<a class="icon-twitter" href="https://twitter.com/share?text=Spring%20Boot%e3%81%aeCSS%e3%82%92Gulp%e3%81%a7%e7%ae%a1%e7%90%86%e3%81%99%e3%82%8b&url=https%3a%2f%2fzephiransas.github.io%2fblog%2f2017%2f04%2f05%2fgulp-sass%2f&via=zephiransas" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+  					<a class="icon-twitter" href="https://twitter.com/share?text=serverless%20framework%e3%81%a7AWS%20Lambda%e7%92%b0%e5%a2%83%e3%82%92%e4%bd%9c%e3%82%8b&url=https%3a%2f%2fzephiransas.github.io%2fpost%2fserverless-with-aws%2f&via=zephiransas" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
   						<span>Twitter</span>
   					</a>
-  					<a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fzephiransas.github.io%2fblog%2f2017%2f04%2f05%2fgulp-sass%2f" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+  					<a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fzephiransas.github.io%2fpost%2fserverless-with-aws%2f" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
   						<span>Facebook</span>
   					</a>
   				</div>
@@ -352,22 +408,12 @@ gulp.task('sass', function(){
 
 			<nav class="post-nav">
 				
-					<a class="post-nav-item post-nav-next" href="https://zephiransas.github.io/post/serverless-with-aws/">
-						<section class="post-nav-teaser">
-							<span class="post-nav-icon"><i class="icon-arrow-left"></i></span>
-							<span class="post-nav-info">
-								<h4 class="post-nav-title">serverless frameworkでAWS Lambda環境を作る</h4>
-								<p class="post-nav-excerpt">&hellip;</p>
-							</span>
-						</section>
-					</a>
 				
-				
-					<a class="post-nav-item post-nav-prev" href="https://zephiransas.github.io/blog/2017/03/10/ciecleci-and-gradle/">
+					<a class="post-nav-item post-nav-prev" href="https://zephiransas.github.io/blog/2017/04/05/gulp-sass/">
 						<section class="post-nav-teaser">
 							<span class="post-nav-icon"><i class="icon-arrow-right"></i></span>
 							<span class="post-nav-info">
-								<h4 class="post-nav-title">CircleCIでGradleのテストを並列実行する</h4>
+								<h4 class="post-nav-title">Spring BootのCSSをGulpで管理する</h4>
 								<p class="post-nav-excerpt">&hellip;</p>
 							</span>
 						</section>
@@ -397,15 +443,10 @@ gulp.task('sass', function(){
     <div id="toc" class="menu-list">
         <nav id="TableOfContents">
 <ul>
-<li>
-<ul>
-<li><a href="#フォルダの構成と基本方針">フォルダの構成と基本方針</a></li>
-<li><a href="#必要なパッケージをインストールする">必要なパッケージをインストールする</a></li>
-<li><a href="#gulpfile-jsを作成する">gulpfile.jsを作成する</a></li>
-<li><a href="#sassを分割したい">SASSを分割したい</a></li>
-<li><a href="#bootstrapを使いたい">Bootstrapを使いたい</a></li>
-<li><a href="#参考など">参考など</a></li>
-</ul></li>
+<li><a href="#serverless-frameworkをインストール">serverless frameworkをインストール</a></li>
+<li><a href="#生成されたコード">生成されたコード</a></li>
+<li><a href="#最初のデプロイ">最初のデプロイ</a></li>
+<li><a href="#dymanodbを設定する">DymanoDBを設定する</a></li>
 </ul>
 </nav>
     </div>

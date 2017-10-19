@@ -6,9 +6,55 @@
     <description>Recent content in Tags on zephiransasのチラシの裏</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
+    <lastBuildDate>Tue, 17 Oct 2017 15:54:24 +0900</lastBuildDate>
     
 	<atom:link href="https://zephiransas.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Aws</title>
+      <link>https://zephiransas.github.io/tags/aws/</link>
+      <pubDate>Tue, 17 Oct 2017 15:54:24 +0900</pubDate>
+      
+      <guid>https://zephiransas.github.io/tags/aws/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Dynamodb</title>
+      <link>https://zephiransas.github.io/tags/dynamodb/</link>
+      <pubDate>Tue, 17 Oct 2017 15:54:24 +0900</pubDate>
+      
+      <guid>https://zephiransas.github.io/tags/dynamodb/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Java</title>
+      <link>https://zephiransas.github.io/tags/java/</link>
+      <pubDate>Tue, 17 Oct 2017 15:54:24 +0900</pubDate>
+      
+      <guid>https://zephiransas.github.io/tags/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Lambda</title>
+      <link>https://zephiransas.github.io/tags/lambda/</link>
+      <pubDate>Tue, 17 Oct 2017 15:54:24 +0900</pubDate>
+      
+      <guid>https://zephiransas.github.io/tags/lambda/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Serverless</title>
+      <link>https://zephiransas.github.io/tags/serverless/</link>
+      <pubDate>Tue, 17 Oct 2017 15:54:24 +0900</pubDate>
+      
+      <guid>https://zephiransas.github.io/tags/serverless/</guid>
+      <description></description>
+    </item>
     
   </channel>
 </rss>
