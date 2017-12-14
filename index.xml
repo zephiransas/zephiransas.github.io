@@ -6,10 +6,30 @@
     <description>Recent content on zephiransasのチラシの裏</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Tue, 17 Oct 2017 15:54:24 +0900</lastBuildDate>
+    <lastBuildDate>Thu, 14 Dec 2017 13:07:24 +0200</lastBuildDate>
     
 	<atom:link href="https://zephiransas.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>AWS Lambdaにコマンドを追加する</title>
+      <link>https://zephiransas.github.io/post/add-command-to-lambda/</link>
+      <pubDate>Thu, 14 Dec 2017 13:07:24 +0200</pubDate>
+      
+      <guid>https://zephiransas.github.io/post/add-command-to-lambda/</guid>
+      <description>小ネタです。
+AWS LambdaはAmazon Linux上で動いていますので、Amazon Linuxにデフォルトで入っているコマンドについては、Lambda内で普通に呼び出すことができます。
+ただ、場合によってはデフォルトで入っているもの以外も実行したいケースがあると思います。
+この場合は配備するLambdaのパッケージ内に対象のバイナリを含めてアップすることで、デフォルトではインストールされていないコマンドを実行することができます。
+自分の場合はLambda内でffmpegコマンドを実行したかったので、以降、これを例に記述します。
+まずは実行したいバイナリの準備。当然、ソースからAmazon Linux上でコンパイルするのがベストですが、ffmpegの場合は、公式で配布されているLinux向けバイナリがそのまま動いたので、これをそのまま使うことにします。
+こちらのページからx86_64 buildのバイナリをダウンロードし、解凍後ffmpeg本体をbinディレクトリに配置します。
+バイナリが提供されていない場合であれば、dockerやEC2などでAmazon Linuxでコンパイルしたバイナリを自前で準備する必要があります。
+フォルダ構成としては以下のようになります。
+|-- bin | `-- ffmpeg |-- serverless.yml `-- index.js  デプロイ周りはserverless frameworkにおまかせするのが簡単です。
+あとは、コマンド実行前にパスを通せばいいのでindex.jsなどで
+process.env.PATH += &#39;:/var/task/bin&#39;; let execSync = require(&#39;child_process&#39;).execSync; execSync([実行するコマンド]);  とすることでffmpegコマンドをLambdaで実行できます。</description>
+    </item>
     
     <item>
       <title>serverless frameworkでAWS Lambda&#43;DynamoDBをやってみる</title>

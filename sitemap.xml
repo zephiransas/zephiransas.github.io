@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://zephiransas.github.io/post/add-command-to-lambda/</loc>
+    <lastmod>2017-12-14T13:07:24+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://zephiransas.github.io/post/serverless-with-aws/</loc>
     <lastmod>2017-10-17T15:54:24+09:00</lastmod>
   </url>
@@ -189,7 +194,7 @@
   
   <url>
     <loc>https://zephiransas.github.io/tags/aws/</loc>
-    <lastmod>2017-10-17T15:54:24+09:00</lastmod>
+    <lastmod>2017-12-14T13:07:24+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -290,7 +295,7 @@
   
   <url>
     <loc>https://zephiransas.github.io/tags/lambda/</loc>
-    <lastmod>2017-10-17T15:54:24+09:00</lastmod>
+    <lastmod>2017-12-14T13:07:24+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -314,7 +319,7 @@
   
   <url>
     <loc>https://zephiransas.github.io/post/</loc>
-    <lastmod>2017-10-17T15:54:24+09:00</lastmod>
+    <lastmod>2017-12-14T13:07:24+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -356,7 +361,7 @@
   
   <url>
     <loc>https://zephiransas.github.io/tags/</loc>
-    <lastmod>2017-10-17T15:54:24+09:00</lastmod>
+    <lastmod>2017-12-14T13:07:24+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -368,7 +373,7 @@
   
   <url>
     <loc>https://zephiransas.github.io/</loc>
-    <lastmod>2017-10-17T15:54:24+09:00</lastmod>
+    <lastmod>2017-12-14T13:07:24+02:00</lastmod>
     <priority>0</priority>
   </url>
   

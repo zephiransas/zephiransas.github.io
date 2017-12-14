@@ -1,21 +1,32 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 
     <head>
-	<meta name="generator" content="Hugo 0.26" />
 
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-        <meta property="og:title" content=" zephiransasのチラシの裏" />
+        <meta property="og:title" content=" AWS Lambdaにコマンドを追加する &middot;  zephiransasのチラシの裏" />
         <meta property="og:site_name" content="zephiransasのチラシの裏" />
-        <meta property="og:url" content="https://zephiransas.github.io/" />
+        <meta property="og:url" content="https://zephiransas.github.io/post/add-command-to-lambda/" />
 
     
-        <meta property="og:type" content="website" />
+        <meta property="og:type" content="article" />
+        <meta property="og:article:published_time" content="2017-12-14T13:07:24&#43;02:00" />
+        <meta property="og:article:tag" content="AWS" />
+        <meta property="og:article:tag" content="lambda" />
+        
+
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@zephiransas" />
+        <meta name="twitter:creator" content="@zephiransas" />
+        <meta name="twitter:title" content="AWS Lambdaにコマンドを追加する" />
+        <meta name="twitter:description" content="" />
+        <meta name="twitter:url" content="https://zephiransas.github.io/post/add-command-to-lambda/" />
     
 
-        <title> zephiransasのチラシの裏</title>
+        <title> AWS Lambdaにコマンドを追加する &middot;  zephiransasのチラシの裏</title>
 
         <link rel="preload" href="https://zephiransas.github.io/js/main.js" as="script" />
         <link rel="preload" href="https://zephiransas.github.io/css/main.css" as="style" />
@@ -36,12 +47,59 @@
         
 
     
-
-    
         <link href="https://zephiransas.github.io/index.xml" rel="alternate" type="application/rss+xml" title="zephiransasのチラシの裏" />
     
-        <link rel="canonical" href="https://zephiransas.github.io/" />
 
+    
+        <link rel="canonical" href="https://zephiransas.github.io/post/add-command-to-lambda/" />
+
+
+    <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://zephiransas.github.io/post/add-command-to-lambda/"
+        },
+        "headline": "AWS Lambdaにコマンドを追加する",
+        "description": "",
+        "author": {
+            "@type": "Person",
+            "name": " ",
+            "url": "http://profiles.google.com/?rel=author",
+            "image": {
+              "@type": "ImageObject",
+              "url": "https:",
+              "height": 80,
+              "width": 80
+            }
+        },
+        "publisher": {
+          "@type": "Organization",
+          "@id": "https://zephiransas.github.io/",
+          "name": "zephiransasのチラシの裏",
+          "url": "https://zephiransas.github.io/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https:",
+            "height": 80,
+            "width": 80
+          }
+        },
+        
+        "image": {
+          "@type": "ImageObject",
+          "url": "",
+          "height": 80,
+          "width": 80
+        },
+        "datePublished": "2017-12-14",
+        "dateModified": "2017-12-14",
+        "wordCount": 36,
+        "keywords": ["AWS","lambda"] 
+    }
+    </script>
 
 
     
@@ -76,220 +134,117 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
               </a>
             </div>
             <div class="nav-menu">
-              <a class="rss" href="https://zephiransas.github.io/index.xml">
+              <a class="rss" href="">
                 <i class="icon-rss"></i>
               </a>
+                
+                <a class="menu" data-action="toc" data-target="toc"><i class="icon-location"></i></a>
                 
                 
             </div>
           </nav>
 
 
-	<header id="header" class="header">
+<main class="content" role="main">
+	<article class="post">
 		<div class="inner">
-			<a class="header-title" href="https://zephiransas.github.io/">
-				<h1 class="header-name">zephiransasのチラシの裏</h1>
-				
-					<span class="header-description">とあるプログラマのメモ代わりブログ</span>
-				
-			</a>
-		</div>
-		
-	</header>
 
-	<div id="post-index" class="container">
+			<div id="push">
 
-		<main class="content" role="main">
+  			<header class="post-header">
+  				<span class="post-meta">
+						<span class="post-date">14 Dec 2017</span> <span class="reading-time">| <span class="estimated-reading-time">1 min.</span> (<span class="word-count">36</span> words)</span></span>
+  				</span>
+  				<div class="clear"></div>
+  				<h1 class="post-title">AWS Lambdaにコマンドを追加する</h1>
+  			</header>
 
-			<div class="post-list">
-				<div id="push">
+  			<section class="post-content">
+  				<p>小ネタです。</p>
 
-			
+<p><a href="http://docs.aws.amazon.com/ja_jp/lambda/latest/dg/current-supported-versions.html">AWS LambdaはAmazon Linux</a>上で動いていますので、Amazon Linuxにデフォルトで入っているコマンドについては、Lambda内で普通に呼び出すことができます。</p>
 
-			
-			  
-<article class="post">
+<p>ただ、場合によってはデフォルトで入っているもの以外も実行したいケースがあると思います。</p>
 
-	<div class="inner">
-		<a class="post-link" href="https://zephiransas.github.io/blog/2014/02/06/renew-photoleaf/"></a>
-		
-		<span class="post-meta">
-			<span class="post-date">6 Feb 2014</span>
-		</span>
-		<h2 class="post-title"><a href="https://zephiransas.github.io/blog/2014/02/06/renew-photoleaf/">Photo Leafをちょっとリニューアルしました</a></h2>
-		<p class="post-excerpt">&hellip;</p>
-		<span class="post-more"><a href="https://zephiransas.github.io/blog/2014/02/06/renew-photoleaf/">Read More <i class="icon-arrow-right"></i></a></span>
-	</div>
-</article>
+<p>この場合は配備するLambdaのパッケージ内に対象のバイナリを含めてアップすることで、デフォルトではインストールされていないコマンドを実行することができます。</p>
 
-			
-			  
-<article class="post">
+<p>自分の場合はLambda内で<a href="https://www.ffmpeg.org/">ffmpeg</a>コマンドを実行したかったので、以降、これを例に記述します。</p>
 
-	<div class="inner">
-		<a class="post-link" href="https://zephiransas.github.io/blog/2014/01/23/webkit-on-wercker/"></a>
-		
-		<span class="post-meta">
-			<span class="post-date">23 Jan 2014</span>
-		</span>
-		<h2 class="post-title"><a href="https://zephiransas.github.io/blog/2014/01/23/webkit-on-wercker/">werckerでrspecとcucumberのCI環境を作る</a></h2>
-		<p class="post-excerpt">&hellip;</p>
-		<span class="post-more"><a href="https://zephiransas.github.io/blog/2014/01/23/webkit-on-wercker/">Read More <i class="icon-arrow-right"></i></a></span>
-	</div>
-</article>
+<p>まずは実行したいバイナリの準備。当然、ソースからAmazon Linux上でコンパイルするのがベストですが、ffmpegの場合は、公式で配布されているLinux向けバイナリがそのまま動いたので、これをそのまま使うことにします。</p>
 
-			
-			  
-<article class="post">
+<p><a href="https://www.johnvansickle.com/ffmpeg/">こちらのページ</a>から<code>x86_64 build</code>のバイナリをダウンロードし、解凍後ffmpeg本体をbinディレクトリに配置します。</p>
 
-	<div class="inner">
-		<a class="post-link" href="https://zephiransas.github.io/blog/2013/12/30/end-of-2013/"></a>
-		
-		<span class="post-meta">
-			<span class="post-date">30 Dec 2013</span>
-		</span>
-		<h2 class="post-title"><a href="https://zephiransas.github.io/blog/2013/12/30/end-of-2013/">2013年を振り返って</a></h2>
-		<p class="post-excerpt">&hellip;</p>
-		<span class="post-more"><a href="https://zephiransas.github.io/blog/2013/12/30/end-of-2013/">Read More <i class="icon-arrow-right"></i></a></span>
-	</div>
-</article>
+<p>バイナリが提供されていない場合であれば、dockerやEC2などでAmazon Linuxでコンパイルしたバイナリを自前で準備する必要があります。</p>
 
-			
-			  
-<article class="post">
+<p>フォルダ構成としては以下のようになります。</p>
 
-	<div class="inner">
-		<a class="post-link" href="https://zephiransas.github.io/blog/2013/12/23/daitokai2013/"></a>
-		
-		<span class="post-meta">
-			<span class="post-date">23 Dec 2013</span>
-		</span>
-		<h2 class="post-title"><a href="https://zephiransas.github.io/blog/2013/12/23/daitokai2013/">牡蠣駆動勉強会を行いました</a></h2>
-		<p class="post-excerpt">&hellip;</p>
-		<span class="post-more"><a href="https://zephiransas.github.io/blog/2013/12/23/daitokai2013/">Read More <i class="icon-arrow-right"></i></a></span>
-	</div>
-</article>
+<pre><code>|-- bin
+|  `-- ffmpeg
+|-- serverless.yml
+`-- index.js
+</code></pre>
 
-			
-			  
-<article class="post">
+<p>デプロイ周りはserverless frameworkにおまかせするのが簡単です。</p>
 
-	<div class="inner">
-		<a class="post-link" href="https://zephiransas.github.io/blog/2013/12/19/photo-advent2013/"></a>
-		
-		<span class="post-meta">
-			<span class="post-date">19 Dec 2013</span>
-		</span>
-		<h2 class="post-title"><a href="https://zephiransas.github.io/blog/2013/12/19/photo-advent2013/">Illumination Photo Advent Calendar 2013</a></h2>
-		<p class="post-excerpt">&hellip;</p>
-		<span class="post-more"><a href="https://zephiransas.github.io/blog/2013/12/19/photo-advent2013/">Read More <i class="icon-arrow-right"></i></a></span>
-	</div>
-</article>
+<p>あとは、コマンド実行前にパスを通せばいいのでindex.jsなどで</p>
 
-			
-			  
-<article class="post">
+<pre><code class="language-javascript">process.env.PATH += ':/var/task/bin';
+let execSync = require('child_process').execSync;
+execSync([実行するコマンド]);
+</code></pre>
 
-	<div class="inner">
-		<a class="post-link" href="https://zephiransas.github.io/blog/2013/12/12/irof2013/"></a>
-		
-		<span class="post-meta">
-			<span class="post-date">12 Dec 2013</span>
-		</span>
-		<h2 class="post-title"><a href="https://zephiransas.github.io/blog/2013/12/12/irof2013/">色んなバリエーションのirofさんを紹介しよう</a></h2>
-		<p class="post-excerpt">&hellip;</p>
-		<span class="post-more"><a href="https://zephiransas.github.io/blog/2013/12/12/irof2013/">Read More <i class="icon-arrow-right"></i></a></span>
-	</div>
-</article>
+<p>とすることでffmpegコマンドをLambdaで実行できます。</p>
 
-			
-			  
-<article class="post">
+  			</section>
 
-	<div class="inner">
-		<a class="post-link" href="https://zephiransas.github.io/blog/2013/12/08/javaadvent2013/"></a>
-		
-		<span class="post-meta">
-			<span class="post-date">8 Dec 2013</span>
-		</span>
-		<h2 class="post-title"><a href="https://zephiransas.github.io/blog/2013/12/08/javaadvent2013/">JavaOne2013報告会@岡山を開催しました</a></h2>
-		<p class="post-excerpt">&hellip;</p>
-		<span class="post-more"><a href="https://zephiransas.github.io/blog/2013/12/08/javaadvent2013/">Read More <i class="icon-arrow-right"></i></a></span>
-	</div>
-</article>
+  			<footer class="post-footer">
+  				<div class="post-tags">
+            
+            
+                <a href="https://zephiransas.github.io/tags/AWS/">AWS</a>
+            
+                <a href="https://zephiransas.github.io/tags/lambda/">lambda</a>
+            
+            
+  				</div>
+  				<div class="post-share">
+  					<a class="icon-twitter" href="https://twitter.com/share?text=AWS%20Lambda%e3%81%ab%e3%82%b3%e3%83%9e%e3%83%b3%e3%83%89%e3%82%92%e8%bf%bd%e5%8a%a0%e3%81%99%e3%82%8b&url=https%3a%2f%2fzephiransas.github.io%2fpost%2fadd-command-to-lambda%2f&via=zephiransas" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+  						<span>Twitter</span>
+  					</a>
+  					<a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fzephiransas.github.io%2fpost%2fadd-command-to-lambda%2f" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+  						<span>Facebook</span>
+  					</a>
+  				</div>
+  			</footer>
 
-			
-			  
-<article class="post">
+  			<aside class="post-comments">
+    
+    
+    
+</aside>
 
-	<div class="inner">
-		<a class="post-link" href="https://zephiransas.github.io/blog/2013/08/20/debug-with-weinre/"></a>
-		
-		<span class="post-meta">
-			<span class="post-date">20 Aug 2013</span>
-		</span>
-		<h2 class="post-title"><a href="https://zephiransas.github.io/blog/2013/08/20/debug-with-weinre/">weinreでiOSのブラウザのデバッグを行う手順</a></h2>
-		<p class="post-excerpt">&hellip;</p>
-		<span class="post-more"><a href="https://zephiransas.github.io/blog/2013/08/20/debug-with-weinre/">Read More <i class="icon-arrow-right"></i></a></span>
-	</div>
-</article>
 
-			
-			  
-<article class="post">
-
-	<div class="inner">
-		<a class="post-link" href="https://zephiransas.github.io/blog/2013/08/16/resque-timemachine/"></a>
-		
-		<span class="post-meta">
-			<span class="post-date">16 Aug 2013</span>
-		</span>
-		<h2 class="post-title"><a href="https://zephiransas.github.io/blog/2013/08/16/resque-timemachine/">TimeMachineで検証エラーが発生した場合の復旧方法</a></h2>
-		<p class="post-excerpt">&hellip;</p>
-		<span class="post-more"><a href="https://zephiransas.github.io/blog/2013/08/16/resque-timemachine/">Read More <i class="icon-arrow-right"></i></a></span>
-	</div>
-</article>
-
-			
-			  
-<article class="post">
-
-	<div class="inner">
-		<a class="post-link" href="https://zephiransas.github.io/blog/2013/06/27/photoleaf-release/"></a>
-		
-		<span class="post-meta">
-			<span class="post-date">27 Jun 2013</span>
-		</span>
-		<h2 class="post-title"><a href="https://zephiransas.github.io/blog/2013/06/27/photoleaf-release/">Photo Leafをリリースしました</a></h2>
-		<p class="post-excerpt">&hellip;</p>
-		<span class="post-more"><a href="https://zephiransas.github.io/blog/2013/06/27/photoleaf-release/">Read More <i class="icon-arrow-right"></i></a></span>
-	</div>
-</article>
-
-			
-
-				</div>
 			</div>
 
-			<nav id="pagination" class="pagination" role="pagination">
-	<div class="inner">
-	
-		
-	  <a class="pagination-item pagination-next" href="https://zephiransas.github.io//page/2/"><i class="icon-arrow-left"></i> <span>Newer Posts</span></a>
-	
-		<span class="pagination-info">Page 3 of 4</span>
-	
-		
-	  <a class="pagination-item pagination-prev" href="https://zephiransas.github.io//page/4/"><span>Older Posts</span> <i class="icon-arrow-right"></i></a>
-	
-		<div class="clear"></div>
-	</div>
-</nav>
+			<nav class="post-nav">
+				
+				
+					<a class="post-nav-item post-nav-prev" href="https://zephiransas.github.io/post/serverless-with-aws/">
+						<section class="post-nav-teaser">
+							<span class="post-nav-icon"><i class="icon-arrow-right"></i></span>
+							<span class="post-nav-info">
+								<h4 class="post-nav-title">serverless frameworkでAWS Lambda&#43;DynamoDBをやってみる</h4>
+								<p class="post-nav-excerpt">&hellip;</p>
+							</span>
+						</section>
+					</a>
+				
+				<div class="clear"></div>
+			</nav>
 
-
-		</main>
-
-	</div>
+		</div>
+	</article>
+</main>
 
 				<div id="body-class" style="display: none;"></div>
 				<footer id="footer">
@@ -300,6 +255,16 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
 				</footer>
 				
 				
+<div id="tocMenu" data-target="toc">
+    <div class="menu-header">
+        <span class="menu-label">Menu</span>
+        <a class="menu-close" data-action="toc" data-target="toc"></a>
+    </div>
+    <div id="toc" class="menu-list">
+        
+    </div>
+</div>
+
 
 				<div class="overlay"></div>
 			</div>
