@@ -96,7 +96,7 @@
         },
         "datePublished": "2017-12-14",
         "dateModified": "2017-12-14",
-        "wordCount": 36,
+        "wordCount": 37,
         "keywords": ["AWS","lambda"] 
     }
     </script>
@@ -153,7 +153,7 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
 
   			<header class="post-header">
   				<span class="post-meta">
-						<span class="post-date">14 Dec 2017</span> <span class="reading-time">| <span class="estimated-reading-time">1 min.</span> (<span class="word-count">36</span> words)</span></span>
+						<span class="post-date">14 Dec 2017</span> <span class="reading-time">| <span class="estimated-reading-time">1 min.</span> (<span class="word-count">37</span> words)</span></span>
   				</span>
   				<div class="clear"></div>
   				<h1 class="post-title">AWS Lambdaにコマンドを追加する</h1>
@@ -188,10 +188,9 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
 
 <p>あとは、コマンド実行前にパスを通せばいいのでindex.jsなどで</p>
 
-<pre><code class="language-javascript">process.env.PATH += ':/var/task/bin';
-let execSync = require('child_process').execSync;
-execSync([実行するコマンド]);
-</code></pre>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">PATH</span> <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#39;:/var/task/bin&#39;</span>;
+<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">execSync</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;child_process&#39;</span>).<span style="color:#a6e22e">execSync</span>;
+<span style="color:#a6e22e">execSync</span>(<span style="color:#e6db74">&#39;ffmpeg ....&#39;</span>);</code></pre></div>
 
 <p>とすることでffmpegコマンドをLambdaで実行できます。</p>
 

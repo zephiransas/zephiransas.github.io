@@ -28,7 +28,7 @@ AWS LambdaはAmazon Linux上で動いていますので、Amazon Linuxにデフ�
 フォルダ構成としては以下のようになります。
 |-- bin | `-- ffmpeg |-- serverless.yml `-- index.js  デプロイ周りはserverless frameworkにおまかせするのが簡単です。
 あとは、コマンド実行前にパスを通せばいいのでindex.jsなどで
-process.env.PATH += &#39;:/var/task/bin&#39;; let execSync = require(&#39;child_process&#39;).execSync; execSync([実行するコマンド]);  とすることでffmpegコマンドをLambdaで実行できます。</description>
+process.env.PATH += &amp;#39;:/var/task/bin&amp;#39;;let execSync = require(&amp;#39;child_process&amp;#39;).execSync;execSync(&amp;#39;ffmpeg ....&amp;#39;); とすることでffmpegコマンドをLambdaで実行できます。</description>
     </item>
     
     <item>
