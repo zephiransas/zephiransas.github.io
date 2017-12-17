@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Lambda on zephiransasのチラシの裏</title>
-    <link>https://zephiransas.github.io/tags/lambda/</link>
-    <description>Recent content in Lambda on zephiransasのチラシの裏</description>
+    <title>S3 on zephiransasのチラシの裏</title>
+    <link>https://zephiransas.github.io/tags/s3/</link>
+    <description>Recent content in S3 on zephiransasのチラシの裏</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <lastBuildDate>Sun, 17 Dec 2017 00:00:00 +0900</lastBuildDate>
     
-	<atom:link href="https://zephiransas.github.io/tags/lambda/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://zephiransas.github.io/tags/s3/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -52,43 +52,6 @@ Alexa Skillを設定 次にAmazon Developer Consoleから新しくスキルを�
 &amp;mdash; Takafumi Yoshida (@zephiransas) 2017年12月13日 
 うまくいけば上記のようになります。
 残念ながらAmazon Echoはまだ招待メールを受け取った人しか買えない状況ではありますが、お手元にAmazon Echoがある人は是非お試しください！</description>
-    </item>
-    
-    <item>
-      <title>AWS Lambdaにコマンドを追加する</title>
-      <link>https://zephiransas.github.io/post/add-command-to-lambda/</link>
-      <pubDate>Thu, 14 Dec 2017 13:07:24 +0200</pubDate>
-      
-      <guid>https://zephiransas.github.io/post/add-command-to-lambda/</guid>
-      <description>小ネタです。
-AWS LambdaはAmazon Linux上で動いていますので、Amazon Linuxにデフォルトで入っているコマンドについては、Lambda内で普通に呼び出すことができます。
-ただ、場合によってはデフォルトで入っているもの以外も実行したいケースがあると思います。
-この場合は配備するLambdaのパッケージ内に対象のバイナリを含めてアップすることで、デフォルトではインストールされていないコマンドを実行することができます。
-自分の場合はLambda内でffmpegコマンドを実行したかったので、以降、これを例に記述します。
-まずは実行したいバイナリの準備。当然、ソースからAmazon Linux上でコンパイルするのがベストですが、ffmpegの場合は、公式で配布されているLinux向けバイナリがそのまま動いたので、これをそのまま使うことにします。
-こちらのページからx86_64 buildのバイナリをダウンロードし、解凍後ffmpeg本体をbinディレクトリに配置します。
-バイナリが提供されていない場合であれば、dockerやEC2などでAmazon Linuxでコンパイルしたバイナリを自前で準備する必要があります。
-フォルダ構成としては以下のようになります。
-|-- bin | `-- ffmpeg |-- serverless.yml `-- index.js  デプロイ周りはserverless frameworkにおまかせするのが簡単です。
-あとは、コマンド実行前にパスを通せばいいのでindex.jsなどで
-process.env.PATH += &amp;#39;:/var/task/bin&amp;#39;;let execSync = require(&amp;#39;child_process&amp;#39;).execSync;execSync(&amp;#39;ffmpeg ....&amp;#39;); とすることでffmpegコマンドをLambdaで実行できます。</description>
-    </item>
-    
-    <item>
-      <title>serverless frameworkでAWS Lambda&#43;DynamoDBをやってみる</title>
-      <link>https://zephiransas.github.io/post/serverless-with-aws/</link>
-      <pubDate>Tue, 17 Oct 2017 15:54:24 +0900</pubDate>
-      
-      <guid>https://zephiransas.github.io/post/serverless-with-aws/</guid>
-      <description>serverless framewokを使って、AWS Lambdaの開発＆デプロイを簡単に行えるようになったので、メモ。
-serverless frameworkをインストール まずはserverless frameworkをインストールします。
-npm install -g serverless  これでslsコマンドがインストールされます。
-次に、serverless frameworkでAWS Lambdaの開発環境をscaffoldします。
-sls create -t aws-java-gradle -n firstsls  -tオプションにaws-java-gradleを指定することで、Java + Gradleの環境をScaffoldすることができます。
--tオプションではscaffoldのテンプレートを指定することができaws-java-gradle以外にも
- aws-nodejs aws-python aws-java-maven aws-kotlin-jvm-maven  などといったテンプレートがあるようです。
-生成されたコード この時点でHello World的なLambdaが既に生成されています。Handler.javaを見てみましょう。
-public class Handler implements RequestHandler&amp;lt;Map&amp;lt;String, Object&amp;gt;, ApiGatewayResponse&amp;gt; { @Override public ApiGatewayResponse handleRequest(Map&amp;lt;String, Object&amp;gt; input, Context context) { LOG.info(&amp;quot;received: &amp;quot; + input); Response responseBody = new Response(&amp;quot;Go Serverless v1.x! Your function executed successfully!&amp;quot;, input); return ApiGatewayResponse.</description>
     </item>
     
   </channel>
