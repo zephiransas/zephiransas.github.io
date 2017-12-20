@@ -7,28 +7,24 @@
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-        <meta property="og:title" content=" Amazon Echoで浦ラジを聴く &middot;  zephiransasのチラシの裏" />
+        <meta property="og:title" content=" 株式会社リゾームを退職しました &middot;  zephiransasのチラシの裏" />
         <meta property="og:site_name" content="zephiransasのチラシの裏" />
-        <meta property="og:url" content="https://zephiransas.github.io/post/amazon-echo-llss/" />
+        <meta property="og:url" content="https://zephiransas.github.io/post/leave-rhizome/" />
 
     
         <meta property="og:type" content="article" />
-        <meta property="og:article:published_time" content="2017-12-17T00:00:00&#43;09:00" />
-        <meta property="og:article:tag" content="alexa" />
-        <meta property="og:article:tag" content="nodejs" />
-        <meta property="og:article:tag" content="lambda" />
-        <meta property="og:article:tag" content="S3" />
+        <meta property="og:article:published_time" content="2017-12-20T09:00:00&#43;09:00" />
         
 
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:site" content="@zephiransas" />
         <meta name="twitter:creator" content="@zephiransas" />
-        <meta name="twitter:title" content="Amazon Echoで浦ラジを聴く" />
+        <meta name="twitter:title" content="株式会社リゾームを退職しました" />
         <meta name="twitter:description" content="" />
-        <meta name="twitter:url" content="https://zephiransas.github.io/post/amazon-echo-llss/" />
+        <meta name="twitter:url" content="https://zephiransas.github.io/post/leave-rhizome/" />
     
 
-        <title> Amazon Echoで浦ラジを聴く &middot;  zephiransasのチラシの裏</title>
+        <title> 株式会社リゾームを退職しました &middot;  zephiransasのチラシの裏</title>
 
         <link rel="preload" href="https://zephiransas.github.io/js/main.js" as="script" />
         <link rel="preload" href="https://zephiransas.github.io/css/main.css" as="style" />
@@ -53,7 +49,7 @@
     
 
     
-        <link rel="canonical" href="https://zephiransas.github.io/post/amazon-echo-llss/" />
+        <link rel="canonical" href="https://zephiransas.github.io/post/leave-rhizome/" />
 
 
     <script type="application/ld+json">
@@ -62,9 +58,9 @@
         "@type": "BlogPosting",
         "mainEntityOfPage": {
           "@type": "WebPage",
-          "@id": "https://zephiransas.github.io/post/amazon-echo-llss/"
+          "@id": "https://zephiransas.github.io/post/leave-rhizome/"
         },
-        "headline": "Amazon Echoで浦ラジを聴く",
+        "headline": "株式会社リゾームを退職しました",
         "description": "",
         "author": {
             "@type": "Person",
@@ -91,14 +87,14 @@
         },
         "image": {
           "@type": "ImageObject",
-          "url": "https://zephiransas.github.io/images/20171217/llss.jpg",
+          "url": "https://zephiransas.github.io/images/20171220/rhizome.png",
           "height": 133,
           "width": 200
         },
-        "datePublished": "2017-12-17",
-        "dateModified": "2017-12-17",
-        "wordCount": 63,
-        "keywords": ["alexa","nodejs","lambda","S3"] 
+        "datePublished": "2017-12-20",
+        "dateModified": "2017-12-20",
+        "wordCount": 58,
+        
     }
     </script>
 
@@ -156,118 +152,119 @@ html{font-family:sans-serif;line-height:1.15;-ms-text-size-adjust:100%;-webkit-t
 
   			<header class="post-header">
   				<span class="post-meta">
-						<span class="post-date">17 Dec 2017</span> <span class="reading-time">| <span class="estimated-reading-time">1 min.</span> (<span class="word-count">63</span> words)</span></span>
+						<span class="post-date">20 Dec 2017</span> <span class="reading-time">| <span class="estimated-reading-time">1 min.</span> (<span class="word-count">58</span> words)</span></span>
   				</span>
   				<div class="clear"></div>
-  				<h1 class="post-title">Amazon Echoで浦ラジを聴く</h1>
+  				<h1 class="post-title">株式会社リゾームを退職しました</h1>
   			</header>
 
   			<section class="post-content">
   				
 
-<p>これは<a href="https://adventar.org/calendars/2079">ラブライブ！アドベントカレンダー</a>17日目のエントリです。</p>
+<p>今年いっぱいをもちまして、株式会社リゾームを退職しました。</p>
 
-<p>先日、ついに日本でも発売されたスマートスピーカAmazon Echo。自分も早速入手して、いろいろ遊んでいます。</p>
+<p>在籍期間としては31日まであるのですが、明日より有給消化期間に突入するため、本日が最終出社日となります。</p>
 
-<p>音楽をかけたりニュースを読むだけでなく、他にも「アレクサ、買い物リストに卵を追加して」で、買い物リストへの追加ができたり、日常生活で役立ちそうな機能がいっぱいあります。</p>
-
-<p>で、我々ラブライバーにとっては<strong>毎週水曜に浦ラジをチェックするのは当然</strong>なわけですが、毎度PCをひらいて再生するのが面倒だなーということがありますよね？</p>
-
-<p>そこでAmazon Echoの出番です。</p>
-
-<p>ただ、いまのところ響ラジオステーションの公式スキル（一般的にいうところのアプリ）に相当するものはリリースされていません。</p>
-
-<p>なので、早速Amazon Echoで浦ラジを再生するスキルを、自作してみたいと思います。</p>
-
-<p>（当然、これは響ラジオステーション公式のアプリではないので、自己責任でお試しください・・・</p>
-
-<h1 id="スキルのアーキテクチャ">スキルのアーキテクチャ</h1>
-
-<p>まずはアーキテクチャを考えます。</p>
-
-<p>Alexa Skillには既に、<a href="https://developer.amazon.com/ja/docs/custom-skills/audioplayer-interface-reference.html#play">外部のmp3やm3u8などを再生できる機能</a>が備わっていますので、これを利用すれば再生できそうです。</p>
-
-<p>しかしここで1つ問題があります。それは響ラジオステーションのストリーミングには暗号化がされており、これを復号化しながらAmazon Echoで直接再生する方法は現状ではない、と思われます。</p>
-
-<p>なのでAlexaからの応答を受け付けるLambdaとは別に、ストリーミングを別のLambdaでダウンロードしS3に配置。そしてこれAmazon Echoで再生する方式にします。</p>
-
-<p>浦ラジは毎週水曜日の正午くらいに配信されるようですので、ストリーミングをダウンロードするLambdaは水曜の14時くらいにに定期的に実行するようCloudWatchに設定すれば、いい感じにできそうです。</p>
-
-<h1 id="アプリの配備">アプリの配備</h1>
-
-<p>今回作成したコードはこちらです。</p>
-
-<p><a href="https://github.com/zephiransas/alexa-llss-skill">https://github.com/zephiransas/alexa-llss-skill</a></p>
-
-<p>はじめに<code>.envrc.orig</code>をコピー＆リネームで<code>.envrc</code>にします。環境変数の管理には<a href="https://github.com/direnv/direnv">direnv</a>を使っています。</p>
-
-<p>つぎに<code>.envrc</code>の<code>BUCKET_NAME</code>を設定しておきます。これはダウンロードしたストリーミングファイルの保存先になるS3バケット名です。</p>
-
-<p><code>APP_ID</code>については、まだ設定しなくても大丈夫です。</p>
-
-<p>次にAlexaから呼び出すLambdaを配備します。<a href="https://serverless.com/">serverless framework</a>を使っていますので</p>
-
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ sls deploy</code></pre></div>
-
-<p>のコマンドだけで、デプロイできます。</p>
-
-<p>このコマンドで2つのLambdaがデプロイされます。</p>
-
-<p><a href="https://github.com/zephiransas/alexa-llss-skill/blob/master/handler.js">1つ目のLambda</a>はAlexaから呼び出され、環境変数<code>BUCKET_NAME</code>のS3を参照し、このなかにある<code>llss[配信回数].mp4</code>というファイルのうち、配信回数がもっとも大きいファイルをAlexaで再生するLambdaにしています。</p>
-
-<p><a href="https://github.com/zephiransas/alexa-llss-skill/blob/master/download.js">もう1つ</a>がCloudWatchから定期的に実行され、ストリーミングをffmpegで変換しつつS3に保存するLambdaです。
-Lambda内で通常はインストールされていないffmpegを実行できるようにする方法は、<a href="http://localhost:1313/post/add-command-to-lambda/">こちらのエントリ</a>で別途、解説しています。</p>
-
-<p><a href="https://java.com/ja/">いますぐダウンロー</a></p>
-
-<p>ドしておきたい場合は、Lambdaのコンソールからテスト実行すれば、3分程度でダウンロード処理が完了し、S3にmp4が作成されます。</p>
-
-<h1 id="alexa-skillを設定">Alexa Skillを設定</h1>
-
-<p>次に<a href="https://developer.amazon.com/home.html">Amazon Developer Consoleから</a>新しくスキルを追加します。</p>
-
-<p>設定内容の一部をスクショで掲載します。</p>
-
-<p><img src="/images/20171217/llss1.png" alt="llss1" /></p>
-
-<p>「スキルの名前」はスキルの呼び出し名になりますので、この場合だと</p>
-
-<p>「アレクサ、浦ラジを開いて」</p>
-
-<p>と発音すると<code>statehandler</code>内の<code>LaunchRequest</code>インテントが実行され、そこから<code>PlayAudio</code>インテントが実行されることで、S3上のmp4をAmazon Echoで再生できるというわけです。</p>
-
-<p><img src="/images/20171217/llss2.png" alt="llss2" /></p>
-
-<p>あとはSkill Beta Testingから、自分のアカウントで動かせるようにすれば、Amazon Echoで浦ラジを再生する環境のできあがりです！</p>
-
-<p><blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr">やっと思ってた形になったわー <a href="https://t.co/s5xtHtgVkN">pic.twitter.com/s5xtHtgVkN</a></p>&mdash; Takafumi Yoshida (@zephiransas) <a href="https://twitter.com/zephiransas/status/940896837816303616?ref_src=twsrc%5Etfw">2017年12月13日</a></blockquote>
+<p><blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr">初出社なう</p>&mdash; Takafumi Yoshida (@zephiransas) <a href="https://twitter.com/zephiransas/status/286987861612429313?ref_src=twsrc%5Etfw">2013年1月4日</a></blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></p>
 
-<p>うまくいけば上記のようになります。</p>
+<p>初出社が2013年の1月からなので、きっちり4年。</p>
 
-<p>残念ながらAmazon Echoはまだ招待メールを受け取った人しか買えない状況ではありますが、お手元にAmazon Echoがある人は是非お試しください！</p>
+<p>かと思いきや、実はその前からお手伝いに半年ほど入っていたので、<strong>実質4年半</strong> くらいの在籍期間でした。</p>
+
+<h1 id="なぜ転職するのか">なぜ転職するのか</h1>
+
+<p>最初に強く言っておきますが、自分が転職するのは<strong>決して今の会社が嫌になったとかではない</strong>、ということです。</p>
+
+<p>いまでも<strong>「岡山でエンジニアとして幸せに働ける会社」の1つはリゾームである</strong>と、断言できます。</p>
+
+<p>現に岡山のエンジニアコミュニティの主要なメンバーが数多く在籍していますし。
+（一部では、いい意味で「大都会の人材ブラックホール」なんて呼ばれてたくらいですからw）</p>
+
+<p>しかし会社の状況も、4年前からは変化します。</p>
+
+<p>自分はどちらかといえば、サービスの立ち上げ期などで、機能を素早く実装するフェーズを得意とするエンジニアだと思っています。</p>
+
+<p>また、自分が得た知識を実際の業務で使うことに喜びを感じるタイプなので、サービスの成長とともに、そういったことがしにくくなってきた側面というもあったかもしれません。</p>
+
+<p>サービスが成長すること自体は、大変嬉しいことなのですが。</p>
+
+<p>ともあれ</p>
+
+<ul>
+<li>技術が好きなエンジニアと仕事がしたい</li>
+<li>イマドキの普通な開発プロセスを経験したい</li>
+<li>受託ではなく自社サービスの開発・運用をやりたい</li>
+<li>Mac or Linux or Windowsなど、希望の環境で開発したい</li>
+<li>岡山を離れたくない</li>
+</ul>
+
+<p>など、こういったキーワードにマッチする人であれば、ぜひ<a href="https://www.rhizome-e.com/">リゾームを目指してほしい</a>と思っています。</p>
+
+<h1 id="転職活動">転職活動</h1>
+
+<p>実は、転職そのものについては2016年末くらいから、ゆるゆると情報収集などをやってました。</p>
+
+<p>そこで感じたのは、巷ではIT系は売り手市場なんて言われますが、やはり40歳を超えると、とたんに転職活動は厳しくなるなーという印象です。</p>
+
+<p>実は<a href="https://job-draft.jp/">転職ドラフト</a>にも登録したのですが、相当表立った実績がないと厳しいというイメージでした。</p>
+
+<p>（このあたり、ここでは書かないので興味ある人は直接訊いていただければ）</p>
+
+<p>また、今回の転職活動を通じて自分が実感したのは、普段から<strong>いまやっていることの棚卸し</strong>をキチンとやっておいたほうがいいと言うことです。月末に1回とか、プロジェクト終了時とか、区切り区切りで棚卸しして、<strong>自分の経験値をちゃんと目視できる状態</strong>にしておくのは大変有効だと思います。</p>
+
+<p>なぜなら、自分がいままで業務を通じて得た経験とかを、後でまとめるのは非常に難易度が高い（というか無理）と思うので、普段からまとめておくと転職時にもレジュメを簡単に書けるようになるので便利です。</p>
+
+<p>例えば</p>
+
+<ul>
+<li>業務でどんな役割を経験してきたか</li>
+<li>プロジェクトで使っているテクノロジーに対して、どれほど知識を深めたか</li>
+<li>どのような問題を、どのようなテクノロジーで解決したか</li>
+</ul>
+
+<p>上記以外にも</p>
+
+<ul>
+<li>ブログ、書籍などアウトプットがあるか</li>
+<li>勉強会への登壇、運営など、エンジニアコミュニティにコミットがあるか</li>
+</ul>
+
+<p>などを記録しておくといいと思います。</p>
+
+<p>こういった情報をまとめるのに便利なテンプレもあるので、これでまとめるのもオススメです。</p>
+
+<ul>
+<li><a href="https://github.com/okoysm/Curriculum-Vitae-template">Curriculum-Vitae-template</a></li>
+</ul>
+
+<h1 id="next-step-project">Next Step Project</h1>
+
+<p>次の会社には、年明けから出社する予定になっています。某<strong>ブログが有名な会社</strong>ですねw</p>
+
+<p>最初の仕事も「ジョインしましたエントリを書くこと」らしいので、入社しましたのお知らせは、そちらでできるかと思います。</p>
+
+<p>1月中は研修のため東京住まいになりますが、それ以降は岡山からリモート勤務の予定です。東京にいる間、普段はなかなか会えないコミュニティの皆さんにお会いできれば、と思っていますので、お暇な方はぜひお声がけください！</p>
+
+<p>最後に</p>
+
+<p>新しい道を選択するにあたって快く送り出してくれた、最高に素晴らしいチームの仲間と、リゾームの全社員・全関係者の皆様に、心から感謝いたします。</p>
+
+<p>特に中山社長は、退職をお伝えしたあとで「またいつでも出戻ってくれていいんだよ」とおっしゃっていただいたことは鮮明に覚えています。「はたして自分はこの会社に貢献できたんだろうか？」と心のどこかで思っていた自分の迷いを晴らすには十分なお言葉をいただき、ただただ感謝の想いでいっぱいです。</p>
+
+<p>またリゾームの皆様にお会いしましたときには、さらに成長した姿をお見せできるよう、今後も更なる努力を重ねてまいります。</p>
 
   			</section>
 
   			<footer class="post-footer">
   				<div class="post-tags">
             
-            
-                <a href="https://zephiransas.github.io/tags/alexa/">alexa</a>
-            
-                <a href="https://zephiransas.github.io/tags/nodejs/">nodejs</a>
-            
-                <a href="https://zephiransas.github.io/tags/lambda/">lambda</a>
-            
-                <a href="https://zephiransas.github.io/tags/S3/">S3</a>
-            
-            
   				</div>
   				<div class="post-share">
-  					<a class="icon-twitter" href="https://twitter.com/share?text=Amazon%20Echo%e3%81%a7%e6%b5%a6%e3%83%a9%e3%82%b8%e3%82%92%e8%81%b4%e3%81%8f&url=https%3a%2f%2fzephiransas.github.io%2fpost%2famazon-echo-llss%2f&via=zephiransas" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+  					<a class="icon-twitter" href="https://twitter.com/share?text=%e6%a0%aa%e5%bc%8f%e4%bc%9a%e7%a4%be%e3%83%aa%e3%82%be%e3%83%bc%e3%83%a0%e3%82%92%e9%80%80%e8%81%b7%e3%81%97%e3%81%be%e3%81%97%e3%81%9f&url=https%3a%2f%2fzephiransas.github.io%2fpost%2fleave-rhizome%2f&via=zephiransas" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
   						<span>Twitter</span>
   					</a>
-  					<a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fzephiransas.github.io%2fpost%2famazon-echo-llss%2f" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+  					<a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fzephiransas.github.io%2fpost%2fleave-rhizome%2f" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
   						<span>Facebook</span>
   					</a>
   				</div>
@@ -284,22 +281,12 @@ Lambda内で通常はインストールされていないffmpegを実行でき�
 
 			<nav class="post-nav">
 				
-					<a class="post-nav-item post-nav-next" href="https://zephiransas.github.io/post/leave-rhizome/">
-						<section class="post-nav-teaser">
-							<span class="post-nav-icon"><i class="icon-arrow-left"></i></span>
-							<span class="post-nav-info">
-								<h4 class="post-nav-title">株式会社リゾームを退職しました</h4>
-								<p class="post-nav-excerpt">&hellip;</p>
-							</span>
-						</section>
-					</a>
 				
-				
-					<a class="post-nav-item post-nav-prev" href="https://zephiransas.github.io/post/add-command-to-lambda/">
+					<a class="post-nav-item post-nav-prev" href="https://zephiransas.github.io/post/amazon-echo-llss/">
 						<section class="post-nav-teaser">
 							<span class="post-nav-icon"><i class="icon-arrow-right"></i></span>
 							<span class="post-nav-info">
-								<h4 class="post-nav-title">AWS Lambdaにコマンドを追加する</h4>
+								<h4 class="post-nav-title">Amazon Echoで浦ラジを聴く</h4>
 								<p class="post-nav-excerpt">&hellip;</p>
 							</span>
 						</section>
@@ -329,9 +316,9 @@ Lambda内で通常はインストールされていないffmpegを実行でき�
     <div id="toc" class="menu-list">
         <nav id="TableOfContents">
 <ul>
-<li><a href="#スキルのアーキテクチャ">スキルのアーキテクチャ</a></li>
-<li><a href="#アプリの配備">アプリの配備</a></li>
-<li><a href="#alexa-skillを設定">Alexa Skillを設定</a></li>
+<li><a href="#なぜ転職するのか">なぜ転職するのか</a></li>
+<li><a href="#転職活動">転職活動</a></li>
+<li><a href="#next-step-project">Next Step Project</a></li>
 </ul>
 </nav>
     </div>

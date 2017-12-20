@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://zephiransas.github.io/post/leave-rhizome/</loc>
+    <lastmod>2017-12-20T09:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://zephiransas.github.io/post/amazon-echo-llss/</loc>
     <lastmod>2017-12-17T00:00:00+09:00</lastmod>
   </url>
@@ -336,7 +341,7 @@
   
   <url>
     <loc>https://zephiransas.github.io/post/</loc>
-    <lastmod>2017-12-17T00:00:00+09:00</lastmod>
+    <lastmod>2017-12-20T09:00:00+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -396,7 +401,7 @@
   
   <url>
     <loc>https://zephiransas.github.io/</loc>
-    <lastmod>2017-12-17T00:00:00+09:00</lastmod>
+    <lastmod>2017-12-20T09:00:00+09:00</lastmod>
     <priority>0</priority>
   </url>
   
